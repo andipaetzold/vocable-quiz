@@ -8,6 +8,7 @@
     "removeComments": true,
     "allowSyntheticDefaultImports": false,
     "jsx": "react",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "typeRoots": ["@types/", "src/types"]
   }
 }
