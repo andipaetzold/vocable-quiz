@@ -1,0 +1,13 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+
+    working_directory: ~/vocable-trainer
+
+    steps:
+      - checkout
+      - run: npm ci
+      - run: npm run build
