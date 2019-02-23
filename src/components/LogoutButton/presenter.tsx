@@ -4,14 +4,14 @@ import React from "react";
 
 export interface Props {
   firebase: Firebase;
-  user: firebase.User;
+  authUser: firebase.User;
 }
 
 export default class LogoutButton extends React.PureComponent<Props> {
   render() {
-    const { user, firebase } = this.props;
+    const { authUser, firebase } = this.props;
 
-    if (!user) {
+    if (!authUser) {
       return null;
     }
 

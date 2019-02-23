@@ -1,11 +1,11 @@
 import withFirebase from "hoc/withFirebase";
-import withUser from "hoc/withUser";
+import withAuthUser from "hoc/withAuthUser";
 import { compose } from "recompose";
 import { Omit } from "utility-types";
 import LogoutButton, { Props } from "./presenter";
 
-const enhance = compose<Props, Omit<Props, "firebase" | "user">>(
-  withUser,
+const enhance = compose<Props, Omit<Props, "firebase" | "authUser">>(
+  withAuthUser,
   withFirebase
 );
 
