@@ -1,10 +1,10 @@
 import { Layout, Menu } from "antd";
+import LogoutButton from "components/LogoutButton";
+import Home from "pages/Home";
+import Quiz from "pages/Quiz";
+import Settings from "pages/Settings";
 import React from "react";
 import { Link, Route } from "react-router-dom";
-import LogoutButton from "../../components/LogoutButton";
-import Home from "../Home";
-import Quiz from "../Quiz";
-import Settings from "../Settings";
 import styles from "./styles.m.less";
 const { Content, Header } = Layout;
 

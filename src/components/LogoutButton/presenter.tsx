@@ -1,6 +1,6 @@
-import React from "react";
-import Firebase from "../Firebase/firebase";
 import { Button } from "antd";
+import Firebase from "components/Firebase/firebase";
+import React from "react";
 
 export interface Props {
   firebase: Firebase;

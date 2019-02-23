@@ -1,6 +1,6 @@
+import withFirebase from "hoc/withFirebase";
+import withUser from "hoc/withUser";
 import { compose } from "recompose";
-import withFirebase from "../../hoc/withFirebase";
-import withUser from "../../hoc/withUser";
 import { Omit } from "utility-types";
 import LogoutButton, { Props } from "./presenter";
 

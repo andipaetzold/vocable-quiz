@@ -1,8 +1,8 @@
+import Firebase from "components/Firebase/firebase";
+import withFirebase from "hoc/withFirebase";
 import React, { ComponentType } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { compose } from "recompose";
-import Firebase from "../../components/Firebase/firebase";
-import withFirebase from "../withFirebase";
 import AuthUserContext from "./context";
 
 interface Props {

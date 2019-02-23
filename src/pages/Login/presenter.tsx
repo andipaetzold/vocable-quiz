@@ -1,8 +1,8 @@
-import React, { useState, FormEvent } from "react";
+import { Button, Form, Icon, Input, Layout } from "antd";
+import Firebase from "components/Firebase/firebase";
+import React, { FormEvent, useState } from "react";
 import { RouteProps } from "react-router";
-import Firebase from "../../components/Firebase/firebase";
 import AuthError from "./AuthError";
-import { Button, Input, Form, Icon, Layout } from "antd";
 
 export type Props = {
   firebase: Firebase;

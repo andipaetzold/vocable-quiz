@@ -7,7 +7,8 @@ module.exports = {
     historyApiFallback: true
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    extensions: [".ts", ".tsx", ".js"],
+    modules: [path.resolve("./node_modules"), path.resolve("./src")]
   },
   output: {
     path: path.join(__dirname, "/dist"),

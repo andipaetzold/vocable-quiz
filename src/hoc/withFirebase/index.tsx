@@ -1,7 +1,7 @@
+import Firebase from "components/Firebase";
+import FirebaseContext from "components/Firebase/context";
 import React, { ComponentType } from "react";
 import { Subtract } from "utility-types";
-import FirebaseContext from "../../components/Firebase/context";
-import Firebase from "../../components/Firebase";
 
 interface InjectedProps {
   firebase: Firebase;

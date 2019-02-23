@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "typeRoots": ["@types/", "src/types"]
   }
 }
