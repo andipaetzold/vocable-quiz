@@ -3,17 +3,17 @@ import NoAuthRoute from "components/NoAuthRoute";
 import Login from "pages/Login";
 import Shell from "pages/Shell";
 import * as React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 
 export default class Router extends React.PureComponent {
   render() {
     return (
       <BrowserRouter>
-        <>
+        <Switch>
           {this.props.children}
-          <AuthRoute exact path="/" component={Shell} />
           <NoAuthRoute path="/login" component={Login} />
-        </>
+          <AuthRoute path="/" component={Shell} />
+        </Switch>
       </BrowserRouter>
     );
   }

@@ -4,7 +4,7 @@ import Home from "pages/Home";
 import Quiz from "pages/Quiz";
 import Settings from "pages/Settings";
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import styles from "./styles.m.less";
 const { Content, Header } = Layout;
 
@@ -30,9 +30,11 @@ export default class Shell extends React.PureComponent {
           </Menu>
         </Header>
         <Content className={styles.content}>
-          <Route exact path="/" component={Home} />
-          <Route path="/quiz" component={Quiz} />
-          <Route path="/settings" component={Settings} />
+          <Switch>
+            <Route path="/quiz" component={Quiz} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/" component={Home} />
+          </Switch>
         </Content>
       </>
     );
