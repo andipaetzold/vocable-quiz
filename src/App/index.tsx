@@ -1,7 +1,7 @@
-import * as React from "react";
+import { compose } from "recompose";
+import withUserProvider from "../hoc/withUser/provider";
+import App from "./presenter";
 
-export default class App extends React.PureComponent {
-  render() {
-    return <h1>App</h1>;
-  }
-}
+const enhance = compose(withUserProvider);
+
+export default enhance(App);
