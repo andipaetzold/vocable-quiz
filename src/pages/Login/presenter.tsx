@@ -32,20 +32,22 @@ const Login = ({ firebase }: Props) => {
           <Input
             type="email"
             onChange={e => setEmail(e.target.value)}
-            placeholder={"Email Address"}
+            placeholder="Email Address"
             value={email}
             required
             prefix={<Icon type="mail" />}
+            autoComplete="username"
           />
         </Form.Item>
         <Form.Item>
           <Input
             type="password"
             onChange={e => setPassword(e.target.value)}
-            placeholder={"Password"}
+            placeholder="Password"
             value={password}
             required
             prefix={<Icon type="lock" />}
+            autoComplete="current-password"
           />
         </Form.Item>
         <Button type="primary" htmlType="submit">
