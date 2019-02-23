@@ -1,7 +1,7 @@
 import { Card, Spin, Form, Input, Button, Icon, message } from "antd";
 import AuthUserContext from "hoc/withAuthUser/context";
 import useFirebase from "hooks/useFirebase";
-import React, { useContext, useState, FormEvent } from "react";
+import React, { useContext, useState, FormEvent, useRef } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { RouteComponentProps } from "react-router-dom";
 import Subject from "types/Subject";
@@ -15,6 +15,7 @@ export default function CreateCard(props: Props) {
   const firebase = useFirebase();
   const user = useContext(AuthUserContext);
 
+  const questionRef = useRef<Input>(null);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
@@ -37,12 +38,18 @@ export default function CreateCard(props: Props) {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    const hide = message.loading("Creating card");
     await firebase.createCard(user, subjectId, { question, answer });
-
-    message.success("Card was created");
 
     setQuestion("");
     setAnswer("");
+
+    if (questionRef.current) {
+      questionRef.current.focus();
+    }
+
+    hide();
+    message.success("Card was created");
   };
 
   return (
@@ -50,6 +57,7 @@ export default function CreateCard(props: Props) {
       <Form layout="inline" onSubmit={handleSubmit}>
         <Form.Item>
           <Input
+            ref={questionRef}
             type="text"
             placeholder="Question"
             value={question}
