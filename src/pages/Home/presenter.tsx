@@ -9,5 +9,5 @@ export default function Home() {
     return null;
   }
 
-  return <>Hello ${user.displayName}</>;
+  return <>Hello {user.displayName}</>;
 }
