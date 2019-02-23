@@ -1,4 +1,4 @@
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Icon } from "antd";
 import LogoutButton from "components/LogoutButton";
 import Home from "pages/Home";
 import Quiz from "pages/Quiz";
@@ -15,16 +15,24 @@ export default class Shell extends React.PureComponent {
         <Header style={{ backgroundColor: "white" }}>
           <Menu theme="light" mode="horizontal" style={{ lineHeight: "64px" }}>
             <Menu.Item>
-              <Link to="/">Home</Link>
+              <Link to="/">
+                <Icon type="home" /> Home
+              </Link>
             </Menu.Item>
             <Menu.Item>
-              <Link to="/quiz">Quiz</Link>
+              <Link to="/quiz">
+                <Icon type="question" /> Quiz
+              </Link>
             </Menu.Item>
             <Menu.Item>
-              <Link to="/input">Input</Link>
+              <Link to="/input">
+                <Icon type="plus" /> Input
+              </Link>
             </Menu.Item>
             <Menu.Item>
-              <Link to="/settings">Settings</Link>
+              <Link to="/settings">
+                <Icon type="setting" /> Settings
+              </Link>
             </Menu.Item>
             <LogoutButton />
           </Menu>

@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Icon } from "antd";
 import FirebaseContext from "components/Firebase/context";
 import AuthUserContext from "hoc/withAuthUser/context";
 import React, { useContext } from "react";
@@ -12,8 +12,8 @@ export default function LogoutBurtton() {
   }
 
   return (
-    <Button type="default" onClick={firebase.logout}>
-      Logout
+    <Button type="danger" shape="circle" onClick={firebase.logout}>
+      <Icon type="logout" />
     </Button>
   );
 }
