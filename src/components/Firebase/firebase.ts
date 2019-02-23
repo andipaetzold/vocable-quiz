@@ -16,19 +16,11 @@ export default class Firebase {
     this.auth = app.auth();
   }
 
-  createAccount(email: string, password: string) {
-    return this.auth.createUserWithEmailAndPassword(email, password);
-  }
+  createAccount = (email: string, password: string) =>
+    this.auth.createUserWithEmailAndPassword(email, password);
 
-  login(email: string, password: string) {
-    return this.auth.signInWithEmailAndPassword(email, password);
-  }
+  login = (email: string, password: string) =>
+    this.auth.signInWithEmailAndPassword(email, password);
 
-  logout() {
-    return this.auth.signOut();
-  }
-
-  get currentuser() {
-    return this.auth.currentUser;
-  }
+  logout = () => this.auth.signOut();
 }
