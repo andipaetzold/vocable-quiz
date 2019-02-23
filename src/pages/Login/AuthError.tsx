@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "antd";
 
 interface Props {
   code: string;
@@ -22,6 +23,13 @@ export default class AuthError extends React.PureComponent<Props> {
         break;
     }
 
-    return <div>{message}</div>;
+    return (
+      <Alert
+        type="error"
+        message="Login failed"
+        description={message}
+        showIcon
+      />
+    );
   }
 }

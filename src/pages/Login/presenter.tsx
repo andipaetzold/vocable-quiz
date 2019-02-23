@@ -1,44 +1,59 @@
-import React, { useState } from "react";
-import { RouteProps, Redirect } from "react-router";
+import React, { useState, FormEvent } from "react";
+import { RouteProps } from "react-router";
 import Firebase from "../../components/Firebase/firebase";
 import AuthError from "./AuthError";
+import { Button, Input, Form, Icon, Layout } from "antd";
 
 export type Props = {
   firebase: Firebase;
   user: firebase.User;
 } & RouteProps;
 
-const Login = ({ firebase, location, user }: Props) => {
+const Login = ({ firebase }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [code, setCode] = useState<string | undefined>(undefined);
 
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    try {
+      await firebase.login(email, password);
+    } catch (e) {
+      setCode(e.code);
+    }
+  }
+
   return (
-    <>
-      <h2>Login</h2>
+    <Layout.Content>
       {code && <AuthError code={code} />}
-      <input
-        type="email"
-        onChange={e => setEmail(e.target.value)}
-        value={email}
-      />
-      <input
-        type="password"
-        onChange={e => setPassword(e.target.value)}
-        value={password}
-      />
-      <input
-        type="button"
-        onClick={async () => {
-          try {
-            await firebase.login(email, password);
-          } catch (e) {
-            setCode(e.code);
-          }
-        }}
-        value="Submit"
-      />
-    </>
+      <Form layout="horizontal" onSubmit={handleSubmit}>
+        <Form.Item>
+          <Input
+            type="email"
+            onChange={e => setEmail(e.target.value)}
+            placeholder={"Email Address"}
+            value={email}
+            required
+            prefix={<Icon type="mail" />}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Input
+            type="password"
+            onChange={e => setPassword(e.target.value)}
+            placeholder={"Password"}
+            value={password}
+            required
+            prefix={<Icon type="lock" />}
+          />
+        </Form.Item>
+        <Button type="primary" htmlType="submit">
+          Login
+        </Button>
+      </Form>
+    </Layout.Content>
   );
 };
+
 export default Login;

@@ -1,17 +1,15 @@
+import { Layout } from "antd";
 import React from "react";
 import Router from "./Router";
-import styles from "./styles.m.less";
-import LogoutButton from "../components/LogoutButton";
+const { Footer } = Layout;
 
 export default class App extends React.PureComponent {
   render() {
     return (
-      <div className={styles.container}>
-        <Router>
-          <h1>Vocable Quiz</h1>
-          <LogoutButton />
-        </Router>
-      </div>
+      <Layout>
+        <Router />
+        <Footer>Vocable Quiz by Andi Pätzold</Footer>
+      </Layout>
     );
   }
 }

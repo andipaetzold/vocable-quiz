@@ -1,5 +1,6 @@
 import React from "react";
 import Firebase from "../Firebase/firebase";
+import { Button } from "antd";
 
 export interface Props {
   firebase: Firebase;
@@ -14,6 +15,10 @@ export default class LogoutButton extends React.PureComponent<Props> {
       return null;
     }
 
-    return <button onClick={firebase.logout}>Logout</button>;
+    return (
+      <Button type="default" onClick={firebase.logout}>
+        Logout
+      </Button>
+    );
   }
 }
