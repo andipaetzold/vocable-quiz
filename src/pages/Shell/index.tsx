@@ -13,7 +13,11 @@ export default class Shell extends React.PureComponent {
     return (
       <>
         <Header style={{ backgroundColor: "white" }}>
-          <Menu theme="light" mode="horizontal" style={{ lineHeight: "64px" }}>
+          <Menu
+            theme="light"
+            mode="horizontal"
+            style={{ lineHeight: "64px", textAlign: "center" }}
+          >
             <Menu.Item>
               <Link to="/">
                 <Icon type="home" /> Home
