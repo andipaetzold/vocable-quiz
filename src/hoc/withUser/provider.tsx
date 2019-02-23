@@ -1,8 +1,8 @@
+import React, { ComponentType } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { compose } from "recompose";
-import withFirebase from "../withFirebase";
-import { ComponentType, useState, useEffect } from "react";
-import React from "react";
 import Firebase from "../../components/Firebase/firebase";
+import withFirebase from "../withFirebase";
 import AuthUserContext from "./context";
 
 interface Props {
@@ -11,17 +11,9 @@ interface Props {
 
 function withUserProvider<T extends Props>(Component: ComponentType<T>) {
   return (props: T) => {
-    const [user, setUser] = useState<firebase.User | null>(null);
-    const [initialized, setInitialized] = useState(false);
+    const { initialising, user } = useAuthState(props.firebase.auth);
 
-    useEffect(() =>
-      props.firebase.auth.onAuthStateChanged(user => {
-        setUser(user);
-        setInitialized(true);
-      })
-    );
-
-    if (!initialized) {
+    if (initialising) {
       return "Loading...";
     }
 
