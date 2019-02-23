@@ -1,5 +1,6 @@
-import { Layout, Menu, Icon } from "antd";
+import { Icon, Layout, Menu } from "antd";
 import LogoutButton from "components/LogoutButton";
+import Edit from "pages/Edit";
 import Home from "pages/Home";
 import Quiz from "pages/Quiz";
 import Settings from "pages/Settings";
@@ -29,8 +30,8 @@ export default class Shell extends React.PureComponent {
               </Link>
             </Menu.Item>
             <Menu.Item>
-              <Link to="/input">
-                <Icon type="plus" /> Input
+              <Link to="/edit">
+                <Icon type="edit" /> Edit
               </Link>
             </Menu.Item>
             <Menu.Item>
@@ -44,6 +45,7 @@ export default class Shell extends React.PureComponent {
         <Content className={styles.content}>
           <Switch>
             <Route path="/quiz" component={Quiz} />
+            <Route path="/edit" component={Edit} />
             <Route path="/settings" component={Settings} />
             <Route path="/" component={Home} />
           </Switch>

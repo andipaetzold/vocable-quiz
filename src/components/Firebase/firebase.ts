@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import Subject from "types/Subject";
 
 const config = {
   apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
@@ -26,4 +27,15 @@ export default class Firebase {
     this.auth.signInWithEmailAndPassword(email, password);
 
   logout = () => this.auth.signOut();
+
+  getSubjectsCollection = (user: firebase.User) =>
+    this.firestore
+      .collection("users")
+      .doc(user.uid)
+      .collection("subjects");
+
+  createSubject = (user: firebase.User, name: string) =>
+    this.getSubjectsCollection(user).add(<Subject>{
+      name
+    });
 }
