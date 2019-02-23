@@ -1,5 +1,6 @@
 import { Icon, Layout, Menu } from "antd";
 import LogoutButton from "components/LogoutButton";
+import CreateCard from "pages/CreateCard";
 import Edit from "pages/Edit";
 import Home from "pages/Home";
 import Quiz from "pages/Quiz";
@@ -45,6 +46,8 @@ export default class Shell extends React.PureComponent {
         <Content className={styles.content}>
           <Switch>
             <Route path="/quiz" component={Quiz} />
+            <Route path="/edit/:subjectId/create" component={CreateCard} />
+            <Route path="/edit/:subjectId" component={() => <>TODO</>} />
             <Route path="/edit" component={Edit} />
             <Route path="/settings" component={Settings} />
             <Route path="/" component={Home} />
