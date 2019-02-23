@@ -1,24 +1,19 @@
 import { Button } from "antd";
-import Firebase from "components/Firebase/firebase";
-import React from "react";
+import FirebaseContext from "components/Firebase/context";
+import AuthUserContext from "hoc/withAuthUser/context";
+import React, { useContext } from "react";
 
-export interface Props {
-  firebase: Firebase;
-  authUser: firebase.User;
-}
+export default function LogoutBurtton() {
+  const authUser = useContext(AuthUserContext);
+  const firebase = useContext(FirebaseContext);
 
-export default class LogoutButton extends React.PureComponent<Props> {
-  render() {
-    const { authUser, firebase } = this.props;
-
-    if (!authUser) {
-      return null;
-    }
-
-    return (
-      <Button type="default" onClick={firebase.logout}>
-        Logout
-      </Button>
-    );
+  if (!authUser || firebase === null) {
+    return null;
   }
+
+  return (
+    <Button type="default" onClick={firebase.logout}>
+      Logout
+    </Button>
+  );
 }

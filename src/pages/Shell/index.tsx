@@ -30,7 +30,7 @@ export default class Shell extends React.PureComponent {
           </Menu>
         </Header>
         <Content className={styles.content}>
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route path="/quiz" component={Quiz} />
           <Route path="/settings" component={Settings} />
         </Content>

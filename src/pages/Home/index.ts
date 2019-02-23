@@ -1,7 +1,3 @@
-import withUser from "hoc/withUser";
-import { compose, Omit } from "recompose";
-import Home, { Props } from "./presenter";
+import Home from "./presenter";
 
-const enhance = compose<Props, Omit<Props, "user">>(withUser);
-
-export default enhance(Home);
+export default Home;

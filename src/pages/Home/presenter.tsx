@@ -1,12 +1,13 @@
+import AuthUserContext from "hoc/withAuthUser/context";
+import { useContext } from "react";
 import React from "react";
-import User from "types/User";
 
-export interface Props {
-  user: User;
-}
+export default function Home() {
+  const user = useContext(AuthUserContext);
 
-export default class Home extends React.PureComponent<Props> {
-  render() {
-    return `Hello ${this.props.user.name}`;
+  if (!user) {
+    return null;
   }
+
+  return <>Hello ${user.displayName}</>;
 }

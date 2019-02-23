@@ -11,7 +11,7 @@ export default class Router extends React.PureComponent {
       <BrowserRouter>
         <>
           {this.props.children}
-          <AuthRoute path="/" component={Shell} />
+          <AuthRoute exact path="/" component={Shell} />
           <NoAuthRoute path="/login" component={Login} />
         </>
       </BrowserRouter>

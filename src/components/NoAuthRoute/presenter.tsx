@@ -1,24 +1,22 @@
-import React from "react";
+import AuthUserContext from "hoc/withAuthUser/context";
+import React, { useContext } from "react";
 import { Redirect, Route, RouteProps } from "react-router-dom";
 
-export type Props = {
-  authUser: firebase.User;
-} & RouteProps;
+export type Props = {} & RouteProps;
 
-export default class AuthRoute extends React.Component<Props> {
-  render() {
-    const { authUser, component: Component, ...other } = this.props;
-    return (
-      <Route
-        {...other}
-        render={props =>
-          authUser ? (
-            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-          ) : (
-            Component && <Component {...props} />
-          )
-        }
-      />
-    );
-  }
+export default function NoAuthRoute({ component: Component, ...other }: Props) {
+  const authUser = useContext(AuthUserContext);
+
+  return (
+    <Route
+      {...other}
+      render={props =>
+        authUser ? (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        ) : (
+          Component && <Component {...props} />
+        )
+      }
+    />
+  );
 }
