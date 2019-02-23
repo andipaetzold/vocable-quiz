@@ -46,9 +46,11 @@ const Login = () => {
             autoComplete="current-password"
           />
         </Form.Item>
-        <Button type="primary" htmlType="submit">
-          Login
-        </Button>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Login
+          </Button>
+        </Form.Item>
       </Form>
     </Layout.Content>
   );

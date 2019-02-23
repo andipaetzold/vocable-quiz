@@ -80,9 +80,11 @@ export default () => {
             required
           />
         </Form.Item>
-        <Button type="primary" htmlType="submit">
-          Change Password
-        </Button>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Change Password
+          </Button>
+        </Form.Item>
       </Form>
     </Card>
   );

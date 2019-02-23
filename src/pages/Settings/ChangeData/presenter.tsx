@@ -58,9 +58,11 @@ export default function ChangeData() {
             autoComplete="username"
           />
         </Form.Item>
-        <Button type="primary" htmlType="submit">
-          Change Data
-        </Button>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Change Data
+          </Button>
+        </Form.Item>
       </Form>
     </Card>
   );
