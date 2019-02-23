@@ -1,15 +1,11 @@
 import { Button, Form, Icon, Input, Layout } from "antd";
-import Firebase from "components/Firebase/firebase";
+import useFirebase from "hooks/useFirebase";
 import React, { FormEvent, useState } from "react";
-import { RouteProps } from "react-router";
 import AuthError from "./AuthError";
 
-export type Props = {
-  firebase: Firebase;
-  user: firebase.User;
-} & RouteProps;
+const Login = () => {
+  const firebase = useFirebase();
 
-const Login = ({ firebase }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [code, setCode] = useState<string | undefined>(undefined);

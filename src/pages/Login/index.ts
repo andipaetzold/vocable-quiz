@@ -1,7 +1,3 @@
-import withFirebase from "hoc/withFirebase";
-import { compose } from "recompose";
-import { Omit } from "utility-types";
-import Login, { Props } from "./presenter";
-const enhance = compose<Props, Omit<Props, "firebase">>(withFirebase);
+import Login from "./presenter";
 
-export default enhance(Login);
+export default Login;

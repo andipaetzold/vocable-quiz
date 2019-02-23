@@ -1,18 +1,16 @@
-import { Button, Form, Input, Alert, Card } from "antd";
-import FirebaseContext from "components/Firebase/context";
+import { Alert, Button, Card, Form, Input } from "antd";
 import { auth, FirebaseError } from "firebase/app";
 import AuthUserContext from "hoc/withAuthUser/context";
 import React, { FormEvent, useContext, useState } from "react";
 
 export default () => {
-  const firebase = useContext(FirebaseContext);
   const user = useContext(AuthUserContext);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [code, setCode] = useState<string | undefined>(undefined);
 
-  if (!user || firebase == null) {
+  if (!user) {
     return null;
   }
 

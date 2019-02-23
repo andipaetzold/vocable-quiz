@@ -1,13 +1,13 @@
 import { Button, Icon } from "antd";
-import FirebaseContext from "components/Firebase/context";
 import AuthUserContext from "hoc/withAuthUser/context";
+import useFirebase from "hooks/useFirebase";
 import React, { useContext } from "react";
 
 export default function LogoutBurtton() {
   const authUser = useContext(AuthUserContext);
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
 
-  if (!authUser || firebase === null) {
+  if (!authUser) {
     return null;
   }
 

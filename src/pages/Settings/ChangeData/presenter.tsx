@@ -1,14 +1,12 @@
-import { Button, Form, Input, Alert, Card } from "antd";
-import FirebaseContext from "components/Firebase/context";
-import { auth, FirebaseError } from "firebase/app";
+import { Alert, Button, Card, Form, Input } from "antd";
+import { FirebaseError } from "firebase/app";
 import AuthUserContext from "hoc/withAuthUser/context";
 import React, { FormEvent, useContext, useState } from "react";
 
 export default function ChangeData() {
-  const firebase = useContext(FirebaseContext);
   const user = useContext(AuthUserContext);
 
-  if (!user || !firebase) {
+  if (!user) {
     throw Error("Something went wrong");
   }
 
@@ -16,7 +14,7 @@ export default function ChangeData() {
   const [email, setEmail] = useState<string>(user.email || "");
   const [code, setCode] = useState<string | undefined>(undefined);
 
-  if (!user || firebase == null) {
+  if (!user) {
     return null;
   }
 

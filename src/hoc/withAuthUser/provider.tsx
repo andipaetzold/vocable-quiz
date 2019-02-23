@@ -1,19 +1,15 @@
 import { Spin } from "antd";
-import Firebase from "components/Firebase/firebase";
-import withFirebase from "hoc/withFirebase";
+import useFirebase from "hooks/useFirebase";
 import React, { ComponentType } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { compose } from "recompose";
 import AuthUserContext from "./context";
 import styles from "./styles.m.less";
 
-interface Props {
-  firebase: Firebase;
-}
-
-function withAuthUserProvider<T extends Props>(Component: ComponentType<T>) {
+function withAuthUserProvider<T extends {}>(Component: ComponentType<T>) {
   return (props: T) => {
-    const { initialising, user } = useAuthState(props.firebase.auth);
+    const firebase = useFirebase();
+    const { initialising, user } = useAuthState(firebase.auth);
 
     if (initialising) {
       return (
@@ -31,7 +27,4 @@ function withAuthUserProvider<T extends Props>(Component: ComponentType<T>) {
   };
 }
 
-export default compose(
-  withFirebase,
-  withAuthUserProvider
-);
+export default compose(withAuthUserProvider);
