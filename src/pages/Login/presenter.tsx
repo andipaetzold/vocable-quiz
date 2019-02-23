@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RouteProps, Redirect } from "react-router";
 import Firebase from "../../components/Firebase/firebase";
+import AuthError from "./AuthError";
 
 export type Props = {
   firebase: Firebase;
@@ -15,7 +16,7 @@ const Login = ({ firebase, location, user }: Props) => {
   return (
     <>
       <h2>Login</h2>
-      {code}
+      {code && <AuthError code={code} />}
       <input
         type="email"
         onChange={e => setEmail(e.target.value)}
