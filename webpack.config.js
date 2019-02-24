@@ -2,7 +2,9 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: {
+    app: "./src/index.tsx"
+  },
   devServer: {
     historyApiFallback: true
   },
@@ -12,7 +14,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "/dist/app"),
-    filename: "app-[hash].js",
+    filename: "[name].[chunkhash].js",
+    chunkFilename: "[name].[chunkhash].js",
     publicPath: "/"
   },
   module: {
@@ -52,6 +55,18 @@ module.exports = {
         ]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: "all",
+          test: /[\\/]node_modules[\\/]/,
+          enforce: true,
+          priority: 1
+        }
+      }
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
