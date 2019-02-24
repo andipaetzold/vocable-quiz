@@ -12,6 +12,8 @@ export default function Quiz({ history }: Props) {
   return (
     <Card title="Quiz" loading={loading}>
       <Table
+        bordered
+        rowKey={({ id }) => id}
         dataSource={subjects}
         columns={[
           {
