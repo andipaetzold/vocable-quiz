@@ -6,6 +6,7 @@ import Edit from "pages/Edit";
 import EditCards from "pages/EditCards";
 import Home from "pages/Home";
 import QuizList from "pages/QuizList";
+import Quiz from "pages/Quiz";
 import Settings from "pages/Settings";
 import React, { useEffect, useState } from "react";
 import { Link, Route, RouteComponentProps, Switch } from "react-router-dom";
@@ -77,6 +78,7 @@ export default function Shell({ location }: Props) {
       </Header>
       <Content className={styles.content}>
         <Switch>
+          <Route path="/quiz/:subjectId" component={Quiz} />
           <Route path="/quiz" component={QuizList} />
           <Route path="/edit/:subjectId/create" component={CreateCard} />
           <Route path="/edit/:subjectId" component={EditCards} />

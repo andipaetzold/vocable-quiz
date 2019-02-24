@@ -4,7 +4,7 @@ import "firebase/firestore";
 import Card from "types/Card";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 
 const config = {
   apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
@@ -66,9 +66,48 @@ export default class Firebase {
       ...card,
       phase: 1,
       nextQuiz: format(new Date(), "YYYY-MM-DD"),
-      createdAt: format(new Date(), "YYYY-MM-DD")
+      createdAt: format(new Date(), "YYYY-MM-DD"),
+
+      createdTimestamp: Date.now(),
+      updatedTimestamp: Date.now()
     });
 
   deleteCard = (user: User, subjectId: string, cardId: string) =>
     this.getCardDoc(user, subjectId, cardId).delete();
+
+  updatePhase = (
+    user: User,
+    subjectId: string,
+    cardId: string,
+    phase: number
+  ) => {
+    let nextQuiz: string | null;
+    switch (phase) {
+      default:
+      case 1:
+        nextQuiz = format(new Date(), "YYYY-MM-DD");
+        break;
+      case 2:
+        nextQuiz = format(addDays(new Date(), 3), "YYYY-MM-DD");
+        break;
+      case 3:
+        nextQuiz = format(addDays(new Date(), 10), "YYYY-MM-DD");
+        break;
+      case 4:
+        nextQuiz = format(addDays(new Date(), 30), "YYYY-MM-DD");
+        break;
+      case 5:
+        nextQuiz = format(addDays(new Date(), 90), "YYYY-MM-DD");
+        break;
+      case 6:
+        nextQuiz = null;
+        break;
+    }
+
+    return this.getCardDoc(user, subjectId, cardId).update(<Partial<Card>>{
+      phase: phase,
+      nextQuiz: nextQuiz,
+      updatedTimestamp: Date.now()
+    });
+  };
 }

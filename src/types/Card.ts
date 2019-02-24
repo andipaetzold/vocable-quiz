@@ -2,7 +2,10 @@ export default interface Card {
   id: string;
   question: string;
   answer: string;
-  phase: 1 | 2 | 3 | 4 | 5 | 6;
+  phase: number;
   nextQuiz: string | null;
   createdAt: string;
+
+  createdTimestamp: number;
+  updatedTimestamp: number;
 }

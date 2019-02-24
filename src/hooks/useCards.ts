@@ -4,12 +4,19 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { Omit } from "recompose";
 import Card from "types/Card";
 
-export default function useCards(subjectId: string) {
+export default function useCards(
+  subjectId: string,
+  applyQuery: {
+    (q: firebase.firestore.CollectionReference):
+      | firebase.firestore.Query
+      | firebase.firestore.CollectionReference;
+  } = q => q
+) {
   const firebase = useFirebase();
   const user = useUser();
 
   const { loading, error, value: snap } = useCollection(
-    firebase.getCardsCollection(user, subjectId)
+    applyQuery(firebase.getCardsCollection(user, subjectId))
   );
 
   let cards: Card[] = [];
