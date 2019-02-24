@@ -29,7 +29,6 @@ export default function QuizCard({ subject, card }: Props) {
     setAnswer("");
     setRevealed(false);
   }, [card.id, card.updatedTimestamp]);
-
   return (
     <>
       <Row style={{ marginBottom: "30px" }}>
