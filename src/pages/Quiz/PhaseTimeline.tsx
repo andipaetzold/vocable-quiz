@@ -1,6 +1,7 @@
 import { Icon, Steps } from "antd";
 import React from "react";
 import Card from "types/Card";
+import { Trans } from "react-i18next";
 
 interface Props {
   card: Card;
@@ -17,37 +18,37 @@ export default function PhaseTimeline({ card }: Props) {
     <Steps size="small">
       <Steps.Step
         title="Phase 1"
-        description="0 days"
+        description={<Trans i18nKey="day" count={0} values={{ count: 0 }} />}
         status={getStatus(1)}
         icon={getIcon(1)}
       />
       <Steps.Step
         title="Phase 2"
-        description="3 days"
+        description={<Trans i18nKey="day" count={3} values={{ count: 3 }} />}
         status={getStatus(2)}
         icon={getIcon(2)}
       />
       <Steps.Step
         title="Phase 3"
-        description="10 days"
+        description={<Trans i18nKey="day" count={10} values={{ count: 10 }} />}
         status={getStatus(3)}
         icon={getIcon(3)}
       />
       <Steps.Step
         title="Phase 4"
-        description="30 days"
+        description={<Trans i18nKey="day" count={30} values={{ count: 30 }} />}
         status={getStatus(4)}
         icon={getIcon(4)}
       />
       <Steps.Step
         title="Phase 5"
-        description="90 days"
+        description={<Trans i18nKey="day" count={90} values={{ count: 90 }} />}
         status={getStatus(5)}
         icon={getIcon(5)}
       />
       <Steps.Step
         title="Phase 6"
-        description="Long-Term Memory"
+        description={<Trans i18nKey="pages.quiz.longterm" />}
         status={getStatus(6)}
         icon={getIcon(6)}
       />

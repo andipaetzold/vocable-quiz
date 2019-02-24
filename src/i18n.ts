@@ -20,6 +20,8 @@ i18n.use(LanguageDetector).init({
         email: "Email Address",
         password: "Password",
         passwordRepeat: "Password Repeat",
+        day: "{{count}} day",
+        day_plural: "{{count}} days",
         pages: {
           home: {
             title: "Hello {{name}}",
@@ -41,6 +43,17 @@ i18n.use(LanguageDetector).init({
           register: {
             title: "Registration",
             submit: "Register"
+          },
+          quizlist: {
+            title: "Quiz",
+            today: "Today",
+            go: "Go"
+          },
+          quiz: {
+            reveal: "Reveal Answer",
+            correct: "Correct",
+            wrong: "Wrong",
+            longterm: "Long-Term Memory"
           }
         }
       }
@@ -61,6 +74,9 @@ i18n.use(LanguageDetector).init({
         email: "E-Mail Adresse",
         password: "Passwort",
         passwordRepeat: "Password wiederholen",
+        actions: "Aktionen",
+        day: "{{count}} Tag",
+        day_plural: "{{count}} Tage",
         pages: {
           home: {
             title: "Hallo {{name}}",
@@ -82,6 +98,17 @@ i18n.use(LanguageDetector).init({
           register: {
             title: "Registrierung",
             submit: "Registrieren"
+          },
+          quizlist: {
+            title: "Quiz",
+            today: "Heute",
+            go: "Los"
+          },
+          quiz: {
+            reveal: "Antwort aufdecken",
+            correct: "Richtig",
+            wrong: "Falsch",
+            longterm: "Langzeitgedächtnis"
           }
         }
       }

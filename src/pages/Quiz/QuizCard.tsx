@@ -5,6 +5,7 @@ import { Input, Col, Row, Button } from "antd";
 import Subject from "types/Subject";
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
+import { Trans } from "react-i18next";
 
 const colConfig = {
   xs: { span: 24 },
@@ -70,7 +71,7 @@ export default function QuizCard({ subject, card }: Props) {
               onClick={() => setRevealed(true)}
               style={{ height: "115px" }}
             >
-              Reveal Answer
+              <Trans i18nKey="pages.quiz.reveal" />
             </Button>
           )}
         </Col>
@@ -92,7 +93,7 @@ export default function QuizCard({ subject, card }: Props) {
                   )
                 }
               >
-                Correct
+                <Trans i18nKey="pages.quiz.correct" />
               </Button>
             </Col>
             <Col span={12}>
@@ -103,7 +104,7 @@ export default function QuizCard({ subject, card }: Props) {
                   firebase.updatePhase(user, subject.id, card.id, 1)
                 }
               >
-                Wrong
+                <Trans i18nKey="pages.quiz.wrong" />
               </Button>
             </Col>
           </>
