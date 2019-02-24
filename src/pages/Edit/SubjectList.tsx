@@ -1,4 +1,4 @@
-import { Button, Card, Icon, Table } from "antd";
+import { Button, Card, Icon, Table, Popconfirm, message } from "antd";
 import AuthUserContext from "hoc/withAuthUser/context";
 import useFirebase from "hooks/useFirebase";
 import React, { useContext } from "react";
@@ -27,6 +27,13 @@ function SubjectList({ history }: RouterProps) {
       id: doc.id
     }));
   }
+
+  const handleDelete = async (id: string) => {
+    const hide = message.loading("Deleting subject...");
+    await firebase.deleteSubject(user, id);
+    hide();
+    message.success("Subject deleted");
+  };
 
   return (
     <Card title="Edit Subject">
@@ -70,6 +77,23 @@ function SubjectList({ history }: RouterProps) {
                   <Icon type="edit" />
                   Edit
                 </Button>
+                <Popconfirm
+                  title={
+                    <>
+                      Are you sure delete this subject?
+                      <br />
+                      This will also delete its cards!
+                    </>
+                  }
+                  onConfirm={() => handleDelete(id)}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  <Button type="danger" size="small">
+                    <Icon type="delete" />
+                    Delete
+                  </Button>
+                </Popconfirm>
               </Button.Group>
             )
           }

@@ -43,6 +43,9 @@ export default class Firebase {
       name
     });
 
+  deleteSubject = (user: User, subjectId: string) =>
+    this.getSubjectDoc(user, subjectId).delete();
+
   getCardsCollection = (user: User, subjectId: string) =>
     this.getSubjectDoc(user, subjectId).collection("cards");
 
