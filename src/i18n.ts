@@ -16,6 +16,10 @@ i18n.use(LanguageDetector).init({
             big: "Subjects"
           }
         },
+        name: "Name",
+        email: "Email Address",
+        password: "Password",
+        passwordRepeat: "Password Repeat",
         pages: {
           home: {
             title: "Hello {{name}}",
@@ -29,6 +33,14 @@ i18n.use(LanguageDetector).init({
             edit: "Edit",
             settings: "Settings",
             logout: "Logout"
+          },
+          login: {
+            title: "Login",
+            submit: "Login"
+          },
+          register: {
+            title: "Registration",
+            submit: "Register"
           }
         }
       }
@@ -45,6 +57,10 @@ i18n.use(LanguageDetector).init({
             big: "Fächer"
           }
         },
+        name: "Name",
+        email: "E-Mail Adresse",
+        password: "Passwort",
+        passwordRepeat: "Password wiederholen",
         pages: {
           home: {
             title: "Hallo {{name}}",
@@ -58,6 +74,14 @@ i18n.use(LanguageDetector).init({
             edit: "Bearbeiten",
             settings: "Einstellungen",
             logout: "Abmelden"
+          },
+          login: {
+            title: "Anmeldung",
+            submit: "Anmelden"
+          },
+          register: {
+            title: "Registrierung",
+            submit: "Registrieren"
           }
         }
       }

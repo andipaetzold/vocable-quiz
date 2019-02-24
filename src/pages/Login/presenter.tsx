@@ -4,6 +4,7 @@ import React, { FormEvent, useState } from "react";
 import styles from "./styles.m.less";
 import { FirebaseError } from "firebase";
 import Register from "pages/Register";
+import i18n from "i18n";
 
 export default function Login() {
   const firebase = useFirebase();
@@ -39,13 +40,16 @@ export default function Login() {
 
   return (
     <Layout.Content className={styles.content}>
-      <Card title="Login" style={{ marginBottom: "20px" }}>
+      <Card
+        title={i18n.t("pages.login.title")}
+        style={{ marginBottom: "20px" }}
+      >
         <Form layout="vertical" onSubmit={handleSubmit}>
           <Form.Item>
             <Input
               type="email"
               onChange={e => setEmail(e.target.value)}
-              placeholder="Email Address"
+              placeholder={i18n.t("email")}
               value={email}
               required
               prefix={<Icon type="mail" />}
@@ -56,7 +60,7 @@ export default function Login() {
             <Input
               type="password"
               onChange={e => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder={i18n.t("password")}
               value={password}
               required
               prefix={<Icon type="lock" />}
@@ -65,7 +69,7 @@ export default function Login() {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Login
+              {i18n.t("pages.login.submit")}
             </Button>
           </Form.Item>
         </Form>

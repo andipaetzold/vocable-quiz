@@ -1,6 +1,7 @@
 import { Button, Card, Form, Icon, Input, message } from "antd";
 import { FirebaseError, User } from "firebase";
 import useFirebase from "hooks/useFirebase";
+import i18n from "i18n";
 import React, { FormEvent, useState } from "react";
 
 export default function Register() {
@@ -53,13 +54,13 @@ export default function Register() {
     }
   }
   return (
-    <Card title="Register">
+    <Card title={i18n.t("pages.register.title")}>
       <Form layout="vertical" onSubmit={handleSubmit}>
         <Form.Item>
           <Input
             type="text"
             onChange={e => setName(e.target.value)}
-            placeholder="Name"
+            placeholder={i18n.t("name")}
             value={name}
             required
             prefix={<Icon type="user" />}
@@ -70,7 +71,7 @@ export default function Register() {
           <Input
             type="email"
             onChange={e => setEmail(e.target.value)}
-            placeholder="Email Address"
+            placeholder={i18n.t("email")}
             value={email}
             required
             prefix={<Icon type="mail" />}
@@ -81,7 +82,7 @@ export default function Register() {
           <Input
             type="password"
             onChange={e => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder={i18n.t("password")}
             value={password}
             required
             prefix={<Icon type="lock" />}
@@ -92,7 +93,7 @@ export default function Register() {
           <Input
             type="password"
             onChange={e => setConfirmPassword(e.target.value)}
-            placeholder="Confirm Password"
+            placeholder={i18n.t("passwordRepeat")}
             value={confirmPassword}
             required
             prefix={<Icon type="lock" />}
@@ -101,7 +102,7 @@ export default function Register() {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Register
+            {i18n.t("pages.register.submit")}
           </Button>
         </Form.Item>
       </Form>
