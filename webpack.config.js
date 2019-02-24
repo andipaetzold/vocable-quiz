@@ -11,7 +11,7 @@ module.exports = {
     modules: [path.resolve("./node_modules"), path.resolve("./src")]
   },
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.join(__dirname, "/dist/app"),
     filename: "app-[hash].js",
     publicPath: "/"
   },
