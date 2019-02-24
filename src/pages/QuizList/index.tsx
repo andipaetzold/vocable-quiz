@@ -3,10 +3,11 @@ import useSubjects from "hooks/useSubjects";
 import React from "react";
 import { RouteComponentProps } from "react-router";
 import { getTodayCardCount } from "util/subject";
+import Subject from "types/Subject";
 
 type Props = {} & RouteComponentProps;
 
-export default function Quiz({ history }: Props) {
+export default function QuizList({ history }: Props) {
   const { loading, subjects } = useSubjects();
 
   return (
@@ -29,15 +30,19 @@ export default function Quiz({ history }: Props) {
           {
             title: "Action",
             key: "action",
-            render: ({ id }) => (
-              <Button
-                type="primary"
-                size="small"
-                onClick={() => history.push(`/quiz/${id}`)}
-              >
-                <Icon type="play-circle" /> Go
-              </Button>
-            )
+            render: (subject: Subject) => {
+              const { id } = subject;
+              return (
+                <Button
+                  type="primary"
+                  size="small"
+                  onClick={() => history.push(`/quiz/${id}`)}
+                  disabled={getTodayCardCount(subject) === 0}
+                >
+                  <Icon type="play-circle" /> Go
+                </Button>
+              );
+            }
           }
         ]}
       />
