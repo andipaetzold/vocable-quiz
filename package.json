@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "css-loader": "2.1.0",
+    "firebase-tools": "^6.4.0",
     "html-webpack-plugin": "3.2.0",
     "less": "3.9.0",
     "less-loader": "4.1.0",
@@ -32,6 +33,7 @@
     "antd": "^3.13.6",
     "classnames": "2.2.6",
     "firebase": "5.8.4",
+    "firebase-admin": "^7.0.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-firebase-hooks": "^1.1.0",
