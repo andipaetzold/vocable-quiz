@@ -17,6 +17,7 @@ import { RouterProps } from "react-router";
 import { withRouter } from "react-router-dom";
 import Subject from "types/Subject";
 import { getTodayCardCount } from "util/subject";
+import PhaseTimeline from "./PhaseTimeline";
 
 function SubjectList({ history }: RouterProps) {
   const firebase = useFirebase();
@@ -59,21 +60,14 @@ function SubjectList({ history }: RouterProps) {
           {
             title: "Cards",
             key: "cardsCount",
-            render: ({ cardsCount, cardsPhase }: Subject) => {
+            render: (subject: Subject) => {
+              const { cardsCount } = subject;
               return (
                 <>
                   {cardsCount}{" "}
                   <Popover
                     title="Phases"
-                    content={
-                      <Timeline style={{ marginBottom: "-50px" }}>
-                        {[1, 2, 3, 4, 5, 6].map(phase => (
-                          <Timeline.Item>
-                            Phase {phase}: {cardsPhase[phase] || 0}
-                          </Timeline.Item>
-                        ))}
-                      </Timeline>
-                    }
+                    content={<PhaseTimeline subject={subject} />}
                   >
                     <Icon type="info-circle" />
                   </Popover>
