@@ -4,6 +4,7 @@ import "firebase/firestore";
 import Card from "types/Card";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
+import { format } from "date-fns";
 
 const config = {
   apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
@@ -60,7 +61,9 @@ export default class Firebase {
   ) =>
     this.getCardsCollection(user, subjectId).add(<Omit<Card, "id">>{
       ...card,
-      phase: 1
+      phase: 1,
+      nextQuiz: format(new Date(), "YYYY-MM-DD"),
+      createdAt: format(new Date(), "YYYY-MM-DD")
     });
 
   deleteCard = (user: User, subjectId: string, cardId: string) =>

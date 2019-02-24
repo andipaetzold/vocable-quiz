@@ -3,4 +3,6 @@ export default interface Card {
   question: string;
   answer: string;
   phase: 1 | 2 | 3 | 4 | 5 | 6;
+  nextQuiz: string | null;
+  createdAt: string;
 }
