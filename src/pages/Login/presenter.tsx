@@ -1,4 +1,4 @@
-import { Button, Form, Icon, Input, Layout, Card } from "antd";
+import { Button, Form, Icon, Input, Layout, Card, message } from "antd";
 import useFirebase from "hooks/useFirebase";
 import React, { FormEvent, useState } from "react";
 import AuthError from "./AuthError";
@@ -15,7 +15,9 @@ export default function Login() {
     e.preventDefault();
 
     try {
+      const hide = message.loading("Logging in...");
       await firebase.login(email, password);
+      hide();
     } catch (e) {
       setCode(e.code);
     }
