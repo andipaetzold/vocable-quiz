@@ -14,6 +14,7 @@ import React from "react";
 import { RouterProps } from "react-router";
 import { withRouter } from "react-router-dom";
 import { format } from "date-fns";
+import Subject from "types/Subject";
 
 function SubjectList({ history }: RouterProps) {
   const firebase = useFirebase();
@@ -50,13 +51,13 @@ function SubjectList({ history }: RouterProps) {
           {
             title: "Today's cards",
             key: "today",
-            render: ({ nextQuiz }) =>
-              nextQuiz[format(new Date(), "YYYY-MM-DD")] || 0
+            render: ({ cardsNextQuiz }: Subject) =>
+              cardsNextQuiz[format(new Date(), "YYYY-MM-DD")] || 0
           },
           {
             title: "Cards",
             dataIndex: "cards",
-            key: "cards"
+            key: "cardsCount"
           },
           {
             title: "Action",

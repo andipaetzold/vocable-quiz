@@ -2,6 +2,7 @@ export default interface Subject {
   id: string;
   name: string;
 
-  cards: number;
-  nextQuiz: { [date: string]: number };
+  cardsCount: number;
+  cardsNextQuiz: { [date: string]: number };
+  cardsPhase: { [phase: number]: number };
 }

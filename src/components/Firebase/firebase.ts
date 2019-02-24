@@ -43,8 +43,9 @@ export default class Firebase {
   createSubject = (user: User, name: string) =>
     this.getSubjectsCollection(user).add(<Omit<Subject, "id">>{
       name,
-      cards: 0,
-      nextQuiz: {}
+      cardsCount: 0,
+      cardsPhase: {},
+      cardsNextQuiz: {}
     });
 
   deleteSubject = (user: User, subjectId: string) =>

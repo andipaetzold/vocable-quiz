@@ -16,28 +16,40 @@ export const aggregateCards = functions.firestore
     await firestore().runTransaction(async transaction => {
       const subjectDoc = await transaction.get(subjectRef);
       const subject: Omit<Subject, "id"> = {
-        cards: 0,
-        nextQuiz: {},
+        cardsCount: 0,
+        cardsNextQuiz: {},
+        cardsPhase: {},
         ...(subjectDoc.data() as Omit<Subject, "id">)
       };
 
       if (before && before.exists) {
-        subject.cards = Math.max(0, subject.cards - 1);
+        subject.cardsCount = Math.max(0, subject.cardsCount - 1);
 
         const card = before.data() as Omit<Card, "id">;
+
         if (card.nextQuiz) {
-          subject.nextQuiz[card.nextQuiz] =
-            (subject.nextQuiz[card.nextQuiz] || 1) - 1;
+          subject.cardsNextQuiz[card.nextQuiz] =
+            (subject.cardsNextQuiz[card.nextQuiz] || 1) - 1;
+        }
+
+        if (card.phase) {
+          subject.cardsPhase[card.phase] =
+            (subject.cardsPhase[card.phase] || 1) - 1;
         }
       }
 
       if (after && after.exists) {
-        subject.cards += 1;
+        subject.cardsCount += 1;
 
         const card = after.data() as Omit<Card, "id">;
         if (card.nextQuiz) {
-          subject.nextQuiz[card.nextQuiz] =
-            (subject.nextQuiz[card.nextQuiz] || 0) + 1;
+          subject.cardsNextQuiz[card.nextQuiz] =
+            (subject.cardsNextQuiz[card.nextQuiz] || 0) + 1;
+        }
+
+        if (card.phase) {
+          subject.cardsPhase[card.phase] =
+            (subject.cardsPhase[card.phase] || 0) + 1;
         }
       }
 
