@@ -1,5 +1,6 @@
-import { Button, Icon, Layout, Menu } from "antd";
+import { Badge, Button, Icon, Layout, Menu } from "antd";
 import useFirebase from "hooks/useFirebase";
+import useSubjects from "hooks/useSubjects";
 import CreateCard from "pages/CreateCard";
 import Edit from "pages/Edit";
 import EditCards from "pages/EditCards";
@@ -8,6 +9,7 @@ import Quiz from "pages/Quiz";
 import Settings from "pages/Settings";
 import React, { useEffect, useState } from "react";
 import { Link, Route, RouteComponentProps, Switch } from "react-router-dom";
+import { getTodayCardCount } from "util/subject";
 import styles from "./styles.m.less";
 const { Content, Header } = Layout;
 
@@ -15,6 +17,11 @@ type Props = RouteComponentProps<{}>;
 
 export default function Shell({ location }: Props) {
   const firebase = useFirebase();
+
+  const { subjects } = useSubjects();
+  const quizCount = (subjects || [])
+    .map(getTodayCardCount)
+    .reduce((prev, cur) => prev + cur, 0);
 
   const [currentItem, setCurrentItem] = useState<
     "home" | "quiz" | "edit" | "settings"
@@ -48,7 +55,7 @@ export default function Shell({ location }: Props) {
           </Menu.Item>
           <Menu.Item key="quiz">
             <Link to="/quiz">
-              <Icon type="question" /> Quiz
+              <Icon type="question" /> Quiz <Badge count={quizCount} showZero />
             </Link>
           </Menu.Item>
           <Menu.Item key="edit">
