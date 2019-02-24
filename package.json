@@ -6,7 +6,8 @@
     "start": "webpack-dev-server --mode development --hot --overlay",
     "build": "npm run build:app && npm run build:functions",
     "build:app": "webpack --mode production --config webpack.config.js",
-    "build:functions": "webpack --mode production --config webpack.functions.js"
+    "build:functions": "webpack --mode production --config webpack.functions.js",
+    "firebase": "firebase"
   },
   "author": "Andreas Pätzold",
   "repository": {
