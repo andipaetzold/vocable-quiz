@@ -1,7 +1,7 @@
-import { Card, Spin, Form, Input, Button, Icon, message } from "antd";
+import { Button, Card, Form, Icon, Input, message } from "antd";
 import AuthUserContext from "hoc/withAuthUser/context";
 import useFirebase from "hooks/useFirebase";
-import React, { useContext, useState, FormEvent, useRef } from "react";
+import React, { FormEvent, useContext, useRef, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { RouteComponentProps } from "react-router-dom";
 import Subject from "types/Subject";
@@ -15,7 +15,7 @@ export default function CreateCard(props: Props) {
   const firebase = useFirebase();
   const user = useContext(AuthUserContext);
 
-  const questionRef = useRef<Input>(null);
+  const questionRef = useRef<any>(null); // TODO: Find correct type for Input.TextArea
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
@@ -56,17 +56,21 @@ export default function CreateCard(props: Props) {
     <Card title={subject ? subject.name : ""} loading={loading}>
       <Form layout="inline" onSubmit={handleSubmit}>
         <Form.Item>
-          <Input
+          <Input.TextArea
+            style={{ resize: "none" }}
+            rows={5}
+            cols={30}
             ref={questionRef}
-            type="text"
             placeholder="Question"
             value={question}
             onChange={e => setQuestion(e.target.value)}
           />
         </Form.Item>
         <Form.Item>
-          <Input
-            type="text"
+          <Input.TextArea
+            style={{ resize: "none" }}
+            rows={5}
+            cols={30}
             placeholder="Answer"
             value={answer}
             onChange={e => setAnswer(e.target.value)}
