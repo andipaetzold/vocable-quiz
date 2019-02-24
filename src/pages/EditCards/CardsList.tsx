@@ -1,4 +1,4 @@
-import { Table, Button, Icon, Popconfirm, message } from "antd";
+import { Table, Button, Icon, Popconfirm, message, Progress } from "antd";
 import React from "react";
 import Subject from "types/Subject";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -65,8 +65,18 @@ export default function CardsList({ user, subject }: Props) {
         },
         {
           title: "Phase",
-          dataIndex: "phase",
-          key: "phase"
+          key: "phase",
+          render: ({ phase = 1 }) => (
+            <Progress
+              size="small"
+              type="line"
+              percent={((phase - 1) / 5) * 100}
+              format={() => `${phase} / 6`}
+              status={
+                phase === 0 ? "normal" : phase === 6 ? "success" : "active"
+              }
+            />
+          )
         },
         {
           title: "Action",

@@ -1,8 +1,9 @@
 import app, { User } from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import Subject from "types/Subject";
 import Card from "types/Card";
+import Subject from "types/Subject";
+import { Omit } from "utility-types";
 
 const config = {
   apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
@@ -56,7 +57,11 @@ export default class Firebase {
     user: User,
     subjectId: string,
     card: Pick<Card, "question" | "answer">
-  ) => this.getCardsCollection(user, subjectId).add(card);
+  ) =>
+    this.getCardsCollection(user, subjectId).add(<Omit<Card, "id">>{
+      ...card,
+      phase: 1
+    });
 
   deleteCard = (user: User, subjectId: string, cardId: string) =>
     this.getCardDoc(user, subjectId, cardId).delete();
