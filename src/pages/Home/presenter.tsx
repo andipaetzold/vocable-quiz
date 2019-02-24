@@ -1,10 +1,8 @@
-import AuthUserContext from "hoc/withAuthUser/context";
-import { useContext } from "react";
-import React from "react";
-import { Card, Statistic, Col, Row } from "antd";
-import useUser from "hooks/useUser";
+import { Card, Col, Row, Statistic } from "antd";
 import useSubjects from "hooks/useSubjects";
-import i18n from "i18n";
+import useUser from "hooks/useUser";
+import React from "react";
+import { Trans } from "react-i18next";
 
 export default function Home() {
   const user = useUser();
@@ -13,16 +11,16 @@ export default function Home() {
 
   return (
     <Card
-      title={i18n.t("pages.home.title", {
-        name: user.displayName
-      })}
+      title={
+        <Trans i18nKey="pages.home.title" values={{ name: user.displayName }} />
+      }
       loading={loading}
     >
       <Row>
         <Col span={6}>
           {subjects && (
             <Statistic
-              title={i18n.t("subject.plural.big")}
+              title={<Trans i18nKey="subject.plural.big" />}
               value={subjects.length}
             />
           )}
@@ -30,7 +28,7 @@ export default function Home() {
         <Col span={6}>
           {subjects && (
             <Statistic
-              title={i18n.t("pages.home.tolearn")}
+              title={<Trans i18nKey="pages.home.tolearn" />}
               value={subjects
                 .map(s => s.cardsCount - (s.cardsPhase[6] || 0))
                 .reduce((prev, cur) => prev + cur, 0)}
@@ -40,7 +38,7 @@ export default function Home() {
         <Col span={6}>
           {subjects && (
             <Statistic
-              title={i18n.t("pages.home.inphase6")}
+              title={<Trans i18nKey="pages.home.inphase6" />}
               value={subjects
                 .map(s => s.cardsPhase[6] || 0)
                 .reduce((prev, cur) => prev + cur, 0)}
@@ -50,7 +48,7 @@ export default function Home() {
         <Col span={6}>
           {subjects && (
             <Statistic
-              title={i18n.t("pages.home.cardcount")}
+              title={<Trans i18nKey="pages.home.cardcount" />}
               value={subjects
                 .map(s => s.cardsCount)
                 .reduce((prev, cur) => prev + cur, 0)}

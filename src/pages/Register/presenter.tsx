@@ -3,6 +3,7 @@ import { FirebaseError, User } from "firebase";
 import useFirebase from "hooks/useFirebase";
 import i18n from "i18n";
 import React, { FormEvent, useState } from "react";
+import { Trans } from "react-i18next";
 
 export default function Register() {
   const firebase = useFirebase();
@@ -102,7 +103,7 @@ export default function Register() {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {i18n.t("pages.register.submit")}
+            <Trans i18nKey="pages.register.submit" />
           </Button>
         </Form.Item>
       </Form>

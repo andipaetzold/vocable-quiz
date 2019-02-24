@@ -1,10 +1,11 @@
-import { Button, Form, Icon, Input, Layout, Card, message } from "antd";
-import useFirebase from "hooks/useFirebase";
-import React, { FormEvent, useState } from "react";
-import styles from "./styles.m.less";
+import { Button, Card, Form, Icon, Input, Layout, message } from "antd";
 import { FirebaseError } from "firebase";
-import Register from "pages/Register";
+import useFirebase from "hooks/useFirebase";
 import i18n from "i18n";
+import Register from "pages/Register";
+import React, { FormEvent, useState } from "react";
+import { Trans } from "react-i18next";
+import styles from "./styles.m.less";
 
 export default function Login() {
   const firebase = useFirebase();
@@ -41,7 +42,7 @@ export default function Login() {
   return (
     <Layout.Content className={styles.content}>
       <Card
-        title={i18n.t("pages.login.title")}
+        title={<Trans i18nKey="pages.login.title" />}
         style={{ marginBottom: "20px" }}
       >
         <Form layout="vertical" onSubmit={handleSubmit}>
@@ -69,7 +70,7 @@ export default function Login() {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              {i18n.t("pages.login.submit")}
+              <Trans i18nKey="pages.login.submit" />
             </Button>
           </Form.Item>
         </Form>
