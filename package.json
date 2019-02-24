@@ -1,7 +1,7 @@
 {
-  "name": "vocable-trainer",
+  "name": "vocable-quiz",
   "version": "1.0.0",
-  "description": "Simple Vocable Trainer",
+  "description": "Simple Vocable Quiz",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot --overlay",
     "build": "npm run build:app && npm run build:functions",
@@ -12,7 +12,7 @@
   "author": "Andreas Pätzold",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andipaetzold/vocable-trainer"
+    "url": "https://github.com/andipaetzold/vocable-quiz"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.0",

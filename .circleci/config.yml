@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/node:10
 
-    working_directory: ~/vocable-trainer
+    working_directory: ~/vocable-quiz
 
     steps:
       - checkout
