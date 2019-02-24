@@ -1,9 +1,9 @@
-import { Card, Button, Icon, Breadcrumb } from "antd";
-import AuthUserContext from "hoc/withAuthUser/context";
+import { Breadcrumb, Button, Card } from "antd";
 import useFirebase from "hooks/useFirebase";
-import React, { useContext } from "react";
+import useUser from "hooks/useUser";
+import React from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
-import { RouteComponentProps, Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
 import CardsList from "./CardsList";
@@ -14,11 +14,7 @@ export default function EditCards({ match, history }: Props) {
   const subjectId = match.params.subjectId;
 
   const firebase = useFirebase();
-  const user = useContext(AuthUserContext);
-
-  if (!user) {
-    throw new Error();
-  }
+  const user = useUser();
 
   const { loading, error, value: snap } = useDocument(
     firebase.getSubjectDoc(user, subjectId)

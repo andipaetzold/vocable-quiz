@@ -1,7 +1,7 @@
 import { Breadcrumb, Button, Card, Form, Icon, Input, message } from "antd";
-import AuthUserContext from "hoc/withAuthUser/context";
 import useFirebase from "hooks/useFirebase";
-import React, { FormEvent, useContext, useRef, useState } from "react";
+import useUser from "hooks/useUser";
+import React, { FormEvent, useRef, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { Link, RouteComponentProps } from "react-router-dom";
 import Subject from "types/Subject";
@@ -13,15 +13,11 @@ export default function CreateCard(props: Props) {
   const subjectId = props.match.params.subjectId;
 
   const firebase = useFirebase();
-  const user = useContext(AuthUserContext);
+  const user = useUser();
 
   const questionRef = useRef<any>(null); // TODO: Find correct type for Input.TextArea
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
-
-  if (!user) {
-    throw new Error();
-  }
 
   const { loading, error, value: snap } = useDocument(
     firebase.getSubjectDoc(user, subjectId)

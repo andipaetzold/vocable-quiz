@@ -5,7 +5,7 @@ export default function useFirebase() {
   const firebase = useContext(FirebaseContext);
 
   if (!firebase) {
-    throw new Error("FirebaseContext is null");
+    throw new Error("Firebase is undefined");
   }
 
   return firebase;

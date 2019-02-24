@@ -1,28 +1,24 @@
 import {
+  Breadcrumb,
   Button,
   Card,
   Icon,
-  Table,
-  Popconfirm,
   message,
-  Breadcrumb
+  Popconfirm,
+  Table
 } from "antd";
-import AuthUserContext from "hoc/withAuthUser/context";
 import useFirebase from "hooks/useFirebase";
-import React, { useContext } from "react";
+import useUser from "hooks/useUser";
+import React from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { RouterProps } from "react-router";
+import { withRouter } from "react-router-dom";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
-import { Link, withRouter } from "react-router-dom";
-import { RouterProps } from "react-router";
 
 function SubjectList({ history }: RouterProps) {
   const firebase = useFirebase();
-  const user = useContext(AuthUserContext);
-
-  if (!user) {
-    throw new Error("User is undefined");
-  }
+  const user = useUser();
 
   const { loading, error, value: subjectsSnap } = useCollection(
     firebase.getSubjectsCollection(user)
