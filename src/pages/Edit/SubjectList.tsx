@@ -5,7 +5,10 @@ import {
   Icon,
   message,
   Popconfirm,
-  Table
+  Table,
+  Popover,
+  List,
+  Timeline
 } from "antd";
 import useFirebase from "hooks/useFirebase";
 import useSubjects from "hooks/useSubjects";
@@ -61,8 +64,28 @@ function SubjectList({ history }: RouterProps) {
           },
           {
             title: "Cards",
-            dataIndex: "cardsCount",
-            key: "cardsCount"
+            key: "cardsCount",
+            render: ({ cardsCount, cardsPhase }: Subject) => {
+              return (
+                <>
+                  {cardsCount}{" "}
+                  <Popover
+                    title="Phases"
+                    content={
+                      <Timeline style={{ marginBottom: "-50px" }}>
+                        {[1, 2, 3, 4, 5, 6].map(phase => (
+                          <Timeline.Item>
+                            Phase {phase}: {cardsPhase[phase] || 0}
+                          </Timeline.Item>
+                        ))}
+                      </Timeline>
+                    }
+                  >
+                    <Icon type="info-circle" />
+                  </Popover>
+                </>
+              );
+            }
           },
           {
             title: "Action",
