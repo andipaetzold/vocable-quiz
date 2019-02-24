@@ -55,14 +55,18 @@ function SubjectList({ history }: RouterProps) {
             title: "Action",
             key: "action",
             render: ({ id }) => (
-              <Button.Group>
+              <Button.Group size="small">
                 <Button
                   type="primary"
+                  size="small"
                   onClick={() => history.push(`/edit/${id}/create`)}
                 >
                   <Icon type="plus" /> Create
                 </Button>
-                <Button onClick={() => history.push(`/edit/${id}`)}>
+                <Button
+                  size="small"
+                  onClick={() => history.push(`/edit/${id}`)}
+                >
                   <Icon type="edit" />
                   Edit
                 </Button>
