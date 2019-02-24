@@ -11,3 +11,5 @@ jobs:
       - checkout
       - run: npm ci
       - run: npm run build
+      - run: firebase use vocable-quiz
+      - run: firebase deploy --force --non-interactive -m $CIRCLE_SHA1 --token "$FIREBASE_TOKEN"
