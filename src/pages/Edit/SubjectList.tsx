@@ -5,9 +5,8 @@ import {
   Icon,
   message,
   Popconfirm,
-  Table,
   Popover,
-  List,
+  Table,
   Timeline
 } from "antd";
 import useFirebase from "hooks/useFirebase";
@@ -16,8 +15,8 @@ import useUser from "hooks/useUser";
 import React from "react";
 import { RouterProps } from "react-router";
 import { withRouter } from "react-router-dom";
-import { format, isBefore, isAfter } from "date-fns";
 import Subject from "types/Subject";
+import { getTodayCardCount } from "util/subject";
 
 function SubjectList({ history }: RouterProps) {
   const firebase = useFirebase();
@@ -55,12 +54,7 @@ function SubjectList({ history }: RouterProps) {
           {
             title: "Today's cards",
             key: "today",
-            render: ({ cardsNextQuiz }: Subject) => {
-              return Object.entries(cardsNextQuiz)
-                .filter(([date, _]) => !isAfter(date, new Date()))
-                .map(([_, count]) => count)
-                .reduce((prev, cur) => prev + cur, 0);
-            }
+            render: getTodayCardCount
           },
           {
             title: "Cards",
