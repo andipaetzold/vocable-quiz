@@ -1,4 +1,12 @@
-import { Button, Card, Icon, Table, Popconfirm, message } from "antd";
+import {
+  Button,
+  Card,
+  Icon,
+  Table,
+  Popconfirm,
+  message,
+  Breadcrumb
+} from "antd";
 import AuthUserContext from "hoc/withAuthUser/context";
 import useFirebase from "hooks/useFirebase";
 import React, { useContext } from "react";
@@ -36,7 +44,13 @@ function SubjectList({ history }: RouterProps) {
   };
 
   return (
-    <Card title="Edit Subject">
+    <Card
+      title={
+        <Breadcrumb>
+          <Breadcrumb.Item>Subjects</Breadcrumb.Item>
+        </Breadcrumb>
+      }
+    >
       <Table
         loading={loading}
         dataSource={subjects}
