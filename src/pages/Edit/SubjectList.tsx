@@ -57,7 +57,7 @@ function SubjectList({ history }: RouterProps) {
           },
           {
             title: "Cards",
-            dataIndex: "cards",
+            dataIndex: "cardsCount",
             key: "cardsCount"
           },
           {
