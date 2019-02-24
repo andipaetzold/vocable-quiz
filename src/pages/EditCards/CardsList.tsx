@@ -30,6 +30,7 @@ export default function CardsList({ user, subject }: Props) {
       dataSource={cards}
       rowKey={({ id }) => id}
       bordered
+      style={{ overflowX: "auto" }}
       columns={[
         {
           title: "Question",

@@ -42,6 +42,7 @@ function SubjectList({ history }: RouterProps) {
         dataSource={subjects}
         rowKey={({ id }) => id}
         bordered
+        style={{ overflowX: "auto" }}
         columns={[
           {
             title: "Name",
