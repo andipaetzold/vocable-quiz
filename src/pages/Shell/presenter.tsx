@@ -55,7 +55,7 @@ export default function Shell({ location }: Props) {
           </Menu.Item>
           <Menu.Item key="quiz">
             <Link to="/quiz">
-              <Icon type="question" /> Quiz <Badge count={quizCount} showZero />
+              <Icon type="question" /> Quiz <Badge count={quizCount} />
             </Link>
           </Menu.Item>
           <Menu.Item key="edit">
