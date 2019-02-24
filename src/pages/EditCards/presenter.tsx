@@ -1,32 +1,16 @@
 import { Breadcrumb, Button, Card } from "antd";
-import useFirebase from "hooks/useFirebase";
+import useSubject from "hooks/userSubject";
 import useUser from "hooks/useUser";
 import React from "react";
-import { useDocument } from "react-firebase-hooks/firestore";
 import { Link, RouteComponentProps } from "react-router-dom";
-import Subject from "types/Subject";
-import { Omit } from "utility-types";
 import CardsList from "./CardsList";
 
 export type Props = RouteComponentProps<{ subjectId: string }>;
 
 export default function EditCards({ match, history }: Props) {
-  const subjectId = match.params.subjectId;
-
-  const firebase = useFirebase();
   const user = useUser();
 
-  const { loading, error, value: snap } = useDocument(
-    firebase.getSubjectDoc(user, subjectId)
-  );
-
-  let subject: Subject | undefined = undefined;
-  if (snap) {
-    subject = {
-      ...(snap.data() as Omit<Subject, "id">),
-      id: snap.id
-    };
-  }
+  const { loading, subject } = useSubject(match.params.subjectId);
 
   return (
     <Card
@@ -45,7 +29,7 @@ export default function EditCards({ match, history }: Props) {
           <Button
             type="primary"
             style={{ marginBottom: "10px" }}
-            onClick={() => history.push(`/edit/${subjectId}/create`)}
+            onClick={() => history.push(`/edit/${subject.id}/create`)}
           >
             Create Cards
           </Button>

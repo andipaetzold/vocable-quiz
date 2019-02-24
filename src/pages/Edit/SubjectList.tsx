@@ -8,29 +8,17 @@ import {
   Table
 } from "antd";
 import useFirebase from "hooks/useFirebase";
+import useSubjects from "hooks/useSubjects";
 import useUser from "hooks/useUser";
 import React from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
 import { RouterProps } from "react-router";
 import { withRouter } from "react-router-dom";
-import Subject from "types/Subject";
-import { Omit } from "utility-types";
 
 function SubjectList({ history }: RouterProps) {
   const firebase = useFirebase();
   const user = useUser();
 
-  const { loading, error, value: subjectsSnap } = useCollection(
-    firebase.getSubjectsCollection(user)
-  );
-
-  let subjects: Subject[] = [];
-  if (subjectsSnap) {
-    subjects = subjectsSnap.docs.map(doc => ({
-      ...(doc.data() as Omit<Subject, "id">),
-      id: doc.id
-    }));
-  }
+  const { loading, subjects } = useSubjects();
 
   const handleDelete = async (id: string) => {
     const hide = message.loading("Deleting subject...");
