@@ -1,5 +1,5 @@
-import { Icon, Layout, Menu } from "antd";
-import LogoutButton from "components/LogoutButton";
+import { Button, Icon, Layout, Menu } from "antd";
+import useFirebase from "hooks/useFirebase";
 import CreateCard from "pages/CreateCard";
 import Edit from "pages/Edit";
 import EditCards from "pages/EditCards";
@@ -14,6 +14,8 @@ const { Content, Header } = Layout;
 type Props = RouteComponentProps<{}>;
 
 export default function Shell({ location }: Props) {
+  const firebase = useFirebase();
+
   const [currentItem, setCurrentItem] = useState<
     "home" | "quiz" | "edit" | "settings"
   >("home");
@@ -59,7 +61,11 @@ export default function Shell({ location }: Props) {
               <Icon type="setting" /> Settings
             </Link>
           </Menu.Item>
-          <LogoutButton />
+          <Menu.Item key="logout">
+            <Button type="danger" onClick={firebase.logout}>
+              <Icon type="logout" /> Logout
+            </Button>
+          </Menu.Item>
         </Menu>
       </Header>
       <Content className={styles.content}>
