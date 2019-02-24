@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "vocable-quiz"
+  },
+  "targets": {
+    "vocable-quiz": {
+      "hosting": {
+        "app": [
+          "vocable-quiz"
+        ]
+      }
+    }
   }
 }
