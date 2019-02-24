@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Route, RouteComponentProps, Switch } from "react-router-dom";
 import { getTodayCardCount } from "util/subject";
 import styles from "./styles.m.less";
+import i18n from "i18n";
 const { Content, Header } = Layout;
 
 type Props = RouteComponentProps<{}>;
@@ -51,27 +52,28 @@ export default function Shell({ location }: Props) {
         >
           <Menu.Item key="home">
             <Link to="/">
-              <Icon type="home" /> Home
+              <Icon type="home" /> {i18n.t("pages.shell.home")}
             </Link>
           </Menu.Item>
           <Menu.Item key="quiz">
             <Link to="/quiz">
-              <Icon type="question" /> Quiz <Badge count={quizCount} />
+              <Icon type="question" /> {i18n.t("pages.shell.quiz")}{" "}
+              <Badge count={quizCount} />
             </Link>
           </Menu.Item>
           <Menu.Item key="edit">
             <Link to="/edit">
-              <Icon type="edit" /> Edit
+              <Icon type="edit" /> {i18n.t("pages.shell.edit")}
             </Link>
           </Menu.Item>
           <Menu.Item key="settings">
             <Link to="/settings">
-              <Icon type="setting" /> Settings
+              <Icon type="setting" /> {i18n.t("pages.shell.settings")}
             </Link>
           </Menu.Item>
           <Menu.Item key="logout">
             <Button type="danger" onClick={firebase.logout}>
-              <Icon type="logout" /> Logout
+              <Icon type="logout" /> {i18n.t("pages.shell.logout")}
             </Button>
           </Menu.Item>
         </Menu>

@@ -22,6 +22,13 @@ i18n.use(LanguageDetector).init({
             tolearn: "Cards to Learn",
             inphase6: "Cards in Phase 6",
             cardcount: "Number of Cards"
+          },
+          shell: {
+            home: "Home",
+            quiz: "Quiz",
+            edit: "Edit",
+            settings: "Settings",
+            logout: "Logout"
           }
         }
       }
@@ -44,6 +51,13 @@ i18n.use(LanguageDetector).init({
             tolearn: "Zu lernende Karten",
             inphase6: "Karten in Phase 6",
             cardcount: "Anzahl der Karten"
+          },
+          shell: {
+            home: "Home",
+            quiz: "Quiz",
+            edit: "Bearbeiten",
+            settings: "Einstellungen",
+            logout: "Abmelden"
           }
         }
       }
