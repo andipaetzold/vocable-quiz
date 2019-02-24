@@ -1,32 +1,44 @@
 import { Button, Form, Icon, Input, Layout, Card, message } from "antd";
 import useFirebase from "hooks/useFirebase";
 import React, { FormEvent, useState } from "react";
-import AuthError from "./AuthError";
 import styles from "./styles.m.less";
+import { FirebaseError } from "firebase";
 
 export default function Login() {
   const firebase = useFirebase();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [code, setCode] = useState<string | undefined>(undefined);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const hide = message.loading("Logging in...");
 
     try {
-      const hide = message.loading("Logging in...");
       await firebase.login(email, password);
-      hide();
     } catch (e) {
-      setCode(e.code);
+      let text = "Unknown Error";
+      switch ((e as FirebaseError).code) {
+        case "auth/invalid-email":
+          text = "The email address is invalid";
+          break;
+        case "auth/user-disabled":
+          text = "The account has been disabled";
+          break;
+        case "auth/user-not-found":
+        case "auth/wrong-password":
+          text = "The email address or the password is wrong";
+          break;
+      }
+      message.error(text);
+    } finally {
+      hide();
     }
   }
 
   return (
     <Layout.Content className={styles.content}>
       <Card title="Login">
-        {code && <AuthError code={code} />}
         <Form layout="horizontal" onSubmit={handleSubmit}>
           <Form.Item>
             <Input
