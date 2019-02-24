@@ -1,4 +1,4 @@
-import app from "firebase/app";
+import app, { User } from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import Subject from "types/Subject";
@@ -29,26 +29,32 @@ export default class Firebase {
 
   logout = () => this.auth.signOut();
 
-  getSubjectsCollection = (user: firebase.User) =>
+  getSubjectsCollection = (user: User) =>
     this.firestore
       .collection("users")
       .doc(user.uid)
       .collection("subjects");
 
-  getSubjectDoc = (user: firebase.User, id: string) =>
+  getSubjectDoc = (user: User, id: string) =>
     this.getSubjectsCollection(user).doc(id);
 
-  createSubject = (user: firebase.User, name: string) =>
+  createSubject = (user: User, name: string) =>
     this.getSubjectsCollection(user).add(<Subject>{
       name
     });
 
+  getCardsCollection = (user: User, subjectId: string) =>
+    this.getSubjectDoc(user, subjectId).collection("cards");
+
+  getCardDoc = (user: User, subjectId: string, cardId: string) =>
+    this.getCardsCollection(user, subjectId).doc(cardId);
+
   createCard = (
-    user: firebase.User,
+    user: User,
     subjectId: string,
     card: Pick<Card, "question" | "answer">
-  ) =>
-    this.getSubjectDoc(user, subjectId)
-      .collection("cards")
-      .add(card);
+  ) => this.getCardsCollection(user, subjectId).add(card);
+
+  deleteCard = (user: User, subjectId: string, cardId: string) =>
+    this.getCardDoc(user, subjectId, cardId).delete();
 }

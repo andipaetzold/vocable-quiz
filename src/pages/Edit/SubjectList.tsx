@@ -62,11 +62,8 @@ function SubjectList({ history }: RouterProps) {
                 >
                   <Icon type="plus" /> Create
                 </Button>
-                <Button type="default">
-                  <Icon
-                    type="edit"
-                    onClick={() => history.push(`/edit/${id}`)}
-                  />
+                <Button onClick={() => history.push(`/edit/${id}`)}>
+                  <Icon type="edit" />
                   Edit
                 </Button>
               </Button.Group>

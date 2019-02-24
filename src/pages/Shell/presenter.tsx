@@ -2,11 +2,12 @@ import { Icon, Layout, Menu } from "antd";
 import LogoutButton from "components/LogoutButton";
 import CreateCard from "pages/CreateCard";
 import Edit from "pages/Edit";
+import EditCards from "pages/EditCards";
 import Home from "pages/Home";
 import Quiz from "pages/Quiz";
 import Settings from "pages/Settings";
-import React, { useState, useEffect } from "react";
-import { Link, Route, Switch, RouteComponentProps } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Route, RouteComponentProps, Switch } from "react-router-dom";
 import styles from "./styles.m.less";
 const { Content, Header } = Layout;
 
@@ -65,7 +66,7 @@ export default function Shell({ location }: Props) {
         <Switch>
           <Route path="/quiz" component={Quiz} />
           <Route path="/edit/:subjectId/create" component={CreateCard} />
-          <Route path="/edit/:subjectId" component={() => <>TODO</>} />
+          <Route path="/edit/:subjectId" component={EditCards} />
           <Route path="/edit" component={Edit} />
           <Route path="/settings" component={Settings} />
           <Route path="/" component={Home} />
