@@ -11,5 +11,34 @@ jobs:
       - checkout
       - run: npm ci
       - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/app
+            - dist/functions
+  deploy:
+    docker:
+      - image: circleci/node:10
+
+    working_directory: ~/vocable-quiz
+
+    steps:
+      - checkout
+      - run: npm ci
+      - attach_workspace:
+          at: .
       - run: npm run firebase -- use vocable-quiz
       - run: npm run firebase -- deploy --force --non-interactive -m $CIRCLE_SHA1 --token "$FIREBASE_TOKEN"
+
+workflows:
+  version: 2
+  default_workflow:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
