@@ -15,6 +15,9 @@ export default function useSubjects() {
   let subjects: Subject[] = [];
   if (snap) {
     subjects = snap.docs.map(doc => ({
+      cardsCount: 0,
+      cardsNextQuiz: {},
+      cardsPhase: {},
       ...(doc.data() as Omit<Subject, "id">),
       id: doc.id
     }));

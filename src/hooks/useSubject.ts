@@ -15,6 +15,9 @@ export default function useSubject(id: string) {
   let subject: Subject | undefined = undefined;
   if (snap) {
     subject = {
+      cardsCount: 0,
+      cardsNextQuiz: {},
+      cardsPhase: {},
       ...(snap.data() as Omit<Subject, "id">),
       id: snap.id
     };
