@@ -18,6 +18,7 @@ import { withRouter } from "react-router-dom";
 import Subject from "types/Subject";
 import { getTodayCardCount } from "util/subject";
 import PhaseTimeline from "./PhaseTimeline";
+import { Trans } from "react-i18next";
 
 function SubjectList({ history }: RouterProps) {
   const firebase = useFirebase();
@@ -36,7 +37,9 @@ function SubjectList({ history }: RouterProps) {
     <Card
       title={
         <Breadcrumb>
-          <Breadcrumb.Item>Subjects</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Trans i18nKey="subject.plural.big" />
+          </Breadcrumb.Item>
         </Breadcrumb>
       }
     >
@@ -48,17 +51,17 @@ function SubjectList({ history }: RouterProps) {
         style={{ overflowX: "auto" }}
         columns={[
           {
-            title: "Name",
+            title: <Trans i18nKey="subject.singular.big" />,
             dataIndex: "name",
             key: "name"
           },
           {
-            title: "Today's cards",
+            title: <Trans i18nKey="today" />,
             key: "today",
             render: getTodayCardCount
           },
           {
-            title: "Cards",
+            title: <Trans i18nKey="card.plural.big" />,
             key: "cardsCount",
             render: (subject: Subject) => {
               const { cardsCount } = subject;
@@ -76,7 +79,7 @@ function SubjectList({ history }: RouterProps) {
             }
           },
           {
-            title: "Action",
+            title: <Trans i18nKey="actions" />,
             key: "action",
             render: ({ id }) => (
               <Button.Group size="small">
@@ -85,14 +88,14 @@ function SubjectList({ history }: RouterProps) {
                   size="small"
                   onClick={() => history.push(`/edit/${id}/create`)}
                 >
-                  <Icon type="plus" /> Create
+                  <Icon type="plus" /> <Trans i18nKey="create" />
                 </Button>
                 <Button
                   size="small"
                   onClick={() => history.push(`/edit/${id}`)}
                 >
                   <Icon type="edit" />
-                  Edit
+                  <Trans i18nKey="edit" />
                 </Button>
                 <Popconfirm
                   title={
@@ -108,7 +111,7 @@ function SubjectList({ history }: RouterProps) {
                 >
                   <Button type="danger" size="small">
                     <Icon type="delete" />
-                    Delete
+                    <Trans i18nKey="delete" />
                   </Button>
                 </Popconfirm>
               </Button.Group>

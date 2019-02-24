@@ -3,6 +3,7 @@ import { User } from "firebase";
 import useCards from "hooks/useCards";
 import useFirebase from "hooks/useFirebase";
 import React from "react";
+import { Trans } from "react-i18next";
 import Subject from "types/Subject";
 
 interface Props {
@@ -33,27 +34,22 @@ export default function CardsList({ user, subject }: Props) {
       style={{ overflowX: "auto" }}
       columns={[
         {
-          title: "Question",
+          title: <Trans i18nKey="question" />,
           dataIndex: "question",
           key: "question"
         },
         {
-          title: "Answer",
+          title: <Trans i18nKey="answer" />,
           dataIndex: "answer",
           key: "answer"
         },
         {
-          title: "Created",
-          dataIndex: "createdAt",
-          key: "cretedAt"
-        },
-        {
-          title: "Next Quiz",
+          title: <Trans i18nKey="nextquiz" />,
           dataIndex: "nextQuiz",
           key: "nextQuiz"
         },
         {
-          title: "Phase",
+          title: <Trans i18nKey="phase" />,
           key: "phase",
           render: ({ phase = 1 }) => (
             <Progress
@@ -68,7 +64,7 @@ export default function CardsList({ user, subject }: Props) {
           )
         },
         {
-          title: "Action",
+          title: <Trans i18nKey="actions" />,
           key: "action",
           render: ({ id }) => (
             <Button.Group>
@@ -79,7 +75,7 @@ export default function CardsList({ user, subject }: Props) {
                 cancelText="No"
               >
                 <Button type="danger" size="small">
-                  <Icon type="delete" /> Delete
+                  <Icon type="delete" /> <Trans i18nKey="delete" />
                 </Button>
               </Popconfirm>
             </Button.Group>

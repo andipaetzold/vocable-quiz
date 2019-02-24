@@ -17,37 +17,61 @@ export default function PhaseTimeline({ card }: Props) {
   return (
     <Steps size="small">
       <Steps.Step
-        title="Phase 1"
+        title={
+          <>
+            <Trans i18nKey="phase" /> 1
+          </>
+        }
         description={<Trans i18nKey="day" count={0} values={{ count: 0 }} />}
         status={getStatus(1)}
         icon={getIcon(1)}
       />
       <Steps.Step
-        title="Phase 2"
+        title={
+          <>
+            <Trans i18nKey="phase" /> 2
+          </>
+        }
         description={<Trans i18nKey="day" count={3} values={{ count: 3 }} />}
         status={getStatus(2)}
         icon={getIcon(2)}
       />
       <Steps.Step
-        title="Phase 3"
+        title={
+          <>
+            <Trans i18nKey="phase" /> 3
+          </>
+        }
         description={<Trans i18nKey="day" count={10} values={{ count: 10 }} />}
         status={getStatus(3)}
         icon={getIcon(3)}
       />
       <Steps.Step
-        title="Phase 4"
+        title={
+          <>
+            <Trans i18nKey="phase" /> 4
+          </>
+        }
         description={<Trans i18nKey="day" count={30} values={{ count: 30 }} />}
         status={getStatus(4)}
         icon={getIcon(4)}
       />
       <Steps.Step
-        title="Phase 5"
+        title={
+          <>
+            <Trans i18nKey="phase" /> 5
+          </>
+        }
         description={<Trans i18nKey="day" count={90} values={{ count: 90 }} />}
         status={getStatus(5)}
         icon={getIcon(5)}
       />
       <Steps.Step
-        title="Phase 6"
+        title={
+          <>
+            <Trans i18nKey="phase" /> 6
+          </>
+        }
         description={<Trans i18nKey="pages.quiz.longterm" />}
         status={getStatus(6)}
         icon={getIcon(6)}

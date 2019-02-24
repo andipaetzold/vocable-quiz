@@ -6,6 +6,8 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import { Link, RouteComponentProps } from "react-router-dom";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
+import { Trans } from "react-i18next";
+import i18n from "i18n";
 
 export type Props = RouteComponentProps<{ subjectId: string }>;
 
@@ -53,12 +55,16 @@ export default function CreateCard(props: Props) {
       title={
         <Breadcrumb>
           <Breadcrumb.Item>
-            <Link to="/edit">Subjects</Link>
+            <Link to="/edit">
+              <Trans i18nKey="subject.plural.big" />
+            </Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             {subject && <Link to={`/edit/${subject.id}`}>{subject.name}</Link>}
           </Breadcrumb.Item>
-          <Breadcrumb.Item>Create Card</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Trans i18nKey="pages.createcard.title" />
+          </Breadcrumb.Item>
         </Breadcrumb>
       }
       loading={loading}
@@ -70,7 +76,7 @@ export default function CreateCard(props: Props) {
             rows={5}
             cols={30}
             ref={questionRef}
-            placeholder="Question"
+            placeholder={i18n.t("question")}
             value={question}
             onChange={e => setQuestion(e.target.value)}
           />
@@ -80,7 +86,7 @@ export default function CreateCard(props: Props) {
             style={{ resize: "none" }}
             rows={5}
             cols={30}
-            placeholder="Answer"
+            placeholder={i18n.t("answer")}
             value={answer}
             onChange={e => setAnswer(e.target.value)}
           />
@@ -88,7 +94,7 @@ export default function CreateCard(props: Props) {
         <Form.Item>
           <Button type="primary" htmlType="submit">
             <Icon type="plus" />
-            Create Card
+            <Trans i18nKey="pages.createcard.title" />
           </Button>
         </Form.Item>
       </Form>

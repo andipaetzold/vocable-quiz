@@ -24,7 +24,7 @@ export default function QuizList({ history }: Props) {
             key: "name"
           },
           {
-            title: <Trans i18nKey="pages.quizlist.today" />,
+            title: <Trans i18nKey="today" />,
             key: "today",
             render: getTodayCardCount
           },

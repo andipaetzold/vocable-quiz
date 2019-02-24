@@ -6,13 +6,23 @@ i18n.use(LanguageDetector).init({
   resources: {
     en: {
       translation: {
+        card: {
+          singular: {
+            small: "Card",
+            big: "Card"
+          },
+          plural: {
+            small: "Cards",
+            big: "Cards"
+          }
+        },
         subject: {
           singular: {
             small: "subject",
             big: "Subject"
           },
           plural: {
-            small: "subjectsß",
+            small: "subjects",
             big: "Subjects"
           }
         },
@@ -24,6 +34,14 @@ i18n.use(LanguageDetector).init({
         passwordNew: "New Password",
         day: "{{count}} day",
         day_plural: "{{count}} days",
+        question: "Question",
+        answer: "Answer",
+        create: "Create",
+        edit: "Edit",
+        delete: "Delete",
+        today: "Today",
+        phase: "Phase",
+        nextquiz: "Next Quiz",
         pages: {
           home: {
             title: "Hello {{name}}",
@@ -48,7 +66,6 @@ i18n.use(LanguageDetector).init({
           },
           quizlist: {
             title: "Quiz",
-            today: "Today",
             go: "Go"
           },
           quiz: {
@@ -64,12 +81,33 @@ i18n.use(LanguageDetector).init({
           changepassword: {
             title: "Change Password",
             submit: "Change Password"
+          },
+          createsubject: {
+            title: "Create Subject",
+            name: "Name of the Subject",
+            submit: "Create Subject"
+          },
+          createcard: {
+            title: "Create Card"
+          },
+          editcards: {
+            create: "Create Cards"
           }
         }
       }
     },
     de: {
       translation: {
+        card: {
+          singular: {
+            small: "Karte",
+            big: "Karte"
+          },
+          plural: {
+            small: "Karten",
+            big: "Karten"
+          }
+        },
         subject: {
           singular: {
             small: "Fach",
@@ -89,6 +127,14 @@ i18n.use(LanguageDetector).init({
         actions: "Aktionen",
         day: "{{count}} Tag",
         day_plural: "{{count}} Tage",
+        question: "Frage",
+        answer: "Antwort",
+        create: "Erstellen",
+        edit: "Bearbeiten",
+        delete: "Löschen",
+        today: "Heute",
+        phase: "Phase",
+        nextquiz: "Nächste Abfrage",
         pages: {
           home: {
             title: "Hallo {{name}}",
@@ -98,7 +144,7 @@ i18n.use(LanguageDetector).init({
           },
           shell: {
             home: "Home",
-            quiz: "Quiz",
+            quiz: "Abfrage",
             edit: "Bearbeiten",
             settings: "Einstellungen",
             logout: "Abmelden"
@@ -113,7 +159,6 @@ i18n.use(LanguageDetector).init({
           },
           quizlist: {
             title: "Quiz",
-            today: "Heute",
             go: "Los"
           },
           quiz: {
@@ -129,6 +174,17 @@ i18n.use(LanguageDetector).init({
           changepassword: {
             title: "Passwort ändern",
             submit: "Passwort ändern"
+          },
+          createsubject: {
+            title: "Fach erstellen",
+            name: "Name des Fachs",
+            submit: "Fach erstellen"
+          },
+          createcard: {
+            title: "Karte erstellen"
+          },
+          editcards: {
+            create: "Karten erstellen"
           }
         }
       }
