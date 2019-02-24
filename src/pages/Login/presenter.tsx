@@ -3,6 +3,7 @@ import useFirebase from "hooks/useFirebase";
 import React, { FormEvent, useState } from "react";
 import styles from "./styles.m.less";
 import { FirebaseError } from "firebase";
+import Register from "pages/Register";
 
 export default function Login() {
   const firebase = useFirebase();
@@ -38,8 +39,8 @@ export default function Login() {
 
   return (
     <Layout.Content className={styles.content}>
-      <Card title="Login">
-        <Form layout="horizontal" onSubmit={handleSubmit}>
+      <Card title="Login" style={{ marginBottom: "20px" }}>
+        <Form layout="vertical" onSubmit={handleSubmit}>
           <Form.Item>
             <Input
               type="email"
@@ -69,6 +70,7 @@ export default function Login() {
           </Form.Item>
         </Form>
       </Card>
+      <Register />
     </Layout.Content>
   );
 }
