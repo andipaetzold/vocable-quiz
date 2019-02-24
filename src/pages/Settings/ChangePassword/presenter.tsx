@@ -2,6 +2,8 @@ import { Alert, Button, Card, Form, Input } from "antd";
 import { auth, FirebaseError } from "firebase/app";
 import AuthUserContext from "hoc/withAuthUser/context";
 import React, { FormEvent, useContext, useState } from "react";
+import { Trans } from "react-i18next";
+import i18n from "i18n";
 
 export default () => {
   const user = useContext(AuthUserContext);
@@ -39,12 +41,13 @@ export default () => {
   }
 
   return (
-    <Card title="Change Password">
+    <Card title={<Trans i18nKey="pages.changepassword.title" />}>
       {code && <Alert type="error" message={code} />}
       <Form layout="horizontal" onSubmit={handleSubmit}>
         <Form.Item>
           <Input
             type="email"
+            placeholder={i18n.t("email")}
             value={user.email as string}
             autoComplete="username"
             readOnly
@@ -54,7 +57,7 @@ export default () => {
           <Input
             type="password"
             onChange={e => setCurrentPassword(e.target.value)}
-            placeholder={"Current Password"}
+            placeholder={i18n.t("passwordCurrent")}
             value={currentPassword}
             autoComplete="current-password"
             required
@@ -64,7 +67,7 @@ export default () => {
           <Input
             type="password"
             onChange={e => setNewPassword(e.target.value)}
-            placeholder={"New Password"}
+            placeholder={i18n.t("passwordNew")}
             value={newPassword}
             autoComplete="new-password"
             required
@@ -74,7 +77,7 @@ export default () => {
           <Input
             type="password"
             onChange={e => setConfirmPassword(e.target.value)}
-            placeholder={"Confirm Password"}
+            placeholder={i18n.t("passwordRepeat")}
             value={confirmPassword}
             autoComplete="new-password"
             required
@@ -82,7 +85,7 @@ export default () => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Change Password
+            <Trans i18nKey="pages.changepassword.submit" />
           </Button>
         </Form.Item>
       </Form>

@@ -20,6 +20,8 @@ i18n.use(LanguageDetector).init({
         email: "Email Address",
         password: "Password",
         passwordRepeat: "Password Repeat",
+        passwordCurrent: "Current Password",
+        passwordNew: "New Password",
         day: "{{count}} day",
         day_plural: "{{count}} days",
         pages: {
@@ -54,6 +56,14 @@ i18n.use(LanguageDetector).init({
             correct: "Correct",
             wrong: "Wrong",
             longterm: "Long-Term Memory"
+          },
+          changedata: {
+            title: "Change Data",
+            submit: "Save"
+          },
+          changepassword: {
+            title: "Change Password",
+            submit: "Change Password"
           }
         }
       }
@@ -74,6 +84,8 @@ i18n.use(LanguageDetector).init({
         email: "E-Mail Adresse",
         password: "Passwort",
         passwordRepeat: "Password wiederholen",
+        passwordCurrent: "Aktuelles Passwort",
+        passwordNew: "Neues Passwort",
         actions: "Aktionen",
         day: "{{count}} Tag",
         day_plural: "{{count}} Tage",
@@ -109,6 +121,14 @@ i18n.use(LanguageDetector).init({
             correct: "Richtig",
             wrong: "Falsch",
             longterm: "Langzeitgedächtnis"
+          },
+          changedata: {
+            title: "Daten ändern",
+            submit: "Speichern"
+          },
+          changepassword: {
+            title: "Passwort ändern",
+            submit: "Passwort ändern"
           }
         }
       }
