@@ -79,7 +79,9 @@ module.exports = {
           urlPattern: /.*/,
           handler: "networkFirst"
         }
-      ]
+      ],
+      importWorkboxFrom: "local",
+      navigateFallback: "/index.html"
     })
   ]
 };
