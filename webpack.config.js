@@ -80,7 +80,6 @@ module.exports = {
           handler: "networkFirst"
         }
       ],
-      importWorkboxFrom: "local",
       navigateFallback: "/index.html"
     })
   ]
