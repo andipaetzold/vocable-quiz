@@ -14,3 +14,7 @@ ReactDOM.render(
   </FirebaseContext.Provider>,
   document.getElementById("root")
 );
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register("service-worker.js");
+}
