@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { GenerateSW } = require("workbox-webpack-plugin");
 
-module.exports = {
+module.exports = (env, options) => ({
   entry: {
     app: "./src/index.tsx"
   },
@@ -15,8 +15,9 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "/dist/app"),
-    filename: "[name].[hash].js",
-    chunkFilename: "[name].[chunkhash].js",
+    filename: options.mode === "production" ? "[name].[hash].js" : "[name].js",
+    chunkFilename:
+      options.mode === "production" ? "[name].[hash].js" : "[name].js",
     publicPath: "/"
   },
   module: {
@@ -83,4 +84,4 @@ module.exports = {
       navigateFallback: "/index.html"
     })
   ]
-};
+});
