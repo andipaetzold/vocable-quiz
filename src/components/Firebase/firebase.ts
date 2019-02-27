@@ -114,4 +114,7 @@ export default class Firebase {
       updatedTimestamp: Date.now()
     });
   };
+
+  importCard = (user: User, subjectId: string, card: Omit<Card, "id">) =>
+    this.getCardsCollection(user, subjectId).add(card);
 }

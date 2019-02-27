@@ -92,6 +92,10 @@ i18n.use(LanguageDetector).init({
           },
           editcards: {
             create: "Create Cards"
+          },
+          import: {
+            title: "Import",
+            select: "Select file"
           }
         }
       }
@@ -185,6 +189,10 @@ i18n.use(LanguageDetector).init({
           },
           editcards: {
             create: "Karten erstellen"
+          },
+          import: {
+            title: "Import",
+            select: "Datei auswählen"
           }
         }
       }
