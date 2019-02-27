@@ -1,11 +1,8 @@
-import PhaseTimeline from "./PhaseTimeline";
-import React, { useState, useEffect } from "react";
-import Card from "types/Card";
-import { Input, Col, Row, Button } from "antd";
-import Subject from "types/Subject";
-import useFirebase from "hooks/useFirebase";
-import useUser from "hooks/useUser";
+import { Button, Col, Input, Row } from "antd";
+import React, { useEffect, useState } from "react";
 import { Trans } from "react-i18next";
+import Card from "types/Card";
+import PhaseTimeline from "./PhaseTimeline";
 
 const colConfig = {
   xs: { span: 24 },
@@ -16,13 +13,13 @@ const colConfig = {
 };
 
 interface Props {
-  subject: Subject;
   card: Card;
+
+  correct(): void;
+  wrong(): void;
 }
 
-export default function QuizCard({ subject, card }: Props) {
-  const firebase = useFirebase();
-  const user = useUser();
+export default function QuizCard({ card, correct, wrong }: Props) {
   const [answer, setAnswer] = useState("");
   const [isRevealed, setRevealed] = useState(false);
 
@@ -81,29 +78,12 @@ export default function QuizCard({ subject, card }: Props) {
         {isRevealed && (
           <>
             <Col span={12}>
-              <Button
-                block={true}
-                type="primary"
-                onClick={() =>
-                  firebase.updatePhase(
-                    user,
-                    subject.id,
-                    card.id,
-                    card.phase + 1
-                  )
-                }
-              >
+              <Button block={true} type="primary" onClick={correct}>
                 <Trans i18nKey="pages.quiz.correct" />
               </Button>
             </Col>
             <Col span={12}>
-              <Button
-                block={true}
-                type="danger"
-                onClick={() =>
-                  firebase.updatePhase(user, subject.id, card.id, 1)
-                }
-              >
+              <Button block={true} type="danger" onClick={wrong}>
                 <Trans i18nKey="pages.quiz.wrong" />
               </Button>
             </Col>
