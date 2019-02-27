@@ -6,19 +6,18 @@ import {
   message,
   Popconfirm,
   Popover,
-  Table,
-  Timeline
+  Table
 } from "antd";
 import useFirebase from "hooks/useFirebase";
 import useSubjects from "hooks/useSubjects";
 import useUser from "hooks/useUser";
 import React from "react";
+import { Trans } from "react-i18next";
 import { RouterProps } from "react-router";
 import { withRouter } from "react-router-dom";
 import Subject from "types/Subject";
 import { getTodayCardCount } from "util/subject";
 import PhaseTimeline from "./PhaseTimeline";
-import { Trans } from "react-i18next";
 
 function SubjectList({ history }: RouterProps) {
   const firebase = useFirebase();
@@ -27,9 +26,7 @@ function SubjectList({ history }: RouterProps) {
   const { loading, subjects } = useSubjects();
 
   const handleDelete = async (id: string) => {
-    const hide = message.loading("Deleting subject...");
     await firebase.deleteSubject(user, id);
-    hide();
     message.success("Subject deleted");
   };
 

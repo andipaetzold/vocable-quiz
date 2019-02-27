@@ -1,13 +1,13 @@
 import { Breadcrumb, Button, Card, Form, Icon, Input, message } from "antd";
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
+import i18n from "i18n";
 import React, { FormEvent, useRef, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
+import { Trans } from "react-i18next";
 import { Link, RouteComponentProps } from "react-router-dom";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
-import { Trans } from "react-i18next";
-import i18n from "i18n";
 
 export type Props = RouteComponentProps<{ subjectId: string }>;
 
@@ -36,8 +36,10 @@ export default function CreateCard(props: Props) {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const hide = message.loading("Creating card");
-    await firebase.createCard(user, subjectId, { question, answer });
+    (async () => {
+      await firebase.createCard(user, subjectId, { question, answer });
+      message.success("Card was created");
+    })();
 
     setQuestion("");
     setAnswer("");
@@ -45,9 +47,6 @@ export default function CreateCard(props: Props) {
     if (questionRef.current) {
       questionRef.current.focus();
     }
-
-    hide();
-    message.success("Card was created");
   };
 
   return (
