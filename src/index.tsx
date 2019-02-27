@@ -15,6 +15,6 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-if (navigator.serviceWorker) {
+if (process.env.NODE_ENV !== "development" && navigator.serviceWorker) {
   navigator.serviceWorker.register("service-worker.js");
 }
