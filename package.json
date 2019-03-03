@@ -43,7 +43,7 @@
     "firebase": "5.8.5",
     "firebase-admin": "7.0.0",
     "firebase-functions": "2.2.0",
-    "i18next": "15.0.4",
+    "i18next": "15.0.5",
     "i18next-browser-languagedetector": "3.0.1",
     "react": "16.8.3",
     "react-dom": "16.8.3",
