@@ -42,8 +42,10 @@ export default function ImportTable({ database }: Props) {
       } as Omit<Card, "id">)
     );
 
+    let i = 0;
     for await (const docRef of cardRefPromises) {
-      setProgress((progress || 0) + (1 / cardRefPromises.length) * 100);
+      ++i;
+      setProgress(Math.round((i / cardRefPromises.length) * 100));
     }
 
     hide();
