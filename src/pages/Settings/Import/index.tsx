@@ -1,89 +1,18 @@
-import { Button, Card as AntCard, Icon, Table, message } from "antd";
+import { Button, Card as AntCard, message, Table } from "antd";
 import { format } from "date-fns";
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 import i18n from "i18n";
-import React, { FormEvent, useRef, useState } from "react";
-import { Trans } from "react-i18next";
+import React, { useState } from "react";
 import Card from "types/Card";
 import { Omit } from "utility-types";
-
-interface Database {
-  Benutzer: Benutzer[];
-
-  [key: string]: Thema[] | Karte[] | Benutzer[];
-}
-
-interface Thema {
-  Thema: string;
-}
-
-interface Benutzer {
-  Benutzer: string;
-}
-
-interface Zeitpunkt {
-  date: number;
-  day: number;
-  hours: number;
-  minutes: number;
-  month: number;
-  seconds: number;
-  time: number;
-  timezoneOffset: number;
-  year: number;
-}
-
-interface Karte {
-  Antwort: string;
-  Entstehung: Zeitpunkt;
-  Frage: string;
-  LetzteAbfrage: Zeitpunkt;
-  NaechsteAbfrage: Zeitpunkt;
-  Phase: number;
-  Thema: string;
-  ZusatzAngabe: string;
-}
+import { Benutzer, Database, Karte, Thema } from "./types";
+import Upload from "./Upload";
 
 export default function Import() {
-  const ref = useRef<HTMLInputElement>(null);
   let [database, setDatabase] = useState<Database | undefined>(undefined);
   const user = useUser();
   const firebase = useFirebase();
-
-  const handleClick = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    if (!ref.current) {
-      return;
-    }
-
-    ref.current.click();
-  };
-
-  const handleChange = async (e: FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-
-    const files = e.currentTarget.files;
-    if (!files) {
-      return;
-    }
-    const file = files[0];
-
-    const result = await new Promise<string>(resolve => {
-      const reader = new FileReader();
-      reader.addEventListener(
-        "load",
-        () => {
-          resolve(reader.result as string);
-        },
-        false
-      );
-      reader.readAsText(file);
-    });
-
-    setDatabase(JSON.parse(result));
-  };
 
   const handleImport = async (userName: string, subjectName: string) => {
     if (!database) {
@@ -113,16 +42,7 @@ export default function Import() {
 
   return (
     <AntCard title={i18n.t("pages.import.title")}>
-      <input
-        type="file"
-        ref={ref}
-        accept="*.mdb"
-        style={{ display: "none" }}
-        onChange={handleChange}
-      />
-      <Button onClick={handleClick}>
-        <Icon type="upload" /> <Trans i18nKey="pages.import.select" />
-      </Button>
+      {!database && <Upload onSelect={setDatabase} />}
 
       {database && (
         <Table
