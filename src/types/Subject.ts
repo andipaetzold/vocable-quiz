@@ -5,4 +5,6 @@ export default interface Subject {
   cardsCount: number;
   cardsNextQuiz: { [date: string]: number };
   cardsPhase: { [phase: number]: number };
+
+  aggregatedEvents: string[];
 }

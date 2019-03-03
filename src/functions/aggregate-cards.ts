@@ -6,7 +6,7 @@ import { Omit } from "utility-types";
 
 export const aggregateCards = functions.firestore
   .document("users/{userId}/subjects/{subjectId}/cards/{cardId}")
-  .onWrite(async ({ before, after }, { params }) => {
+  .onWrite(async ({ before, after }, { params, eventId }) => {
     const subjectRef = firestore()
       .collection("users")
       .doc(params.userId)
@@ -19,8 +19,13 @@ export const aggregateCards = functions.firestore
         cardsCount: 0,
         cardsNextQuiz: {},
         cardsPhase: {},
+        aggregatedEvents: [],
         ...(subjectDoc.data() as Omit<Subject, "id">)
       };
+
+      if (subject.aggregatedEvents.includes(eventId)) {
+        return;
+      }
 
       if (before && before.exists) {
         subject.cardsCount = Math.max(0, subject.cardsCount - 1);
@@ -52,6 +57,8 @@ export const aggregateCards = functions.firestore
             (subject.cardsPhase[card.phase] || 0) + 1;
         }
       }
+
+      subject.aggregatedEvents.push(eventId);
 
       await transaction.update(subjectRef, subject);
     });

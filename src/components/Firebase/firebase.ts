@@ -49,7 +49,8 @@ export default class Firebase {
       name,
       cardsCount: 0,
       cardsPhase: {},
-      cardsNextQuiz: {}
+      cardsNextQuiz: {},
+      aggregatedEvents: []
     });
 
   deleteSubject = (user: User, subjectId: string) =>
