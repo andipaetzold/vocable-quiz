@@ -1,8 +1,8 @@
-import { Button, message, Table } from "antd";
+import { Button, message, Progress, Table } from "antd";
 import { format } from "date-fns";
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
-import React from "react";
+import React, { useState } from "react";
 import Card from "types/Card";
 import { Omit } from "utility-types";
 import { Benutzer, Database, Karte, Thema } from "./types";
@@ -14,18 +14,23 @@ interface Props {
 export default function ImportTable({ database }: Props) {
   const user = useUser();
   const firebase = useFirebase();
+  const [progress, setProgress] = useState<number | undefined>(undefined);
 
   const handleImport = async (userName: string, subjectName: string) => {
     if (!database) {
       throw new Error("database is null or undefined");
     }
 
+    setProgress(0);
+
     const hide = message.loading("Please wait...", 0);
 
     const subjectRef = await firebase.createSubject(user, subjectName);
 
     const Karten = database[`Karten_${userName}`] as Karte[];
-    Karten.filter(karte => karte.Thema === subjectName).forEach(karte =>
+    const cardRefPromises = Karten.filter(
+      karte => karte.Thema === subjectName
+    ).map(karte =>
       firebase.importCard(user, subjectRef.id, {
         question: karte.Frage,
         answer: karte.Antwort,
@@ -37,43 +42,59 @@ export default function ImportTable({ database }: Props) {
       } as Omit<Card, "id">)
     );
 
+    for await (const docRef of cardRefPromises) {
+      setProgress((progress || 0) + (1 / cardRefPromises.length) * 100);
+    }
+
     hide();
     message.success("Subject was imported");
   };
 
   return (
-    <Table
-      rowKey="key"
-      dataSource={(database.Benutzer as Benutzer[]).flatMap(({ Benutzer }) => {
-        if (!database) {
-          throw new Error("Database is null or undefined");
-        }
+    <>
+      {progress !== undefined ? (
+        <Progress percent={progress} />
+      ) : (
+        <Table
+          rowKey="key"
+          dataSource={(database.Benutzer as Benutzer[]).flatMap(
+            ({ Benutzer }) => {
+              if (!database) {
+                throw new Error("Database is null or undefined");
+              }
 
-        return (database[`Thema_${Benutzer}`] as Thema[]).map(({ Thema }) => ({
-          key: Benutzer + Thema,
-          user: Benutzer,
-          subject: Thema
-        }));
-      })}
-      columns={[
-        {
-          title: "User",
-          dataIndex: "user",
-          key: "user"
-        },
-        {
-          title: "Subject",
-          dataIndex: "subject",
-          key: "subject"
-        },
-        {
-          title: "Actions",
-          key: "action",
-          render: ({ user, subject }) => (
-            <Button onClick={() => handleImport(user, subject)}>Import</Button>
-          )
-        }
-      ]}
-    />
+              return (database[`Thema_${Benutzer}`] as Thema[]).map(
+                ({ Thema }) => ({
+                  key: Benutzer + Thema,
+                  user: Benutzer,
+                  subject: Thema
+                })
+              );
+            }
+          )}
+          columns={[
+            {
+              title: "User",
+              dataIndex: "user",
+              key: "user"
+            },
+            {
+              title: "Subject",
+              dataIndex: "subject",
+              key: "subject"
+            },
+            {
+              title: "Actions",
+              key: "action",
+              render: ({ user, subject }) => (
+                <Button onClick={() => handleImport(user, subject)}>
+                  Import
+                </Button>
+              )
+            }
+          ]}
+        />
+      )}
+    </>
   );
 }
