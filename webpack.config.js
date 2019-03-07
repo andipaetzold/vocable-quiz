@@ -78,7 +78,7 @@ module.exports = (env, options) => ({
       runtimeCaching: [
         {
           urlPattern: /.*/,
-          handler: "networkFirst"
+          handler: "NetworkFirst"
         }
       ],
       navigateFallback: "/index.html"
