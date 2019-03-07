@@ -43,35 +43,50 @@ export default function Shell({ location }: Props) {
 
   return (
     <>
-      <Header style={{ backgroundColor: "white" }}>
+      <Header style={{ backgroundColor: "white", padding: 0 }}>
         <Menu
           theme="light"
           mode="horizontal"
           style={{ lineHeight: "64px", textAlign: "center" }}
           selectedKeys={[currentItem]}
         >
-          <Menu.Item key="home">
+          <Menu.Item
+            key="home"
+            style={{ paddingLeft: "10px", paddingRight: "10px" }}
+          >
             <Link to="/">
               <Icon type="home" /> <Trans i18nKey="pages.shell.home" />
             </Link>
           </Menu.Item>
-          <Menu.Item key="quiz">
+          <Menu.Item
+            key="quiz"
+            style={{ paddingLeft: "10px", paddingRight: "10px" }}
+          >
             <Link to="/quiz">
               <Icon type="question" /> <Trans i18nKey="pages.shell.quiz" />{" "}
               <Badge count={quizCount} />
             </Link>
           </Menu.Item>
-          <Menu.Item key="edit">
+          <Menu.Item
+            key="edit"
+            style={{ paddingLeft: "10px", paddingRight: "10px" }}
+          >
             <Link to="/edit">
               <Icon type="edit" /> <Trans i18nKey="pages.shell.edit" />
             </Link>
           </Menu.Item>
-          <Menu.Item key="settings">
+          <Menu.Item
+            key="settings"
+            style={{ paddingLeft: "10px", paddingRight: "10px" }}
+          >
             <Link to="/settings">
               <Icon type="setting" /> <Trans i18nKey="pages.shell.settings" />
             </Link>
           </Menu.Item>
-          <Menu.Item key="logout">
+          <Menu.Item
+            key="logout"
+            style={{ paddingLeft: "10px", paddingRight: "10px" }}
+          >
             <Button type="danger" onClick={firebase.logout}>
               <Icon type="logout" /> <Trans i18nKey="pages.shell.logout" />
             </Button>
