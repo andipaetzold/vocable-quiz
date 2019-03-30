@@ -34,6 +34,7 @@ export default function ImportTable({ database }: Props) {
       firebase.importCard(user, subjectRef.id, {
         question: karte.Frage,
         answer: karte.Antwort,
+        remark: karte.ZusatzAngabe,
         createdTimestamp: karte.Entstehung.time,
         updatedTimestamp: Date.now(),
         createdAt: format(karte.Entstehung.time, "YYYY-MM-DD"),

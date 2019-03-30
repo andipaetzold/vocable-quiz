@@ -65,7 +65,7 @@ export default class Firebase {
   createCard = (
     user: User,
     subjectId: string,
-    card: Pick<Card, "question" | "answer">
+    card: Pick<Card, "question" | "answer" | "remark">
   ) =>
     this.getCardsCollection(user, subjectId).add(<Omit<Card, "id">>{
       ...card,

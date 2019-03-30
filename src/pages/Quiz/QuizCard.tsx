@@ -2,7 +2,6 @@ import { Button, Col, Input, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import { Trans } from "react-i18next";
 import Card from "types/Card";
-import PhaseTimeline from "./PhaseTimeline";
 
 const colConfig = {
   xs: { span: 24 },
@@ -29,12 +28,6 @@ export default function QuizCard({ card, correct, wrong }: Props) {
   }, [card.id, card.updatedTimestamp]);
   return (
     <>
-      <Row style={{ marginBottom: "30px" }}>
-        <Col>
-          <PhaseTimeline card={card} />
-        </Col>
-      </Row>
-
       <Row style={{ marginBottom: "20px" }}>
         <Col {...colConfig}>
           <Input.TextArea
@@ -75,21 +68,23 @@ export default function QuizCard({ card, correct, wrong }: Props) {
       </Row>
 
       <Row>
-        {isRevealed && (
-          <>
-            <Col span={12}>
-              <Button block={true} type="primary" onClick={correct}>
-                <Trans i18nKey="pages.quiz.correct" />
-              </Button>
-            </Col>
-            <Col span={12}>
-              <Button block={true} type="danger" onClick={wrong}>
-                <Trans i18nKey="pages.quiz.wrong" />
-              </Button>
-            </Col>
-          </>
-        )}
+        <Col>{card.remark}</Col>
       </Row>
+
+      {isRevealed && (
+        <Row>
+          <Col span={12}>
+            <Button block={true} type="primary" onClick={correct}>
+              <Trans i18nKey="pages.quiz.correct" />
+            </Button>
+          </Col>
+          <Col span={12}>
+            <Button block={true} type="danger" onClick={wrong}>
+              <Trans i18nKey="pages.quiz.wrong" />
+            </Button>
+          </Col>
+        </Row>
+      )}
     </>
   );
 }
