@@ -48,7 +48,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-firebase-hooks": "1.1.0",
-    "react-i18next": "10.6.0",
+    "react-i18next": "10.6.1",
     "react-router-dom": "5.0.0",
     "recompose": "0.30.0",
     "shuffle-array": "1.0.1",
