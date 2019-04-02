@@ -53,6 +53,6 @@
     "recompose": "0.30.0",
     "shuffle-array": "1.0.1",
     "source-map-support": "0.5.11",
-    "utility-types": "3.4.1"
+    "utility-types": "3.5.0"
   }
 }
