@@ -52,7 +52,7 @@
     "react-router-dom": "5.0.0",
     "recompose": "0.30.0",
     "shuffle-array": "1.0.1",
-    "source-map-support": "0.5.11",
+    "source-map-support": "0.5.12",
     "utility-types": "3.5.0"
   }
 }
