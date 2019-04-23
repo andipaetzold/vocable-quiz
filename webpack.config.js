@@ -76,7 +76,7 @@ module.exports = (env, options) => ({
       template: "./src/index.html"
     }),
     new CopyPlugin([
-      { from: "src/assets/*.png", to: "assets" },
+      { from: "*.png", to: "assets", context: "src/assets" },
       { from: "src/manifest.json", to: "manifest.json" }
     ]),
     new GenerateSW({
