@@ -1,0 +1,42 @@
+{
+  "dir": "ltr",
+  "lang": "de-DE",
+  "name": "Vocable Quiz",
+  "short_name": "Vocable Quiz",
+  "description": "",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "start_url": "/?utm_source=homescreen",
+  "icons": [
+    {
+      "src": "/assets/logo-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1890FF",
+  "background_color": "#FFF",
+  "related_applications": [],
+  "prefer_related_applications": false
+}
