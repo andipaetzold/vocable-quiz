@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import FirebaseContext from "components/Firebase/context";
 
 export default function useFirebase() {

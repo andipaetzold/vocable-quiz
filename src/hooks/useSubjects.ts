@@ -1,5 +1,6 @@
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
+import { useMemo } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { Omit } from "recompose";
 import Subject from "types/Subject";
@@ -10,16 +11,20 @@ export default function useSubjects() {
 
     const { loading, error, value: snap } = useCollection(firebase.getSubjectsCollection(user));
 
-    let subjects: Subject[] = [];
-    if (snap) {
-        subjects = snap.docs.map(doc => ({
-            cardsCount: 0,
-            cardsNextQuiz: {},
-            cardsPhase: {},
-            ...(doc.data() as Omit<Subject, "id">),
-            id: doc.id
-        }));
-    }
+    let subjects = useMemo<Subject[]>(() => {
+        if (snap) {
+            return snap.docs.map(doc => ({
+                cardsCount: 0,
+                cardsNextQuiz: {},
+                cardsPhase: {},
+                ...(doc.data() as Omit<Subject, "id">),
+                id: doc.id
+            }));
+        } else {
+            return [];
+        }
+    }, [snap]);
+
     return {
         loading,
         error,
