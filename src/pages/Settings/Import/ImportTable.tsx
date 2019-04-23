@@ -32,9 +32,9 @@ export default function ImportTable({ database }: Props) {
       karte => karte.Thema === subjectName
     ).map(karte =>
       firebase.importCard(user, subjectRef.id, {
-        question: karte.Frage,
-        answer: karte.Antwort,
-        remark: karte.ZusatzAngabe,
+        question: karte.Frage || "",
+        answer: karte.Antwort || "",
+        remark: karte.ZusatzAngabe || "",
         createdTimestamp: karte.Entstehung.time,
         updatedTimestamp: Date.now(),
         createdAt: format(karte.Entstehung.time, "YYYY-MM-DD"),
