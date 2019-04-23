@@ -4,7 +4,6 @@ import React, { ComponentType } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { compose } from "recompose";
 import AuthUserContext from "./context";
-import styles from "./styles.m.less";
 
 function withAuthUserProvider<T extends {}>(Component: ComponentType<T>) {
     return (props: T) => {
@@ -13,7 +12,7 @@ function withAuthUserProvider<T extends {}>(Component: ComponentType<T>) {
 
         if (initialising) {
             return (
-                <div className={styles.spinner}>
+                <div style={{ top: "50%", textAlign: "center", width: "100%" }}>
                     <Spin size="large" />
                 </div>
             );

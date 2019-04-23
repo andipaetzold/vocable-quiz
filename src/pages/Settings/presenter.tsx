@@ -1,17 +1,16 @@
 import React from "react";
-import ChangePassword from "./ChangePassword";
 import ChangeData from "./ChangeData";
-import styles from "./styles.m.less";
+import ChangePassword from "./ChangePassword";
 import Import from "./Import";
 
 export default class Settings extends React.PureComponent {
     render() {
         return (
             <>
-                <div className={styles.marginBottom}>
+                <div style={{ marginBottom: "20px" }}>
                     <ChangeData />
                 </div>
-                <div className={styles.marginBottom}>
+                <div style={{ marginBottom: "20px" }}>
                     <ChangePassword />
                 </div>
                 <Import />

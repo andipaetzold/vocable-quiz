@@ -5,7 +5,6 @@ import i18n from "i18n";
 import Register from "pages/Register";
 import React, { FormEvent, useState } from "react";
 import { Trans } from "react-i18next";
-import styles from "./styles.m.less";
 
 export default function Login() {
     const firebase = useFirebase();
@@ -40,7 +39,7 @@ export default function Login() {
     }
 
     return (
-        <Layout.Content className={styles.content}>
+        <Layout.Content style={{ padding: "25px 50px", maxWidth: "1000px", width: "100%", margin: "auto" }}>
             <Card title={<Trans i18nKey="pages.login.title" />} style={{ marginBottom: "20px" }}>
                 <Form layout="vertical" onSubmit={handleSubmit}>
                     <Form.Item>

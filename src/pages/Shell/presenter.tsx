@@ -12,7 +12,6 @@ import React, { useEffect, useState } from "react";
 import { Trans } from "react-i18next";
 import { Link, Route, RouteComponentProps, Switch } from "react-router-dom";
 import { getTodayCardCount } from "util/subject";
-import styles from "./styles.m.less";
 const { Content, Header } = Layout;
 
 type Props = RouteComponentProps<{}>;
@@ -68,7 +67,7 @@ export default function Shell({ location }: Props) {
                     </Menu.Item>
                 </Menu>
             </Header>
-            <Content className={styles.content}>
+            <Content style={{ paddingTop: "20px", maxWidth: "1000px", width: "100%", margin: "auto" }}>
                 <Switch>
                     <Route path="/quiz/:subjectId" component={Quiz} />
                     <Route path="/quiz" component={QuizList} />
