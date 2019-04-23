@@ -116,6 +116,12 @@ export default class Firebase {
     });
   };
 
-  importCard = (user: User, subjectId: string, card: Omit<Card, "id">) =>
-    this.getCardsCollection(user, subjectId).add(card);
+  importCards = (user: User, subjectId: string, cards: Omit<Card, "id">[]) => {
+    const collection = this.getCardsCollection(user, subjectId);
+    const batch = this.firestore.batch();
+    for (const card of cards) {
+      batch.set(collection.doc(), card);
+    }
+    return batch.commit();
+  };
 }

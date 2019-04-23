@@ -28,28 +28,30 @@ export default function ImportTable({ database }: Props) {
     const subjectRef = await firebase.createSubject(user, subjectName);
 
     const Karten = database[`Karten_${userName}`] as Karte[];
-    const cardRefPromises = Karten.filter(
+    const cardsToImport: Omit<Card, "id">[] = Karten.filter(
       karte => karte.Thema === subjectName
-    ).map(karte =>
-      firebase.importCard(user, subjectRef.id, {
-        question: karte.Frage || "",
-        answer: karte.Antwort || "",
-        remark: karte.ZusatzAngabe || "",
-        createdTimestamp: karte.Entstehung.time,
-        updatedTimestamp: Date.now(),
-        createdAt: format(karte.Entstehung.time, "YYYY-MM-DD"),
-        nextQuiz:
-          karte.Phase < 6
-            ? format(karte.NaechsteAbfrage.time, "YYYY-MM-DD")
-            : null,
-        phase: karte.Phase
-      } as Omit<Card, "id">)
+    ).map(karte => ({
+      question: karte.Frage || "",
+      answer: karte.Antwort || "",
+      remark: karte.ZusatzAngabe || "",
+      createdTimestamp: karte.Entstehung.time,
+      updatedTimestamp: Date.now(),
+      createdAt: format(karte.Entstehung.time, "YYYY-MM-DD"),
+      nextQuiz:
+        karte.Phase < 6
+          ? format(karte.NaechsteAbfrage.time, "YYYY-MM-DD")
+          : null,
+      phase: karte.Phase
+    }));
+
+    const importPromises = chunk(cardsToImport, 500).map(cards =>
+      firebase.importCards(user, subjectRef.id, cards)
     );
 
     let i = 0;
-    for await (const docRef of cardRefPromises) {
+    for await (const docRef of importPromises) {
       ++i;
-      setProgress(Math.round((i / cardRefPromises.length) * 100));
+      setProgress(Math.round((i / importPromises.length) * 100));
     }
 
     hide();
@@ -103,4 +105,17 @@ export default function ImportTable({ database }: Props) {
       )}
     </>
   );
+}
+
+function chunk<T>(collection: T[], size: number): T[][] {
+  var result = [];
+
+  for (var x = 0; x < Math.ceil(collection.length / size); x++) {
+    var start = x * size;
+    var end = start + size;
+
+    result.push(collection.slice(start, end));
+  }
+
+  return result;
 }
