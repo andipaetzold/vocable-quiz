@@ -75,6 +75,10 @@ module.exports = (env, options) => ({
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
+    new CopyPlugin([
+      { from: "src/assets/*.png", to: "assets" },
+      { from: "src/manifest.json", to: "manifest.json" }
+    ]),
     new GenerateSW({
       runtimeCaching: [
         {
@@ -87,10 +91,6 @@ module.exports = (env, options) => ({
         { urlPattern: /\.(?:js|html|json)$/, handler: "StaleWhileRevalidate" }
       ],
       navigateFallback: "/index.html"
-    }),
-    new CopyPlugin([
-      { from: "src/assets/*.png", to: "assets" },
-      { from: "src/manifest.json", to: "manifest.json" }
-    ])
+    })
   ]
 });
