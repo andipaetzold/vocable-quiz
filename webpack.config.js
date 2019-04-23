@@ -78,9 +78,13 @@ module.exports = (env, options) => ({
     new GenerateSW({
       runtimeCaching: [
         {
-          urlPattern: /.*/,
-          handler: "NetworkFirst"
-        }
+          urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+          handler: "CacheFirst",
+          options: {
+            cacheName: "images"
+          }
+        },
+        { urlPattern: /\.(?:js|html|json)$/, handler: "StaleWhileRevalidate" }
       ],
       navigateFallback: "/index.html"
     }),
