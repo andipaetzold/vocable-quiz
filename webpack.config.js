@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { GenerateSW } = require("workbox-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = (env, options) => ({
   entry: {
@@ -82,6 +83,7 @@ module.exports = (env, options) => ({
         }
       ],
       navigateFallback: "/index.html"
-    })
+    }),
+    new CopyPlugin([{ from: "src/assets", to: "assets" }])
   ]
 });
