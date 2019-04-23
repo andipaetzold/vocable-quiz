@@ -5,26 +5,24 @@ import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 
 export default function useSubject(id: string) {
-  const firebase = useFirebase();
-  const user = useUser();
+    const firebase = useFirebase();
+    const user = useUser();
 
-  const { loading, error, value: snap } = useDocument(
-    firebase.getSubjectDoc(user, id)
-  );
+    const { loading, error, value: snap } = useDocument(firebase.getSubjectDoc(user, id));
 
-  let subject: Subject | undefined = undefined;
-  if (snap) {
-    subject = {
-      cardsCount: 0,
-      cardsNextQuiz: {},
-      cardsPhase: {},
-      ...(snap.data() as Omit<Subject, "id">),
-      id: snap.id
+    let subject: Subject | undefined = undefined;
+    if (snap) {
+        subject = {
+            cardsCount: 0,
+            cardsNextQuiz: {},
+            cardsPhase: {},
+            ...(snap.data() as Omit<Subject, "id">),
+            id: snap.id
+        };
+    }
+    return {
+        loading,
+        error,
+        subject
     };
-  }
-  return {
-    loading,
-    error,
-    subject
-  };
 }

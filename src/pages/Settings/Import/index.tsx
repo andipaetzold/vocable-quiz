@@ -6,15 +6,11 @@ import { Database } from "./types";
 import Upload from "./Upload";
 
 export default function Import() {
-  let [database, setDatabase] = useState<Database | undefined>(undefined);
+    let [database, setDatabase] = useState<Database | undefined>(undefined);
 
-  return (
-    <AntCard title={i18n.t("pages.import.title")}>
-      {database ? (
-        <ImportTable database={database} />
-      ) : (
-        <Upload onSelect={setDatabase} />
-      )}
-    </AntCard>
-  );
+    return (
+        <AntCard title={i18n.t("pages.import.title")}>
+            {database ? <ImportTable database={database} /> : <Upload onSelect={setDatabase} />}
+        </AntCard>
+    );
 }

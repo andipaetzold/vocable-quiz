@@ -1,14 +1,14 @@
 {
-  "extends": ["config:base"],
-  "automerge": true,
-  "major": {
-    "automerge": false
-  },
-  "semanticCommits": true,
-  "packageRules": [
-    {
-      "packagePatterns": ["*"],
-      "semanticCommitType": "chore"
-    }
-  ]
+    "extends": ["config:base"],
+    "automerge": true,
+    "major": {
+        "automerge": false
+    },
+    "semanticCommits": true,
+    "packageRules": [
+        {
+            "packagePatterns": ["*"],
+            "semanticCommitType": "chore"
+        }
+    ]
 }

@@ -7,121 +7,105 @@ import { Omit } from "utility-types";
 import { format, addDays } from "date-fns";
 
 const config = {
-  apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
-  authDomain: "vocable-quiz.firebaseapp.com",
-  projectId: "vocable-quiz"
+    apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
+    authDomain: "vocable-quiz.firebaseapp.com",
+    projectId: "vocable-quiz"
 };
 
 export default class Firebase {
-  auth: firebase.auth.Auth;
-  firestore: firebase.firestore.Firestore;
+    auth: firebase.auth.Auth;
+    firestore: firebase.firestore.Firestore;
 
-  constructor() {
-    app.initializeApp(config);
+    constructor() {
+        app.initializeApp(config);
 
-    this.auth = app.auth();
-    this.firestore = app.firestore();
+        this.auth = app.auth();
+        this.firestore = app.firestore();
 
-    if (process.env.NODE_ENV !== "development") {
-      this.firestore.enablePersistence();
-    }
-  }
-
-  createAccount = (email: string, password: string) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
-
-  login = (email: string, password: string) =>
-    this.auth.signInWithEmailAndPassword(email, password);
-
-  logout = () => this.auth.signOut();
-
-  getSubjectsCollection = (user: User) =>
-    this.firestore
-      .collection("users")
-      .doc(user.uid)
-      .collection("subjects");
-
-  getSubjectDoc = (user: User, id: string) =>
-    this.getSubjectsCollection(user).doc(id);
-
-  createSubject = (user: User, name: string) =>
-    this.getSubjectsCollection(user).add(<Omit<Subject, "id">>{
-      name,
-      cardsCount: 0,
-      cardsPhase: {},
-      cardsNextQuiz: {},
-      aggregatedEvents: []
-    });
-
-  deleteSubject = (user: User, subjectId: string) =>
-    this.getSubjectDoc(user, subjectId).delete();
-
-  getCardsCollection = (user: User, subjectId: string) =>
-    this.getSubjectDoc(user, subjectId).collection("cards");
-
-  getCardDoc = (user: User, subjectId: string, cardId: string) =>
-    this.getCardsCollection(user, subjectId).doc(cardId);
-
-  createCard = (
-    user: User,
-    subjectId: string,
-    card: Pick<Card, "question" | "answer" | "remark">
-  ) =>
-    this.getCardsCollection(user, subjectId).add(<Omit<Card, "id">>{
-      ...card,
-      phase: 1,
-      nextQuiz: format(new Date(), "YYYY-MM-DD"),
-      createdAt: format(new Date(), "YYYY-MM-DD"),
-
-      createdTimestamp: Date.now(),
-      updatedTimestamp: Date.now()
-    });
-
-  deleteCard = (user: User, subjectId: string, cardId: string) =>
-    this.getCardDoc(user, subjectId, cardId).delete();
-
-  updatePhase = (
-    user: User,
-    subjectId: string,
-    cardId: string,
-    phase: number
-  ) => {
-    let nextQuiz: string | null;
-    switch (phase) {
-      default:
-      case 1:
-        nextQuiz = format(new Date(), "YYYY-MM-DD");
-        break;
-      case 2:
-        nextQuiz = format(addDays(new Date(), 3), "YYYY-MM-DD");
-        break;
-      case 3:
-        nextQuiz = format(addDays(new Date(), 10), "YYYY-MM-DD");
-        break;
-      case 4:
-        nextQuiz = format(addDays(new Date(), 30), "YYYY-MM-DD");
-        break;
-      case 5:
-        nextQuiz = format(addDays(new Date(), 90), "YYYY-MM-DD");
-        break;
-      case 6:
-        nextQuiz = null;
-        break;
+        if (process.env.NODE_ENV !== "development") {
+            this.firestore.enablePersistence();
+        }
     }
 
-    return this.getCardDoc(user, subjectId, cardId).update(<Partial<Card>>{
-      phase: phase,
-      nextQuiz: nextQuiz,
-      updatedTimestamp: Date.now()
-    });
-  };
+    createAccount = (email: string, password: string) => this.auth.createUserWithEmailAndPassword(email, password);
 
-  importCards = (user: User, subjectId: string, cards: Omit<Card, "id">[]) => {
-    const collection = this.getCardsCollection(user, subjectId);
-    const batch = this.firestore.batch();
-    for (const card of cards) {
-      batch.set(collection.doc(), card);
-    }
-    return batch.commit();
-  };
+    login = (email: string, password: string) => this.auth.signInWithEmailAndPassword(email, password);
+
+    logout = () => this.auth.signOut();
+
+    getSubjectsCollection = (user: User) =>
+        this.firestore
+            .collection("users")
+            .doc(user.uid)
+            .collection("subjects");
+
+    getSubjectDoc = (user: User, id: string) => this.getSubjectsCollection(user).doc(id);
+
+    createSubject = (user: User, name: string) =>
+        this.getSubjectsCollection(user).add(<Omit<Subject, "id">>{
+            name,
+            cardsCount: 0,
+            cardsPhase: {},
+            cardsNextQuiz: {},
+            aggregatedEvents: []
+        });
+
+    deleteSubject = (user: User, subjectId: string) => this.getSubjectDoc(user, subjectId).delete();
+
+    getCardsCollection = (user: User, subjectId: string) => this.getSubjectDoc(user, subjectId).collection("cards");
+
+    getCardDoc = (user: User, subjectId: string, cardId: string) => this.getCardsCollection(user, subjectId).doc(cardId);
+
+    createCard = (user: User, subjectId: string, card: Pick<Card, "question" | "answer" | "remark">) =>
+        this.getCardsCollection(user, subjectId).add(<Omit<Card, "id">>{
+            ...card,
+            phase: 1,
+            nextQuiz: format(new Date(), "YYYY-MM-DD"),
+            createdAt: format(new Date(), "YYYY-MM-DD"),
+
+            createdTimestamp: Date.now(),
+            updatedTimestamp: Date.now()
+        });
+
+    deleteCard = (user: User, subjectId: string, cardId: string) => this.getCardDoc(user, subjectId, cardId).delete();
+
+    updatePhase = (user: User, subjectId: string, cardId: string, phase: number) => {
+        let nextQuiz: string | null;
+        switch (phase) {
+            default:
+            case 1:
+                nextQuiz = format(new Date(), "YYYY-MM-DD");
+                break;
+            case 2:
+                nextQuiz = format(addDays(new Date(), 3), "YYYY-MM-DD");
+                break;
+            case 3:
+                nextQuiz = format(addDays(new Date(), 10), "YYYY-MM-DD");
+                break;
+            case 4:
+                nextQuiz = format(addDays(new Date(), 30), "YYYY-MM-DD");
+                break;
+            case 5:
+                nextQuiz = format(addDays(new Date(), 90), "YYYY-MM-DD");
+                break;
+            case 6:
+                nextQuiz = null;
+                break;
+        }
+
+        return this.getCardDoc(user, subjectId, cardId).update(<Partial<Card>>{
+            phase: phase,
+            nextQuiz: nextQuiz,
+            updatedTimestamp: Date.now()
+        });
+    };
+
+    importCards = (user: User, subjectId: string, cards: Omit<Card, "id">[]) => {
+        const collection = this.getCardsCollection(user, subjectId);
+        const batch = this.firestore.batch();
+        for (const card of cards) {
+            batch.set(collection.doc(), card);
+        }
+        return batch.commit();
+    };
 }

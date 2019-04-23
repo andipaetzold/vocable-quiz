@@ -3,21 +3,15 @@ import { Subtract } from "utility-types";
 import AuthUserContext from "./context";
 
 interface InjectedProps {
-  authUser: firebase.User | null;
+    authUser: firebase.User | null;
 }
 
-export default function withAuthUser<T extends InjectedProps>(
-  Component: ComponentType<T>
-) {
-  return class withAuthUser extends React.Component<
-    Subtract<T, InjectedProps>
-  > {
-    render() {
-      return (
-        <AuthUserContext.Consumer>
-          {authUser => <Component {...this.props as any} authUser={authUser} />}
-        </AuthUserContext.Consumer>
-      );
-    }
-  };
+export default function withAuthUser<T extends InjectedProps>(Component: ComponentType<T>) {
+    return class withAuthUser extends React.Component<Subtract<T, InjectedProps>> {
+        render() {
+            return (
+                <AuthUserContext.Consumer>{authUser => <Component {...this.props as any} authUser={authUser} />}</AuthUserContext.Consumer>
+            );
+        }
+    };
 }
