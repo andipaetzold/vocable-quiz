@@ -85,7 +85,7 @@ module.exports = (env, options) => ({
       navigateFallback: "/index.html"
     }),
     new CopyPlugin([
-      { from: "src/assets", to: "assets" },
+      { from: "src/assets/*.png", to: "assets" },
       { from: "src/manifest.json", to: "manifest.json" }
     ])
   ]
