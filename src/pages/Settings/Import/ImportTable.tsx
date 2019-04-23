@@ -38,7 +38,10 @@ export default function ImportTable({ database }: Props) {
         createdTimestamp: karte.Entstehung.time,
         updatedTimestamp: Date.now(),
         createdAt: format(karte.Entstehung.time, "YYYY-MM-DD"),
-        nextQuiz: format(karte.NaechsteAbfrage.time, "YYYY-MM-DD"),
+        nextQuiz:
+          karte.Phase < 6
+            ? format(karte.NaechsteAbfrage.time, "YYYY-MM-DD")
+            : null,
         phase: karte.Phase
       } as Omit<Card, "id">)
     );
