@@ -10,5 +10,6 @@
             "packagePatterns": ["*"],
             "semanticCommitType": "chore"
         }
-    ]
+    ],
+    "masterIssue": true
 }
