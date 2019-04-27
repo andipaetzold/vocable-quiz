@@ -20,6 +20,7 @@
         "firebase-tools": "6.7.1",
         "html-webpack-plugin": "3.2.0",
         "style-loader": "0.23.1",
+        "terser-webpack-plugin": "^1.2.3",
         "ts-loader": "5.4.4",
         "typescript": "3.4.5",
         "webpack": "4.30.0",
