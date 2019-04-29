@@ -22,7 +22,7 @@ export default function CreateCard(props: Props) {
     const [answer, setAnswer] = useState("");
     const [remark, setRemark] = useState("");
 
-    const { loading, error, value: snap } = useDocument(firebase.getSubjectDoc(user, subjectId));
+    const { loading, value: snap } = useDocument(firebase.getSubjectDoc(user, subjectId));
 
     let subject: Subject | undefined = undefined;
     if (snap) {
@@ -42,7 +42,6 @@ export default function CreateCard(props: Props) {
 
         setQuestion("");
         setAnswer("");
-        setRemark("");
 
         if (questionRef.current) {
             questionRef.current.focus();
