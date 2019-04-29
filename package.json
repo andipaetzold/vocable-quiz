@@ -9,6 +9,9 @@
         "build:functions": "webpack --mode production --config webpack.functions.js",
         "firebase": "firebase"
     },
+    "engines": {
+        "node": "8"
+    },
     "author": "Andreas Pätzold",
     "repository": {
         "type": "git",

@@ -4,8 +4,9 @@ import Card from "types/Card";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
 
-export const aggregateCards = functions.firestore
-    .document("users/{userId}/subjects/{subjectId}/cards/{cardId}")
+export const aggregateCards = functions
+    .runWith({ memory: "256MB" })
+    .firestore.document("users/{userId}/subjects/{subjectId}/cards/{cardId}")
     .onWrite(async ({ before, after }, { params, eventId }) => {
         const subjectRef = firestore()
             .collection("users")
