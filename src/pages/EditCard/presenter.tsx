@@ -9,6 +9,7 @@ import { Link, RouteComponentProps } from "react-router-dom";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
 import Card from "types/Card";
+import TextArea from "antd/lib/input/TextArea";
 
 export interface Props {
     subjectId: string;
@@ -20,7 +21,7 @@ export default function Presenter({ onSubmit, subjectId, card }: Props) {
     const firebase = useFirebase();
     const user = useUser();
 
-    const questionRef = useRef<any>(null); // TODO: Find correct type for Input.TextArea
+    const questionRef = useRef<TextArea>(null);
     const [question, setQuestion] = useState(card.question);
     const [answer, setAnswer] = useState(card.answer);
     const [remark, setRemark] = useState(card.remark);
