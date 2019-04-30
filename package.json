@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Simple Vocable Quiz",
     "scripts": {
-        "start": "webpack-dev-server --mode development --hot --overlay",
+        "start": "webpack-dev-server --mode development --hot --overlay --progress",
         "build": "npm run build:app && npm run build:functions",
         "build:app": "webpack --mode production --config webpack.config.js",
         "build:functions": "webpack --mode production --config webpack.functions.js",
