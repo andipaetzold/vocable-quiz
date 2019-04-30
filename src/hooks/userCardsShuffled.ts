@@ -21,7 +21,7 @@ export default function useCardsShuffled(subjectId: string) {
         const shuffledCards = [...cards];
         shuffle(shuffledCards);
         setState({ loading: false, cards: shuffledCards });
-    }, [cards]);
+    }, [cards, loading, setState]);
 
     return state;
 }
