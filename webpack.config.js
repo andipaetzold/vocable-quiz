@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { GenerateSW } = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require("webpack");
+var GitRevisionPlugin = require("git-revision-webpack-plugin");
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 module.exports = (env, options) => {
     const dev = options.mode === "development";
@@ -66,6 +69,10 @@ module.exports = (env, options) => {
             ]
         },
         plugins: [
+            gitRevisionPlugin,
+            new webpack.DefinePlugin({
+                COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash())
+            }),
             new HtmlWebpackPlugin({
                 template: "./src/index.html"
             }),
