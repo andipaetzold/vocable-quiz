@@ -88,8 +88,8 @@ i18n.use(LanguageDetector).init({
                         name: "Name of the Subject",
                         submit: "Create Subject"
                     },
-                    createcard: {
-                        title: "Create Card"
+                    editcard: {
+                        title: "Update Card"
                     },
                     editcards: {
                         create: "Create Cards"
@@ -186,8 +186,8 @@ i18n.use(LanguageDetector).init({
                         name: "Name des Fachs",
                         submit: "Fach erstellen"
                     },
-                    createcard: {
-                        title: "Karte erstellen"
+                    editcard: {
+                        title: "Karte aktualisieren"
                     },
                     editcards: {
                         create: "Karten erstellen"

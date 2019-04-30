@@ -3,6 +3,7 @@ import useFirebase from "hooks/useFirebase";
 import useSubjects from "hooks/useSubjects";
 import CreateCard from "pages/CreateCard";
 import Edit from "pages/Edit";
+import EditCard from "pages/EditCard";
 import EditCards from "pages/EditCards";
 import Home from "pages/Home";
 import Quiz from "pages/Quiz";
@@ -72,6 +73,7 @@ export default function Shell({ location }: Props) {
                     <Route path="/quiz/:subjectId" component={Quiz} />
                     <Route path="/quiz" component={QuizList} />
                     <Route path="/edit/:subjectId/create" component={CreateCard} />
+                    <Route path="/edit/:subjectId/:cardId" component={EditCard} />
                     <Route path="/edit/:subjectId" component={EditCards} />
                     <Route path="/edit" component={Edit} />
                     <Route path="/settings" component={Settings} />

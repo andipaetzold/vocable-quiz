@@ -4,14 +4,15 @@ import useCards from "hooks/useCards";
 import useFirebase from "hooks/useFirebase";
 import React from "react";
 import { Trans } from "react-i18next";
+import { RouteComponentProps, withRouter } from "react-router";
 import Subject from "types/Subject";
 
-interface Props {
+interface Props extends RouteComponentProps {
     user: User;
     subject: Subject;
 }
 
-export default function CardsList({ user, subject }: Props) {
+function CardsList({ user, subject, history }: Props) {
     const firebase = useFirebase();
 
     const { loading, cards } = useCards(subject.id);
@@ -72,9 +73,14 @@ export default function CardsList({ user, subject }: Props) {
                                 okText="Yes"
                                 cancelText="No"
                             >
-                                <Button type="danger" size="small">
-                                    <Icon type="delete" /> <Trans i18nKey="delete" />
-                                </Button>
+                                <Button.Group size="small">
+                                    <Button size="small" onClick={() => history.push(`/edit/${subject.id}/${id}`)}>
+                                        <Icon type="edit" /> <Trans i18nKey="edit" />
+                                    </Button>
+                                    <Button type="danger" size="small">
+                                        <Icon type="delete" /> <Trans i18nKey="delete" />
+                                    </Button>
+                                </Button.Group>
                             </Popconfirm>
                         </Button.Group>
                     )
@@ -83,3 +89,5 @@ export default function CardsList({ user, subject }: Props) {
         />
     );
 }
+
+export default withRouter(CardsList);

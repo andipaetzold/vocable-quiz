@@ -1,10 +1,10 @@
+import { addDays, format } from "date-fns";
 import app, { User } from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import Card from "types/Card";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
-import { format, addDays } from "date-fns";
 
 const config = {
     apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
@@ -66,6 +66,11 @@ export default class Firebase {
             createdTimestamp: Date.now(),
             updatedTimestamp: Date.now()
         });
+
+    updateCard = (user: User, subjectId: string, card: Pick<Card, "id" | "question" | "answer" | "remark">) =>
+        this.getCardsCollection(user, subjectId)
+            .doc(card.id)
+            .update(card);
 
     deleteCard = (user: User, subjectId: string, cardId: string) => this.getCardDoc(user, subjectId, cardId).delete();
 
