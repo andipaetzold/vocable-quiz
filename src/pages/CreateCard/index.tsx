@@ -16,6 +16,7 @@ export default function CreateCard({
     const firebase = useFirebase();
     const user = useUser();
     const [key, setKey] = useState(0);
+    const [card, setCard] = useState<Pick<Card, "question" | "answer" | "remark">>({ question: "", answer: "", remark: "" });
 
     const handleSubmit = async (card: Pick<Card, "question" | "answer" | "remark">) => {
         (async () => {
@@ -23,8 +24,9 @@ export default function CreateCard({
             message.success("Card was created");
         })();
 
+        setCard({ question: "", answer: "", remark: card.remark });
         setKey(k => k + 1);
     };
 
-    return <Presenter key={key} subjectId={subjectId} card={{ question: "", answer: "", remark: "" }} onSubmit={handleSubmit} />;
+    return <Presenter key={key} subjectId={subjectId} card={card} onSubmit={handleSubmit} />;
 }
