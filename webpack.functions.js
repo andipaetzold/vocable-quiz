@@ -18,9 +18,11 @@ const appConfig = {
         rules: [
             {
                 test: /\.ts$/,
-                loader: "ts-loader",
+                loader: "awesome-typescript-loader",
                 options: {
-                    configFile: "tsconfig.functions.json"
+                    configFileName: "tsconfig.functions.json",
+                    useCache: true,
+                    forceIsolatedModules: true
                 }
             }
         ]
