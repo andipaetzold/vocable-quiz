@@ -32,7 +32,7 @@
     "webpack-cli": "3.3.1",
     "webpack-dev-server": "3.3.1",
     "webpack-node-externals": "1.7.2",
-    "workbox-webpack-plugin": "4.3.0"
+    "workbox-webpack-plugin": "4.3.1"
   },
   "dependencies": {
     "@types/classnames": "2.2.7",
