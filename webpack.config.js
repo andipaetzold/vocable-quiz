@@ -6,6 +6,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 var GitRevisionPlugin = require("git-revision-webpack-plugin");
 const gitRevisionPlugin = new GitRevisionPlugin();
+const { CheckerPlugin } = require("awesome-typescript-loader");
+var HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 module.exports = (env, options) => {
     const dev = options.mode === "development";
@@ -34,7 +36,11 @@ module.exports = (env, options) => {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    loader: "ts-loader"
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        useCache: true,
+                        forceIsolatedModules: true
+                    }
                 },
                 {
                     test: /\.css$/,
@@ -69,6 +75,8 @@ module.exports = (env, options) => {
             ]
         },
         plugins: [
+            new CheckerPlugin(),
+            new HardSourceWebpackPlugin(),
             gitRevisionPlugin,
             new webpack.DefinePlugin({
                 COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash())
