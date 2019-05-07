@@ -2,6 +2,7 @@ import { addDays, format } from "date-fns";
 import app, { User } from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/performance";
 import Card from "types/Card";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
@@ -18,6 +19,7 @@ export default class Firebase {
 
     constructor() {
         app.initializeApp(config);
+        app.performance();
 
         this.auth = app.auth();
         this.firestore = app.firestore();
