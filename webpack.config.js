@@ -86,6 +86,8 @@ module.exports = (env, options) => {
             }),
             new CopyPlugin([{ from: "*.png", to: "assets", context: "src/assets" }, { from: "src/manifest.json", to: "manifest.json" }]),
             new GenerateSW({
+                skipWaiting: true,
+                clientsClaim: true,
                 runtimeCaching: [
                     {
                         urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
