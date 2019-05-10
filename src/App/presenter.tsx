@@ -8,9 +8,7 @@ export default class App extends React.PureComponent {
         return (
             <Layout style={{ minHeight: "100vh" }}>
                 <Router />
-                <Footer style={{ textAlign: "center" }}>
-                    Vocable Quiz by Andi Pätzold <br /> {COMMITHASH}
-                </Footer>
+                <Footer style={{ textAlign: "center" }}>Vocable Quiz by Andi Pätzold</Footer>
             </Layout>
         );
     }
