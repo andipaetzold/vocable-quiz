@@ -10,7 +10,8 @@ import { Omit } from "utility-types";
 const config = {
     apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
     authDomain: "vocable-quiz.firebaseapp.com",
-    projectId: "vocable-quiz"
+    projectId: "vocable-quiz",
+    appId: "1:145172588679:web:2a22ed9e4d011417"
 };
 
 export default class Firebase {
