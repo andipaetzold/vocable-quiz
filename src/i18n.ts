@@ -89,7 +89,8 @@ i18n.use(LanguageDetector).init({
                         submit: "Create Subject"
                     },
                     editcard: {
-                        title: "Update Card"
+                        title: "Update Card",
+                        reverse: "Create reversed card"
                     },
                     editcards: {
                         create: "Create Cards"
@@ -187,7 +188,8 @@ i18n.use(LanguageDetector).init({
                         submit: "Fach erstellen"
                     },
                     editcard: {
-                        title: "Karte aktualisieren"
+                        title: "Karte aktualisieren",
+                        reverse: "Umgedrehte Karte erstellen"
                     },
                     editcards: {
                         create: "Karten erstellen"

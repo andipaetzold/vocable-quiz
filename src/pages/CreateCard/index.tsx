@@ -17,10 +17,11 @@ export default function CreateCard({
     const user = useUser();
     const [key, setKey] = useState(0);
     const [card, setCard] = useState<Pick<Card, "question" | "answer" | "remark">>({ question: "", answer: "", remark: "" });
+    const [reverse, setReverse] = useState(true);
 
     const handleSubmit = async (card: Pick<Card, "question" | "answer" | "remark">) => {
         (async () => {
-            await firebase.createCard(user, subjectId, card);
+            await firebase.createCard(user, subjectId, card, reverse);
             message.success("Card was created");
         })();
 
@@ -28,5 +29,5 @@ export default function CreateCard({
         setKey(k => k + 1);
     };
 
-    return <Presenter key={key} subjectId={subjectId} card={card} onSubmit={handleSubmit} />;
+    return <Presenter key={key} subjectId={subjectId} card={card} onSubmit={handleSubmit} reverse={reverse} onReverseChange={setReverse} />;
 }

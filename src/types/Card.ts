@@ -9,4 +9,6 @@ export default interface Card {
 
     createdTimestamp: number;
     updatedTimestamp: number;
+
+    reversedId?: string;
 }

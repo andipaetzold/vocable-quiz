@@ -1,23 +1,26 @@
-import { Breadcrumb, Button, Card as UICard, Col, Form, Icon, Input, message, Row } from "antd";
+import { Breadcrumb, Button, Card as UICard, Col, Form, Icon, Input, Row, Checkbox } from "antd";
+import TextArea from "antd/lib/input/TextArea";
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 import i18n from "i18n";
 import React, { FormEvent, useRef, useState } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { Trans } from "react-i18next";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Card from "types/Card";
 import Subject from "types/Subject";
 import { Omit } from "utility-types";
-import Card from "types/Card";
-import TextArea from "antd/lib/input/TextArea";
 
 export interface Props {
     subjectId: string;
     card: Pick<Card, "question" | "answer" | "remark">;
     onSubmit: (card: Pick<Card, "question" | "answer" | "remark">) => Promise<void>;
+
+    reverse: boolean;
+    onReverseChange?: (checked: boolean) => void;
 }
 
-export default function Presenter({ onSubmit, subjectId, card }: Props) {
+export default function Presenter({ onSubmit, subjectId, card, reverse, onReverseChange }: Props) {
     const firebase = useFirebase();
     const user = useUser();
 
@@ -64,7 +67,7 @@ export default function Presenter({ onSubmit, subjectId, card }: Props) {
             loading={loading}
         >
             <Form onSubmit={handleSubmit}>
-                <Row>
+                <Row gutter={10}>
                     <Col sm={24} md={8}>
                         <Form.Item>
                             <Input.TextArea
@@ -103,6 +106,17 @@ export default function Presenter({ onSubmit, subjectId, card }: Props) {
                         </Form.Item>
                     </Col>
                 </Row>
+                {onReverseChange && (
+                    <Row>
+                        <Col span={24}>
+                            <Form.Item>
+                                <Checkbox checked={reverse} onChange={e => onReverseChange(e.target.checked)}>
+                                    <Trans i18nKey="pages.editcard.reverse" />
+                                </Checkbox>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                )}
                 <Row>
                     <Col span={24}>
                         <Form.Item>

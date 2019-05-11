@@ -37,5 +37,5 @@ export default function EditCard({
         return null;
     }
 
-    return <Presenter subjectId={subjectId} card={fixedCard} onSubmit={handleSubmit} />;
+    return <Presenter subjectId={subjectId} card={fixedCard} onSubmit={handleSubmit} reverse={fixedCard.reversedId !== undefined} />;
 }

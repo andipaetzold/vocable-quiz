@@ -59,21 +59,53 @@ export default class Firebase {
 
     getCardDoc = (user: User, subjectId: string, cardId: string) => this.getCardsCollection(user, subjectId).doc(cardId);
 
-    createCard = (user: User, subjectId: string, card: Pick<Card, "question" | "answer" | "remark">) =>
-        this.getCardsCollection(user, subjectId).add(<Omit<Card, "id">>{
-            ...card,
+    async createCard(user: User, subjectId: string, card: Pick<Card, "question" | "answer" | "remark">, reverse: boolean = false) {
+        const collection = this.getCardsCollection(user, subjectId);
+
+        const baseCard: Pick<Card, "phase" | "nextQuiz" | "createdAt" | "createdTimestamp" | "updatedTimestamp"> = {
             phase: 1,
             nextQuiz: format(new Date(), "YYYY-MM-DD"),
             createdAt: format(new Date(), "YYYY-MM-DD"),
 
             createdTimestamp: Date.now(),
             updatedTimestamp: Date.now()
+        };
+
+        const cardRef = await collection.add(<Omit<Card, "id">>{
+            ...card,
+            ...baseCard
         });
 
-    updateCard = (user: User, subjectId: string, card: Pick<Card, "id" | "question" | "answer" | "remark">) =>
-        this.getCardsCollection(user, subjectId)
-            .doc(card.id)
-            .update(card);
+        if (reverse) {
+            const reverseCardRef = await collection.add(<Omit<Card, "id">>{
+                ...card,
+                question: card.answer,
+                answer: card.question,
+                ...baseCard,
+
+                reversedId: cardRef.id
+            });
+
+            await cardRef.update({
+                reversedId: reverseCardRef.id
+            } as Partial<Card>);
+        }
+    }
+
+    async updateCard(user: User, subjectId: string, card: Pick<Card, "id" | "question" | "answer" | "remark">) {
+        const collection = this.getCardsCollection(user, subjectId);
+        await collection.doc(card.id).update(card);
+
+        const snap = await collection.doc(card.id).get();
+        const reverseId: string | undefined = snap.get("reversedId");
+        if (reverseId) {
+            await collection.doc(reverseId).update({
+                question: card.answer,
+                answer: card.question,
+                remark: card.remark
+            });
+        }
+    }
 
     deleteCard = (user: User, subjectId: string, cardId: string) => this.getCardDoc(user, subjectId, cardId).delete();
 
