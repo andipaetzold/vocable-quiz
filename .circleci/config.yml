@@ -3,7 +3,7 @@ version: 2.1
 jobs:
     build:
         docker:
-            - image: circleci/node:11
+            - image: circleci/node:12
 
         working_directory: ~/vocable-quiz
 
@@ -18,7 +18,7 @@ jobs:
                       - dist/functions
     deploy:
         docker:
-            - image: circleci/node:11
+            - image: circleci/node:12
 
         working_directory: ~/vocable-quiz
 
