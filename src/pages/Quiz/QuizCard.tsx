@@ -39,6 +39,10 @@ export default function QuizCard({ card, correct, wrong }: Props) {
                         style={{ resize: "none" }}
                         rows={5}
                         disabled={isRevealed}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
                     />
                 </Col>
                 <Col {...colConfig}>
