@@ -6,6 +6,11 @@ i18n.use(LanguageDetector).init({
     resources: {
         en: {
             translation: {
+                error: {
+                    title: 'An error occurred',
+                    message: 'Something went wrong. Andi just received a message and will fix the issue as soon as possible',
+                    reload: 'Reload'
+                },
                 card: {
                     singular: {
                         small: "Card",
@@ -104,6 +109,11 @@ i18n.use(LanguageDetector).init({
         },
         de: {
             translation: {
+                error: {
+                    title: 'Ein Fehler ist aufgetreten',
+                    message: 'Irgendwas ist schief gelaufen. Andi weiß aber schon Bescheid.',
+                    reload: 'Seite neu laden'
+                },
                 card: {
                     singular: {
                         small: "Karte",

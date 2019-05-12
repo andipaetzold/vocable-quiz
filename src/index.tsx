@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/browser";
+import ErrorBoundary from "components/ErrorBoundary";
 import React from "react";
 import ReactDOM from "react-dom";
 import { I18nextProvider } from "react-i18next";
@@ -6,12 +8,19 @@ import Firebase from "./components/Firebase";
 import FirebaseContext from "./components/Firebase/context";
 import i18n from "./i18n";
 
+Sentry.init({
+    dsn: "https://8eb50a9ec3074d99a8f58c78a5e89971@sentry.io/1457633",
+    enabled: process.env.NODE_ENV !== "development"
+});
+
 ReactDOM.render(
-    <FirebaseContext.Provider value={new Firebase()}>
-        <I18nextProvider i18n={i18n}>
-            <App />
-        </I18nextProvider>
-    </FirebaseContext.Provider>,
+    <I18nextProvider i18n={i18n}>
+        <ErrorBoundary>
+            <FirebaseContext.Provider value={new Firebase()}>
+                <App />
+            </FirebaseContext.Provider>
+        </ErrorBoundary>
+    </I18nextProvider>,
     document.getElementById("root")
 );
 
