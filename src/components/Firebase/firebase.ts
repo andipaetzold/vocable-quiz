@@ -20,12 +20,12 @@ export default class Firebase {
 
     constructor() {
         app.initializeApp(config);
-        app.performance();
 
         this.auth = app.auth();
         this.firestore = app.firestore();
-
+        
         if (process.env.NODE_ENV !== "development") {
+            app.performance();
             this.firestore.enablePersistence();
         }
     }
