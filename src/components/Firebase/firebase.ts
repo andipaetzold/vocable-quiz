@@ -23,10 +23,10 @@ export default class Firebase {
 
         this.auth = app.auth();
         this.firestore = app.firestore();
-        
+
         if (process.env.NODE_ENV !== "development") {
             app.performance();
-            this.firestore.enablePersistence();
+            this.firestore.enablePersistence({ synchronizeTabs: true });
         }
     }
 
