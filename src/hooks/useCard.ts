@@ -1,7 +1,6 @@
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 import { useDocument } from "react-firebase-hooks/firestore";
-import { Omit } from "recompose";
 import Card from "types/Card";
 import { useMemo } from "react";
 
