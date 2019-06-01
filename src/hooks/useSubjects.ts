@@ -2,7 +2,6 @@ import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 import { useMemo } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { Omit } from "recompose";
 import Subject from "types/Subject";
 
 export default function useSubjects() {

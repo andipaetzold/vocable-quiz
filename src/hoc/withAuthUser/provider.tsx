@@ -2,7 +2,6 @@ import { Spin } from "antd";
 import useFirebase from "hooks/useFirebase";
 import React, { ComponentType } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { compose } from "recompose";
 import AuthUserContext from "./context";
 
 function withAuthUserProvider<T extends {}>(Component: ComponentType<T>) {
@@ -26,4 +25,4 @@ function withAuthUserProvider<T extends {}>(Component: ComponentType<T>) {
     };
 }
 
-export default compose(withAuthUserProvider);
+export default withAuthUserProvider;
