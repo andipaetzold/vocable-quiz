@@ -52,7 +52,7 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-firebase-hooks": "1.2.1",
-    "react-i18next": "10.12.1",
+    "react-i18next": "10.12.2",
     "react-router-dom": "5.0.1",
     "shuffle-array": "1.0.1",
     "source-map-support": "0.5.13",
