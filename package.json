@@ -56,6 +56,6 @@
     "react-router-dom": "5.1.0",
     "shuffle-array": "1.0.1",
     "source-map-support": "0.5.13",
-    "utility-types": "3.7.0"
+    "utility-types": "3.8.0"
   }
 }
