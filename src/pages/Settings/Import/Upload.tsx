@@ -1,5 +1,5 @@
-import { Button, Icon } from "antd";
-import React, { FormEvent, useRef } from "react";
+import { Button } from "antd";
+import React, { ChangeEvent, MouseEvent, useRef } from "react";
 import { Trans } from "react-i18next";
 import { Database } from "./types";
 
@@ -10,7 +10,7 @@ interface Props {
 export default function Upload({ onSelect }: Props) {
     const ref = useRef<HTMLInputElement>(null);
 
-    const handleClick = (e: FormEvent<HTMLButtonElement>) => {
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if (!ref.current) {
@@ -20,7 +20,7 @@ export default function Upload({ onSelect }: Props) {
         ref.current.click();
     };
 
-    const handleChange = async (e: FormEvent<HTMLInputElement>) => {
+    const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         const files = e.currentTarget.files;
@@ -48,8 +48,8 @@ export default function Upload({ onSelect }: Props) {
         <>
             <input type="file" ref={ref} accept="*.mdb" style={{ display: "none" }} onChange={handleChange} />
 
-            <Button onClick={handleClick}>
-                <Icon type="upload" /> <Trans i18nKey="pages.import.select" />
+            <Button onClick={handleClick} icon="upload">
+                <Trans i18nKey="pages.import.select" />
             </Button>
         </>
     );
