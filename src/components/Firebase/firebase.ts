@@ -5,6 +5,7 @@ import "firebase/firestore";
 import "firebase/performance";
 import Card from "types/Card";
 import Subject from "types/Subject";
+import { DATE_FORMAT } from "util/constants";
 import { Omit } from "utility-types";
 
 const config = {
@@ -64,8 +65,8 @@ export default class Firebase {
 
         const baseCard: Pick<Card, "phase" | "nextQuiz" | "createdAt" | "createdTimestamp" | "updatedTimestamp"> = {
             phase: 1,
-            nextQuiz: format(new Date(), "YYYY-MM-DD"),
-            createdAt: format(new Date(), "YYYY-MM-DD"),
+            nextQuiz: format(new Date(), DATE_FORMAT),
+            createdAt: format(new Date(), DATE_FORMAT),
 
             createdTimestamp: Date.now(),
             updatedTimestamp: Date.now()
@@ -114,19 +115,19 @@ export default class Firebase {
         switch (phase) {
             default:
             case 1:
-                nextQuiz = format(new Date(), "YYYY-MM-DD");
+                nextQuiz = format(new Date(), DATE_FORMAT);
                 break;
             case 2:
-                nextQuiz = format(addDays(new Date(), 3), "YYYY-MM-DD");
+                nextQuiz = format(addDays(new Date(), 3), DATE_FORMAT);
                 break;
             case 3:
-                nextQuiz = format(addDays(new Date(), 10), "YYYY-MM-DD");
+                nextQuiz = format(addDays(new Date(), 10), DATE_FORMAT);
                 break;
             case 4:
-                nextQuiz = format(addDays(new Date(), 30), "YYYY-MM-DD");
+                nextQuiz = format(addDays(new Date(), 30), DATE_FORMAT);
                 break;
             case 5:
-                nextQuiz = format(addDays(new Date(), 90), "YYYY-MM-DD");
+                nextQuiz = format(addDays(new Date(), 90), DATE_FORMAT);
                 break;
             case 6:
                 nextQuiz = null;
