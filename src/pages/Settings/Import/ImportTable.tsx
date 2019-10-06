@@ -4,6 +4,7 @@ import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 import React, { useState } from "react";
 import Card from "types/Card";
+import { DATE_FORMAT } from "util/constants";
 import { Omit } from "utility-types";
 import { Benutzer, Database, Karte, Thema } from "./types";
 
@@ -34,8 +35,8 @@ export default function ImportTable({ database }: Props) {
             remark: karte.ZusatzAngabe || "",
             createdTimestamp: karte.Entstehung.time,
             updatedTimestamp: Date.now(),
-            createdAt: format(karte.Entstehung.time, "YYYY-MM-DD"),
-            nextQuiz: karte.Phase < 6 ? format(karte.NaechsteAbfrage.time, "YYYY-MM-DD") : null,
+            createdAt: format(karte.Entstehung.time, DATE_FORMAT),
+            nextQuiz: karte.Phase < 6 ? format(karte.NaechsteAbfrage.time, DATE_FORMAT) : null,
             phase: karte.Phase
         }));
 

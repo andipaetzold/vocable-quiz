@@ -2,10 +2,11 @@ import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import shuffle from "shuffle-array";
 import Card from "types/Card";
+import { DATE_FORMAT } from "util/constants";
 import useCards from "./useCards";
 
 export default function useCardsShuffled(subjectId: string) {
-    const { loading, cards } = useCards(subjectId, ref => ref.where("nextQuiz", "<=", format(new Date(), "YYYY-MM-DD")));
+    const { loading, cards } = useCards(subjectId, ref => ref.where("nextQuiz", "<=", format(new Date(), DATE_FORMAT)));
 
     const [state, setState] = useState<{
         loading: boolean;
