@@ -45,7 +45,7 @@
     "classnames": "2.2.6",
     "date-fns": "2.5.0",
     "firebase": "7.2.1",
-    "firebase-admin": "8.6.0",
+    "firebase-admin": "8.6.1",
     "firebase-functions": "3.3.0",
     "i18next": "17.2.0",
     "i18next-browser-languagedetector": "4.0.0",
