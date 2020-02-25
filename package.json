@@ -43,7 +43,7 @@
     "@types/shuffle-array": "0.0.28",
     "antd": "3.26.12",
     "classnames": "2.2.6",
-    "date-fns": "2.9.0",
+    "date-fns": "2.10.0",
     "firebase": "7.9.1",
     "firebase-admin": "8.9.2",
     "firebase-functions": "3.3.0",
