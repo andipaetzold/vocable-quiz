@@ -55,7 +55,7 @@
     "react-i18next": "11.3.5",
     "react-router-dom": "5.1.2",
     "shuffle-array": "1.0.1",
-    "source-map-support": "0.5.16",
+    "source-map-support": "0.5.17",
     "utility-types": "3.10.0"
   }
 }
