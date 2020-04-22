@@ -35,7 +35,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "dependencies": {
-    "@sentry/browser": "5.15.4",
+    "@sentry/browser": "5.15.5",
     "@types/classnames": "2.2.10",
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.6",
