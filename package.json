@@ -38,7 +38,7 @@
     "@sentry/browser": "5.15.5",
     "@types/classnames": "2.2.10",
     "@types/react": "16.9.35",
-    "@types/react-dom": "16.9.7",
+    "@types/react-dom": "16.9.8",
     "@types/react-router-dom": "5.1.5",
     "@types/shuffle-array": "0.0.28",
     "antd": "3.26.16",
