@@ -48,7 +48,7 @@
     "firebase-admin": "8.12.1",
     "firebase-functions": "3.7.0",
     "i18next": "19.4.5",
-    "i18next-browser-languagedetector": "4.3.0",
+    "i18next-browser-languagedetector": "4.3.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-firebase-hooks": "1.2.1",
