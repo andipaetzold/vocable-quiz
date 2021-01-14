@@ -12,13 +12,17 @@ export default function useSubjects() {
 
     let subjects = useMemo<Subject[]>(() => {
         if (snap) {
-            return snap.docs.map(doc => ({
-                cardsCount: 0,
-                cardsNextQuiz: {},
-                cardsPhase: {},
-                ...(doc.data() as Omit<Subject, "id">),
-                id: doc.id
-            }));
+            return snap.docs.map((doc) => {
+                const serverData = doc.data() as Partial<Omit<Subject, "id">>;
+                return {
+                    id: doc.id,
+                    name: serverData.name!,
+                    cardsCount: serverData.cardsCount ?? 0,
+                    cardsNextQuiz: serverData.cardsNextQuiz ?? {},
+                    cardsPhase: serverData.cardsPhase ?? {},
+                    aggregatedEvents: serverData.aggregatedEvents ?? [],
+                };
+            });
         } else {
             return [];
         }
@@ -27,6 +31,6 @@ export default function useSubjects() {
     return {
         loading,
         error,
-        subjects
+        subjects,
     };
 }
