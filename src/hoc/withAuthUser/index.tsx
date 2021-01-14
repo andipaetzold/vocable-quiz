@@ -1,6 +1,7 @@
 import React, { ComponentType } from "react";
 import { Subtract } from "utility-types";
 import AuthUserContext from "./context";
+import firebase from 'firebase/app';
 
 interface InjectedProps {
     authUser: firebase.User | null;

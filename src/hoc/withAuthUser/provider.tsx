@@ -1,13 +1,13 @@
 import { Spin } from "antd";
 import useFirebase from "hooks/useFirebase";
 import React, { ComponentType } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState } from "@lukaselmer/react-firebase-hooks/auth";
 import AuthUserContext from "./context";
 
 function withAuthUserProvider<T extends {}>(Component: ComponentType<T>) {
     return (props: T) => {
         const firebase = useFirebase();
-        const { initialising, user } = useAuthState(firebase.auth);
+        const [user, initialising] = useAuthState(firebase.auth);
 
         if (initialising) {
             return (
