@@ -1,39 +1,47 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
 
-const appConfig = {
-    cache: true,
-    devtool: "source-map",
+module.exports = (env, options) => {
+    const dev = options.mode === "development";
 
-    entry: path.resolve(__dirname, "./src/functions/index.ts"),
-    output: {
-        filename: "./index.js",
-        path: path.resolve(__dirname, "./dist/functions"),
-        libraryTarget: "this"
-    },
+    return {
+        cache: true,
+        devtool: "source-map",
 
-    target: "node",
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                loader: "awesome-typescript-loader",
-                options: {
-                    configFileName: "tsconfig.functions.json",
-                    useCache: true,
-                    forceIsolatedModules: true
-                }
-            }
-        ]
-    },
+        entry: path.resolve(__dirname, "./src/functions/index.ts"),
+        output: {
+            filename: "./index.js",
+            path: path.resolve(__dirname, "./dist/functions"),
+            libraryTarget: "this",
+        },
 
-    resolve: {
-        extensions: [".ts", ".js"]
-    },
-    externals: [nodeExternals()],
+        target: "node",
+        module: {
+            rules: [
+                {
+                    test: /\.ts$/,
+                    loader: "awesome-typescript-loader",
+                    options: {
+                        configFileName: "tsconfig.functions.json",
+                        useCache: true,
+                        forceIsolatedModules: true,
+                    },
+                },
+            ],
+        },
 
-    plugins: [new CopyWebpackPlugin([{ from: "package.json", to: "package.json" }])]
+        resolve: {
+            extensions: [".ts", ".js"],
+        },
+        externals: [nodeExternals()],
+
+        plugins: [
+            new CopyWebpackPlugin([{ from: "package.json", to: "package.json" }]),
+            new webpack.DefinePlugin({
+                __DEV__: JSON.stringify(dev),
+            }),
+        ],
+    };
 };
-
-module.exports = appConfig;

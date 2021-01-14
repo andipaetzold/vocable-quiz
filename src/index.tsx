@@ -10,7 +10,7 @@ import i18n from "./i18n";
 
 Sentry.init({
     dsn: "https://8eb50a9ec3074d99a8f58c78a5e89971@sentry.io/1457633",
-    enabled: process.env.NODE_ENV !== "development"
+    enabled: !__DEV__
 });
 
 ReactDOM.render(
@@ -24,6 +24,6 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-if (process.env.NODE_ENV !== "development" && navigator.serviceWorker) {
+if (!__DEV__ && navigator.serviceWorker) {
     navigator.serviceWorker.register("service-worker.js");
 }

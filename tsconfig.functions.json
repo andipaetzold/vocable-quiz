@@ -1,11 +1,15 @@
 {
-    "extends": "./tsconfig.json",
     "compilerOptions": {
+        "sourceMap": true,
+        "strict": true,
         "noImplicitAny": false,
         "outDir": "dist/functions",
+        "lib": ["ES2019"],
         "module": "commonjs",
-        "lib": ["es6", "es2017"],
-        "target": "es6"
+        "target": "ES2019",
+        "baseUrl": "./src",
+        "typeRoots": ["node_modules/@types"]
     },
-    "include": ["src/functions"]
+    "files": ["src/functions/index.ts"],
+    "include": ["src/types"]
 }

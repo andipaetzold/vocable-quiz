@@ -25,7 +25,7 @@ export default class Firebase {
         this.auth = app.auth();
         this.firestore = app.firestore();
 
-        if (process.env.NODE_ENV !== "development") {
+        if (!__DEV__) {
             app.performance();
             this.firestore.enablePersistence({ synchronizeTabs: true });
         }

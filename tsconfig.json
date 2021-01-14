@@ -10,6 +10,8 @@
         "esModuleInterop": true,
         "jsx": "react",
         "baseUrl": "./src",
-        "typeRoots": ["@types/", "src/types"]
-    }
+        "typeRoots": ["node_modules/@types"]
+    },
+    "files": ["src/index.tsx"],
+    "include": ["src/types"]
 }

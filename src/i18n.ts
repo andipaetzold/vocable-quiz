@@ -214,7 +214,7 @@ i18n.use(LanguageDetector).init({
     },
     lng: "de",
     fallbackLng: "de",
-    debug: process.env.NODE_ENV === "development",
+    debug: __DEV__,
 
     interpolation: {
         formatSeparator: ","
