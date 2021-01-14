@@ -1,8 +1,9 @@
 import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 import { useMemo } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { useCollection } from "@lukaselmer/react-firebase-hooks/firestore";
 import Card from "types/Card";
+import firebase from 'firebase/app';
 
 export default function useCards(
     subjectId: string,
@@ -13,7 +14,7 @@ export default function useCards(
     const firebase = useFirebase();
     const user = useUser();
 
-    const { loading, error, value: snap } = useCollection(applyQuery(firebase.getCardsCollection(user, subjectId)));
+    const [snap, loading, error] = useCollection(applyQuery(firebase.getCardsCollection(user, subjectId)));
 
     const cards = useMemo<Card[]>(() => {
         if (snap) {

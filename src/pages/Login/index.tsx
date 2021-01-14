@@ -1,5 +1,5 @@
 import { Button, Card, Form, Icon, Input, Layout, message } from "antd";
-import { FirebaseError } from "firebase";
+import firebase from "firebase/app";
 import useFirebase from "hooks/useFirebase";
 import i18n from "i18n";
 import Register from "pages/Register";
@@ -20,7 +20,7 @@ export default function Login() {
             await firebase.login(email, password);
         } catch (e) {
             let text = "Unknown Error";
-            switch ((e as FirebaseError).code) {
+            switch ((e as firebase.FirebaseError).code) {
                 case "auth/invalid-email":
                     text = "The email address is invalid";
                     break;

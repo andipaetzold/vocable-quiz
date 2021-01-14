@@ -4,7 +4,7 @@ import useFirebase from "hooks/useFirebase";
 import useUser from "hooks/useUser";
 import i18n from "i18n";
 import React, { FormEvent, useRef, useState } from "react";
-import { useDocument } from "react-firebase-hooks/firestore";
+import { useDocument } from "@lukaselmer/react-firebase-hooks/firestore";
 import { Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 import Card from "types/Card";
@@ -29,7 +29,7 @@ export default function Presenter({ onSubmit, subjectId, card, reverse, onRevers
     const [answer, setAnswer] = useState(card.answer);
     const [remark, setRemark] = useState(card.remark);
 
-    const { loading, value: snap } = useDocument(firebase.getSubjectDoc(user, subjectId));
+    const [snap, loading] = useDocument(firebase.getSubjectDoc(user, subjectId));
 
     let subject: Subject | undefined = undefined;
     if (snap) {

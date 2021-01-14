@@ -1,5 +1,5 @@
 import { Alert, Button, Card, Form, Input } from "antd";
-import { auth, FirebaseError } from "firebase/app";
+import firebase from "firebase/app";
 import AuthUserContext from "hoc/withAuthUser/context";
 import React, { FormEvent, useContext, useState } from "react";
 import { Trans } from "react-i18next";
@@ -25,12 +25,12 @@ export default () => {
 
         try {
             await user.reauthenticateAndRetrieveDataWithCredential(
-                auth.EmailAuthProvider.credential(user.email as string, currentPassword)
+                firebase.auth.EmailAuthProvider.credential(user.email as string, currentPassword)
             );
             await user.updatePassword(newPassword);
             setCode("success");
         } catch (e) {
-            setCode((e as FirebaseError).code);
+            setCode((e as firebase.FirebaseError).code);
         }
     };
 

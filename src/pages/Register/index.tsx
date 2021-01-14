@@ -1,5 +1,5 @@
 import { Button, Card, Form, Icon, Input, message } from "antd";
-import { FirebaseError, User } from "firebase";
+import firebase from "firebase/app";
 import useFirebase from "hooks/useFirebase";
 import i18n from "i18n";
 import React, { FormEvent, useState } from "react";
@@ -26,12 +26,12 @@ export default function Register() {
         try {
             await firebase.createAccount(email, password);
             await firebase.login(email, password);
-            const user = firebase.auth.currentUser as User;
+            const user = firebase.auth.currentUser as firebase.User;
             user.updateProfile({ displayName: name, photoURL: null });
             message.success("Registration successfull", 2);
         } catch (e) {
             let text = "Unknown Error";
-            switch ((e as FirebaseError).code) {
+            switch ((e as firebase.FirebaseError).code) {
                 case "auth/email-already-in-use":
                     text = "The email address is already used";
                     break;

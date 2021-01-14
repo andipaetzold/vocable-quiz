@@ -1,5 +1,5 @@
 import { Alert, Button, Card, Form, Input } from "antd";
-import { FirebaseError } from "firebase/app";
+import firebase from "firebase/app";
 import AuthUserContext from "hoc/withAuthUser/context";
 import React, { FormEvent, useContext, useState } from "react";
 import i18n from "i18n";
@@ -29,7 +29,7 @@ export default function ChangeData() {
 
             setCode("success");
         } catch (e) {
-            setCode((e as FirebaseError).code);
+            setCode((e as firebase.FirebaseError).code);
         }
     };
 

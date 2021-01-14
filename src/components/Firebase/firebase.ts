@@ -1,18 +1,18 @@
 import { addDays, format } from "date-fns";
-import app, { User } from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/performance";
+import firebase from "firebase/app";
 import Card from "types/Card";
 import Subject from "types/Subject";
 import { DATE_FORMAT } from "util/constants";
 import { Omit } from "utility-types";
+import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/performance';
 
 const config = {
     apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
     authDomain: "vocable-quiz.firebaseapp.com",
     projectId: "vocable-quiz",
-    appId: "1:145172588679:web:2a22ed9e4d011417"
+    appId: "1:145172588679:web:2a22ed9e4d011417",
 };
 
 export default class Firebase {
@@ -20,7 +20,7 @@ export default class Firebase {
     firestore: firebase.firestore.Firestore;
 
     constructor() {
-        app.initializeApp(config);
+        const app = firebase.initializeApp(config);
 
         this.auth = app.auth();
         this.firestore = app.firestore();
@@ -37,30 +37,26 @@ export default class Firebase {
 
     logout = () => this.auth.signOut();
 
-    getSubjectsCollection = (user: User) =>
-        this.firestore
-            .collection("users")
-            .doc(user.uid)
-            .collection("subjects");
+    getSubjectsCollection = (user: firebase.User) => this.firestore.collection("users").doc(user.uid).collection("subjects");
 
-    getSubjectDoc = (user: User, id: string) => this.getSubjectsCollection(user).doc(id);
+    getSubjectDoc = (user: firebase.User, id: string) => this.getSubjectsCollection(user).doc(id);
 
-    createSubject = (user: User, name: string) =>
+    createSubject = (user: firebase.User, name: string) =>
         this.getSubjectsCollection(user).add(<Omit<Subject, "id">>{
             name,
             cardsCount: 0,
             cardsPhase: {},
             cardsNextQuiz: {},
-            aggregatedEvents: []
+            aggregatedEvents: [],
         });
 
-    deleteSubject = (user: User, subjectId: string) => this.getSubjectDoc(user, subjectId).delete();
+    deleteSubject = (user: firebase.User, subjectId: string) => this.getSubjectDoc(user, subjectId).delete();
 
-    getCardsCollection = (user: User, subjectId: string) => this.getSubjectDoc(user, subjectId).collection("cards");
+    getCardsCollection = (user: firebase.User, subjectId: string) => this.getSubjectDoc(user, subjectId).collection("cards");
 
-    getCardDoc = (user: User, subjectId: string, cardId: string) => this.getCardsCollection(user, subjectId).doc(cardId);
+    getCardDoc = (user: firebase.User, subjectId: string, cardId: string) => this.getCardsCollection(user, subjectId).doc(cardId);
 
-    async createCard(user: User, subjectId: string, card: Pick<Card, "question" | "answer" | "remark">, reverse: boolean = false) {
+    async createCard(user: firebase.User, subjectId: string, card: Pick<Card, "question" | "answer" | "remark">, reverse: boolean = false) {
         const collection = this.getCardsCollection(user, subjectId);
 
         const baseCard: Pick<Card, "phase" | "nextQuiz" | "createdAt" | "createdTimestamp" | "updatedTimestamp"> = {
@@ -69,12 +65,12 @@ export default class Firebase {
             createdAt: format(new Date(), DATE_FORMAT),
 
             createdTimestamp: Date.now(),
-            updatedTimestamp: Date.now()
+            updatedTimestamp: Date.now(),
         };
 
         const cardRef = await collection.add(<Omit<Card, "id">>{
             ...card,
-            ...baseCard
+            ...baseCard,
         });
 
         if (reverse) {
@@ -84,16 +80,16 @@ export default class Firebase {
                 answer: card.question,
                 ...baseCard,
 
-                reversedId: cardRef.id
+                reversedId: cardRef.id,
             });
 
             await cardRef.update({
-                reversedId: reverseCardRef.id
+                reversedId: reverseCardRef.id,
             } as Partial<Card>);
         }
     }
 
-    async updateCard(user: User, subjectId: string, card: Pick<Card, "id" | "question" | "answer" | "remark">) {
+    async updateCard(user: firebase.User, subjectId: string, card: Pick<Card, "id" | "question" | "answer" | "remark">) {
         const collection = this.getCardsCollection(user, subjectId);
         await collection.doc(card.id).update(card);
 
@@ -103,14 +99,14 @@ export default class Firebase {
             await collection.doc(reverseId).update({
                 question: card.answer,
                 answer: card.question,
-                remark: card.remark
+                remark: card.remark,
             });
         }
     }
 
-    deleteCard = (user: User, subjectId: string, cardId: string) => this.getCardDoc(user, subjectId, cardId).delete();
+    deleteCard = (user: firebase.User, subjectId: string, cardId: string) => this.getCardDoc(user, subjectId, cardId).delete();
 
-    updatePhase = (user: User, subjectId: string, cardId: string, phase: number) => {
+    updatePhase = (user: firebase.User, subjectId: string, cardId: string, phase: number) => {
         let nextQuiz: string | null;
         switch (phase) {
             default:
@@ -137,11 +133,11 @@ export default class Firebase {
         return this.getCardDoc(user, subjectId, cardId).update(<Partial<Card>>{
             phase: phase,
             nextQuiz: nextQuiz,
-            updatedTimestamp: Date.now()
+            updatedTimestamp: Date.now(),
         });
     };
 
-    importCards = (user: User, subjectId: string, cards: Omit<Card, "id">[]) => {
+    importCards = (user: firebase.User, subjectId: string, cards: Omit<Card, "id">[]) => {
         const collection = this.getCardsCollection(user, subjectId);
         const batch = this.firestore.batch();
         for (const card of cards) {
