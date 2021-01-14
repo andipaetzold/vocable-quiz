@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { GenerateSW } = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const webpack = require("webpack");
 const { CheckerPlugin } = require("awesome-typescript-loader");
-var HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 module.exports = (env, options) => {
     const dev = options.mode === "development";
@@ -74,7 +72,6 @@ module.exports = (env, options) => {
         },
         plugins: [
             new CheckerPlugin(),
-            new HardSourceWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: "./src/index.html"
             }),
