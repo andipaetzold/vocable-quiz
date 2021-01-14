@@ -16,12 +16,13 @@ export const aggregateCards = functions
 
         await firestore().runTransaction(async transaction => {
             const subjectDoc = await transaction.get(subjectRef);
+            const serverData = subjectDoc.data() as Partial<Omit<Subject, "id">>;
             const subject: Omit<Subject, "id"> = {
-                cardsCount: 0,
-                cardsNextQuiz: {},
-                cardsPhase: {},
-                aggregatedEvents: [],
-                ...(subjectDoc.data() as Omit<Subject, "id">)
+                name: serverData.name!,
+                cardsCount: serverData.cardsCount ?? 0,
+                cardsNextQuiz: serverData.cardsNextQuiz ?? {},
+                cardsPhase: serverData.cardsPhase ?? {},
+                aggregatedEvents: serverData.aggregatedEvents ?? [],
             };
 
             if (subject.aggregatedEvents.includes(eventId)) {
