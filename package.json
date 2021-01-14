@@ -41,7 +41,7 @@
     "@types/react-dom": "17.0.0",
     "@types/react-router-dom": "5.1.7",
     "@types/shuffle-array": "1.0.0",
-    "antd": "3.26.20",
+    "antd": "4.10.2",
     "classnames": "2.2.6",
     "date-fns": "2.16.1",
     "firebase": "7.24.0",
