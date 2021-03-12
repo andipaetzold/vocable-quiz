@@ -30,7 +30,7 @@ jobs:
               run: |
                   echo "$GCLOUD_SERVICE_KEY" >> /opt/service-account.json
                   npm run firebase -- use vocable-quiz
-                  npm run firebase -- deploy --force --non-interactive -m $CIRCLE_SHA1
+                  npm run firebase -- deploy --force --non-interactive
               env:
                   GOOGLE_APPLICATION_CREDENTIALS: /opt/service-account.json
                   GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
