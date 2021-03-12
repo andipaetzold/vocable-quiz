@@ -1,0 +1,35 @@
+name: Push
+
+on:
+    - push
+
+jobs:
+    build:
+        runs-on: ubuntu-20.04
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Get node version
+              id: node-version
+              run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+            - name: Use node ${{ matrix.node }}
+              uses: actions/setup-node@v2.1.5
+
+            - uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      node-
+            - run: npm install
+            - name: Build
+              run: npm run build
+
+            - name: Deploy
+              if: github.ref == 'refs/heads/main'
+              run: |
+                  npm run firebase -- use vocable-quiz
+                  npm run firebase -- deploy --force --non-interactive -m $CIRCLE_SHA1
+              env:
+                  GOOGLE_APPLICATION_CREDENTIALS: /opt/service-account.json
+                  GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
