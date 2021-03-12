@@ -28,9 +28,7 @@ jobs:
             - name: Deploy
               if: github.ref == 'refs/heads/master'
               run: |
-                  echo "$GCLOUD_SERVICE_KEY" >> /opt/service-account.json
                   npm run firebase -- use vocable-quiz
-                  npm run firebase -- deploy --force --non-interactive
+                  npm run firebase -- deploy --force --non-interactive -m $CIRCLE_SHA1 --token $FIREBASE_TOKEN
               env:
-                  GOOGLE_APPLICATION_CREDENTIALS: /opt/service-account.json
-                  GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
