@@ -1,8 +1,8 @@
-import * as Sentry from "@sentry/browser";
-import ErrorBoundary from "./components/ErrorBoundary";
+import * as Sentry from "@sentry/react";
 import ReactDOM from "react-dom";
 import { I18nextProvider } from "react-i18next";
 import App from "./App";
+import ErrorBoundaryFallback from "./components/ErrorBoundaryFallback";
 import Firebase from "./components/Firebase";
 import FirebaseContext from "./components/Firebase/context";
 import i18n from "./i18n";
@@ -15,11 +15,11 @@ Sentry.init({
 
 ReactDOM.render(
     <I18nextProvider i18n={i18n}>
-        <ErrorBoundary>
+        <Sentry.ErrorBoundary fallback={<ErrorBoundaryFallback />}>
             <FirebaseContext.Provider value={new Firebase()}>
                 <App />
             </FirebaseContext.Provider>
-        </ErrorBoundary>
+        </Sentry.ErrorBoundary>
     </I18nextProvider>,
     document.getElementById("root")
 );
