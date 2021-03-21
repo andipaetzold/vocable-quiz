@@ -11,9 +11,6 @@
         "build:functions": "rollup -c",
         "firebase": "firebase"
     },
-    "engines": {
-        "node": "12"
-    },
     "author": "Andreas Pätzold",
     "repository": {
         "type": "git",
