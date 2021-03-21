@@ -6,7 +6,7 @@ import { DATE_FORMAT } from "../util/constants";
 import useCards from "./useCards";
 
 export default function useCardsShuffled(subjectId: string) {
-    const { loading, cards } = useCards(subjectId, ref => ref.where("nextQuiz", "<=", format(new Date(), DATE_FORMAT)));
+    const { loading, cards } = useCards(subjectId, (ref) => ref.where("nextQuiz", "<=", format(new Date(), DATE_FORMAT)));
 
     const [state, setState] = useState<{
         loading: boolean;
@@ -15,7 +15,7 @@ export default function useCardsShuffled(subjectId: string) {
 
     useEffect(() => {
         if (loading) {
-            setState({ ...state, loading: true });
+            setState({ cards: [], loading: true });
             return;
         }
 

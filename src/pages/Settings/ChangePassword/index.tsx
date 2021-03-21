@@ -5,7 +5,7 @@ import { FormEvent, useContext, useState } from "react";
 import { Trans } from "react-i18next";
 import i18n from "../../../i18n";
 
-export default () => {
+export default function ChangePassword() {
     const user = useContext(AuthUserContext);
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -48,7 +48,7 @@ export default () => {
                 <Form.Item>
                     <Input
                         type="password"
-                        onChange={e => setCurrentPassword(e.target.value)}
+                        onChange={(e) => setCurrentPassword(e.target.value)}
                         placeholder={i18n.t("passwordCurrent")}
                         value={currentPassword}
                         autoComplete="current-password"
@@ -58,7 +58,7 @@ export default () => {
                 <Form.Item>
                     <Input
                         type="password"
-                        onChange={e => setNewPassword(e.target.value)}
+                        onChange={(e) => setNewPassword(e.target.value)}
                         placeholder={i18n.t("passwordNew")}
                         value={newPassword}
                         autoComplete="new-password"
@@ -68,7 +68,7 @@ export default () => {
                 <Form.Item>
                     <Input
                         type="password"
-                        onChange={e => setConfirmPassword(e.target.value)}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         placeholder={i18n.t("passwordRepeat")}
                         value={confirmPassword}
                         autoComplete="new-password"
@@ -83,4 +83,4 @@ export default () => {
             </Form>
         </Card>
     );
-};
+}

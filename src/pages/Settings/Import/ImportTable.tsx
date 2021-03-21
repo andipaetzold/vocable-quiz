@@ -43,7 +43,8 @@ export default function ImportTable({ database }: Props) {
         const importPromises = chunk(cardsToImport, 500).map(cards => firebase.importCards(user, subjectRef.id, cards));
 
         let i = 0;
-        for await (const docRef of importPromises) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        for await (const _docRef of importPromises) {
             ++i;
             setProgress(Math.round((i / importPromises.length) * 100));
         }

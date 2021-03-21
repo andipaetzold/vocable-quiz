@@ -1,10 +1,10 @@
 import { Card as AntCard } from "antd";
+import { useEffect, useState } from "react";
+import { Redirect, RouteComponentProps } from "react-router";
 import useFirebase from "../../hooks/useFirebase";
 import useCardsShuffled from "../../hooks/userCardsShuffled";
 import useSubject from "../../hooks/useSubject";
 import useUser from "../../hooks/useUser";
-import { useEffect, useState } from "react";
-import { Redirect, RouteComponentProps } from "react-router";
 import Card from "../../types/Card";
 import QuizCard from "./QuizCard";
 
@@ -20,13 +20,17 @@ export default function Quiz({ match }: Props) {
     const [cards, setCards] = useState<Card[] | undefined>(undefined);
     const [cardIndex, setCardId] = useState(0);
 
-    useEffect(() => {
-        if (loadingCards) {
-            return;
-        }
+    useEffect(
+        () => {
+            if (loadingCards) {
+                return;
+            }
 
-        setCards(shuffledCards);
-    }, [loadingCards]);
+            setCards(shuffledCards);
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [loadingCards]
+    );
 
     if (loadingCards || loadingSubject || cards === undefined || subject === undefined) {
         return null;

@@ -33,7 +33,7 @@ function CardsList({ user, subject, history }: Props) {
                 message.success("Card deleted", 2);
             })();
         },
-        [firebase]
+        [firebase, subject.id, user]
     );
 
     const filteredCards = useMemo<Card[]>(() => {
@@ -45,8 +45,8 @@ function CardsList({ user, subject, history }: Props) {
             return cards;
         }
 
-        return cards.filter(card => card.question.includes(filter) || card.answer.includes(filter) || card.remark.includes(filter));
-    }, [filter, cards]);
+        return cards.filter((card) => card.question.includes(filter) || card.answer.includes(filter) || card.remark.includes(filter));
+    }, [filter, cards, loading]);
 
     return (
         <>
@@ -65,17 +65,17 @@ function CardsList({ user, subject, history }: Props) {
                     {
                         title: <Trans i18nKey="question" />,
                         dataIndex: "question",
-                        key: "question"
+                        key: "question",
                     },
                     {
                         title: <Trans i18nKey="answer" />,
                         dataIndex: "answer",
-                        key: "answer"
+                        key: "answer",
                     },
                     {
                         title: <Trans i18nKey="nextquiz" />,
                         dataIndex: "nextQuiz",
-                        key: "nextQuiz"
+                        key: "nextQuiz",
                     },
                     {
                         title: <Trans i18nKey="phase" />,
@@ -88,7 +88,7 @@ function CardsList({ user, subject, history }: Props) {
                                 format={() => `${phase} / 6`}
                                 status={phase === 0 ? "normal" : phase === 6 ? "success" : "active"}
                             />
-                        )
+                        ),
                     },
                     {
                         title: <Trans i18nKey="actions" />,
@@ -111,8 +111,8 @@ function CardsList({ user, subject, history }: Props) {
                                     </Button.Group>
                                 </Popconfirm>
                             </Button.Group>
-                        )
-                    }
+                        ),
+                    },
                 ]}
             />
         </>
