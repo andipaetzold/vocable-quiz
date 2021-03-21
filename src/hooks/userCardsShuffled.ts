@@ -1,8 +1,8 @@
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import shuffle from "shuffle-array";
-import Card from "types/Card";
-import { DATE_FORMAT } from "util/constants";
+import Card from "../types/Card";
+import { DATE_FORMAT } from "../util/constants";
 import useCards from "./useCards";
 
 export default function useCardsShuffled(subjectId: string) {

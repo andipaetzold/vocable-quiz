@@ -1,5 +1,3 @@
-import { Button, Card, Icon, Table } from "antd";
-import React from "react";
 import CreateSubject from "./CreateSubject";
 import SubjectList from "./SubjectList";
 

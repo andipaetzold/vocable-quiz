@@ -1,7 +1,6 @@
 import { Card, Col, Row, Statistic } from "antd";
-import useSubjects from "hooks/useSubjects";
-import useUser from "hooks/useUser";
-import React from "react";
+import useSubjects from "../../hooks/useSubjects";
+import useUser from "../../hooks/useUser";
 import { Trans } from "react-i18next";
 
 export default function Home() {

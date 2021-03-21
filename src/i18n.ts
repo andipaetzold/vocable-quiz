@@ -7,29 +7,29 @@ i18n.use(LanguageDetector).init({
         en: {
             translation: {
                 error: {
-                    title: 'An error occurred',
-                    message: 'Something went wrong. Andi just received a message and will fix the issue as soon as possible',
-                    reload: 'Reload'
+                    title: "An error occurred",
+                    message: "Something went wrong. Andi just received a message and will fix the issue as soon as possible",
+                    reload: "Reload",
                 },
                 card: {
                     singular: {
                         small: "Card",
-                        big: "Card"
+                        big: "Card",
                     },
                     plural: {
                         small: "Cards",
-                        big: "Cards"
-                    }
+                        big: "Cards",
+                    },
                 },
                 subject: {
                     singular: {
                         small: "subject",
-                        big: "Subject"
+                        big: "Subject",
                     },
                     plural: {
                         small: "subjects",
-                        big: "Subjects"
-                    }
+                        big: "Subjects",
+                    },
                 },
                 name: "Name",
                 email: "Email Address",
@@ -53,86 +53,86 @@ i18n.use(LanguageDetector).init({
                         title: "Hello {{name}}",
                         tolearn: "Cards to Learn",
                         inphase6: "Cards in Phase 6",
-                        cardcount: "Number of Cards"
+                        cardcount: "Number of Cards",
                     },
                     shell: {
                         home: "Home",
                         quiz: "Quiz",
                         edit: "Edit",
                         settings: "Settings",
-                        logout: "Logout"
+                        logout: "Logout",
                     },
                     login: {
                         title: "Login",
-                        submit: "Login"
+                        submit: "Login",
                     },
                     register: {
                         title: "Registration",
-                        submit: "Register"
+                        submit: "Register",
                     },
                     quizlist: {
                         title: "Quiz",
-                        go: "Go"
+                        go: "Go",
                     },
                     quiz: {
                         reveal: "Reveal Answer",
                         correct: "Correct",
                         wrong: "Wrong",
-                        longterm: "Long-Term Memory"
+                        longterm: "Long-Term Memory",
                     },
                     changedata: {
                         title: "Change Data",
-                        submit: "Save"
+                        submit: "Save",
                     },
                     changepassword: {
                         title: "Change Password",
-                        submit: "Change Password"
+                        submit: "Change Password",
                     },
                     createsubject: {
                         title: "Create Subject",
                         name: "Name of the Subject",
-                        submit: "Create Subject"
+                        submit: "Create Subject",
                     },
                     editcard: {
                         title: "Update Card",
-                        reverse: "Create reversed card"
+                        reverse: "Create reversed card",
                     },
                     editcards: {
-                        create: "Create Cards"
+                        create: "Create Cards",
                     },
                     import: {
                         title: "Import",
-                        select: "Select file"
-                    }
-                }
-            }
+                        select: "Select file",
+                    },
+                },
+            },
         },
         de: {
             translation: {
                 error: {
-                    title: 'Ein Fehler ist aufgetreten',
-                    message: 'Irgendwas ist schief gelaufen. Andi weiß aber schon Bescheid.',
-                    reload: 'Seite neu laden'
+                    title: "Ein Fehler ist aufgetreten",
+                    message: "Irgendwas ist schief gelaufen. Andi weiß aber schon Bescheid.",
+                    reload: "Seite neu laden",
                 },
                 card: {
                     singular: {
                         small: "Karte",
-                        big: "Karte"
+                        big: "Karte",
                     },
                     plural: {
                         small: "Karten",
-                        big: "Karten"
-                    }
+                        big: "Karten",
+                    },
                 },
                 subject: {
                     singular: {
                         small: "Fach",
-                        big: "Fach"
+                        big: "Fach",
                     },
                     plural: {
                         small: "Fächer",
-                        big: "Fächer"
-                    }
+                        big: "Fächer",
+                    },
                 },
                 name: "Name",
                 email: "E-Mail Adresse",
@@ -157,72 +157,72 @@ i18n.use(LanguageDetector).init({
                         title: "Hallo {{name}}",
                         tolearn: "Zu lernende Karten",
                         inphase6: "Karten in Phase 6",
-                        cardcount: "Anzahl der Karten"
+                        cardcount: "Anzahl der Karten",
                     },
                     shell: {
                         home: "Home",
                         quiz: "Abfrage",
                         edit: "Bearbeiten",
                         settings: "Einstellungen",
-                        logout: "Abmelden"
+                        logout: "Abmelden",
                     },
                     login: {
                         title: "Anmeldung",
-                        submit: "Anmelden"
+                        submit: "Anmelden",
                     },
                     register: {
                         title: "Registrierung",
-                        submit: "Registrieren"
+                        submit: "Registrieren",
                     },
                     quizlist: {
                         title: "Quiz",
-                        go: "Los"
+                        go: "Los",
                     },
                     quiz: {
                         reveal: "Antwort aufdecken",
                         correct: "Richtig",
                         wrong: "Falsch",
-                        longterm: "Langzeitgedächtnis"
+                        longterm: "Langzeitgedächtnis",
                     },
                     changedata: {
                         title: "Daten ändern",
-                        submit: "Speichern"
+                        submit: "Speichern",
                     },
                     changepassword: {
                         title: "Passwort ändern",
-                        submit: "Passwort ändern"
+                        submit: "Passwort ändern",
                     },
                     createsubject: {
                         title: "Fach erstellen",
                         name: "Name des Fachs",
-                        submit: "Fach erstellen"
+                        submit: "Fach erstellen",
                     },
                     editcard: {
                         title: "Karte aktualisieren",
-                        reverse: "Umgedrehte Karte erstellen"
+                        reverse: "Umgedrehte Karte erstellen",
                     },
                     editcards: {
-                        create: "Karten erstellen"
+                        create: "Karten erstellen",
                     },
                     import: {
                         title: "Import",
-                        select: "Datei auswählen"
-                    }
-                }
-            }
-        }
+                        select: "Datei auswählen",
+                    },
+                },
+            },
+        },
     },
     lng: "de",
     fallbackLng: "de",
-    debug: __DEV__,
+    debug: process.env.NODE_ENV === "development",
 
     interpolation: {
-        formatSeparator: ","
+        formatSeparator: ",",
     },
 
     react: {
-        wait: true
-    }
+        wait: true,
+    },
 });
 
 export default i18n;

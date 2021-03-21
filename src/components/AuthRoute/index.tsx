@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Redirect, Route, RouteProps } from "react-router-dom";
-import AuthUserContext from "hoc/withAuthUser/context";
+import AuthUserContext from "../../hoc/withAuthUser/context";
 
 export type Props = {} & RouteProps;
 

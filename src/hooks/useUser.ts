@@ -1,4 +1,4 @@
-import AuthUserContext from "hoc/withAuthUser/context";
+import AuthUserContext from "../hoc/withAuthUser/context";
 import { useContext } from "react";
 
 export default function useUser() {

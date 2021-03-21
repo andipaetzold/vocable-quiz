@@ -1,13 +1,13 @@
 import { Button, Icon, message, Popconfirm, Progress, Table, Form, Input } from "antd";
 import firebase from "firebase/app";
-import useCards from "hooks/useCards";
-import useFirebase from "hooks/useFirebase";
+import useCards from "../../hooks/useCards";
+import useFirebase from "../../hooks/useFirebase";
 import React, { useState, useCallback, useMemo } from "react";
 import { Trans } from "react-i18next";
 import { RouteComponentProps, withRouter } from "react-router";
-import Subject from "types/Subject";
+import Subject from "../../types/Subject";
 import FormItem from "antd/lib/form/FormItem";
-import Card from "types/Card";
+import Card from "../../types/Card";
 
 interface Props extends RouteComponentProps {
     user: firebase.User;

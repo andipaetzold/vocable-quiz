@@ -1,7 +1,6 @@
 import { Breadcrumb, Button, Card } from "antd";
-import useSubject from "hooks/useSubject";
-import useUser from "hooks/useUser";
-import React from "react";
+import useSubject from "../../hooks/useSubject";
+import useUser from "../../hooks/useUser";
 import { Link, RouteComponentProps } from "react-router-dom";
 import CardsList from "./CardsList";
 import { Trans } from "react-i18next";

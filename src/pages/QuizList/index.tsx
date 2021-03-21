@@ -1,9 +1,8 @@
 import { Button, Card, Icon, Table } from "antd";
-import useSubjects from "hooks/useSubjects";
-import React from "react";
+import useSubjects from "../../hooks/useSubjects";
 import { RouteComponentProps } from "react-router";
-import { getTodayCardCount } from "util/subject";
-import Subject from "types/Subject";
+import { getTodayCardCount } from "../../util/subject";
+import Subject from "../../types/Subject";
 import { Trans } from "react-i18next";
 
 type Props = {} & RouteComponentProps;

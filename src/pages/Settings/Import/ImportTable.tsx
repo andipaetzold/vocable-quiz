@@ -1,10 +1,10 @@
 import { Button, message, Progress, Table } from "antd";
 import { format } from "date-fns";
-import useFirebase from "hooks/useFirebase";
-import useUser from "hooks/useUser";
-import React, { useState } from "react";
-import Card from "types/Card";
-import { DATE_FORMAT } from "util/constants";
+import useFirebase from "../../../hooks/useFirebase";
+import useUser from "../../../hooks/useUser";
+import { useState } from "react";
+import Card from "../../../types/Card";
+import { DATE_FORMAT } from "../../../util/constants";
 import { Omit } from "utility-types";
 import { Benutzer, Database, Karte, Thema } from "./types";
 

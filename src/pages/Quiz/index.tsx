@@ -1,11 +1,11 @@
 import { Card as AntCard } from "antd";
-import useFirebase from "hooks/useFirebase";
-import useCardsShuffled from "hooks/userCardsShuffled";
-import useSubject from "hooks/useSubject";
-import useUser from "hooks/useUser";
-import React, { useEffect, useState } from "react";
+import useFirebase from "../../hooks/useFirebase";
+import useCardsShuffled from "../../hooks/userCardsShuffled";
+import useSubject from "../../hooks/useSubject";
+import useUser from "../../hooks/useUser";
+import { useEffect, useState } from "react";
 import { Redirect, RouteComponentProps } from "react-router";
-import Card from "types/Card";
+import Card from "../../types/Card";
 import QuizCard from "./QuizCard";
 
 type Props = {} & RouteComponentProps<{ subjectId: string }>;

@@ -1,5 +1,6 @@
-/.awcache
 /.firebase
+/build
+/build-functions
 /dist
 /node_modules
 firebase-debug.log

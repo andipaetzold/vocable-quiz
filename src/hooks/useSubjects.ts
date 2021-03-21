@@ -1,8 +1,8 @@
-import useFirebase from "hooks/useFirebase";
-import useUser from "hooks/useUser";
+import useFirebase from "../hooks/useFirebase";
+import useUser from "../hooks/useUser";
 import { useMemo } from "react";
 import { useCollection } from "@lukaselmer/react-firebase-hooks/firestore";
-import Subject from "types/Subject";
+import Subject from "../types/Subject";
 
 export default function useSubjects() {
     const firebase = useFirebase();

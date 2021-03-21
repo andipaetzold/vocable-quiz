@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import React, { ChangeEvent, MouseEvent, useRef } from "react";
+import { ChangeEvent, MouseEvent, useRef } from "react";
 import { Trans } from "react-i18next";
 import { Database } from "./types";
 

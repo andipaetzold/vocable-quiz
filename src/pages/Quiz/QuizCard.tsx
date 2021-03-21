@@ -1,7 +1,7 @@
 import { Button, Col, Input, Row } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Trans } from "react-i18next";
-import Card from "types/Card";
+import Card from "../../types/Card";
 
 const colConfig = {
     xs: { span: 24 },

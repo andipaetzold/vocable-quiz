@@ -1,12 +1,11 @@
 import { addDays, format } from "date-fns";
 import firebase from "firebase/app";
-import Card from "types/Card";
-import Subject from "types/Subject";
-import { DATE_FORMAT } from "util/constants";
+import Card from "../../types/Card";
+import Subject from "../../types/Subject";
+import { DATE_FORMAT } from "../../util/constants";
 import { Omit } from "utility-types";
-import 'firebase/auth';
-import 'firebase/firestore';
-import 'firebase/performance';
+import "firebase/auth";
+import "firebase/firestore";
 
 const config = {
     apiKey: "AIzaSyBCBb4968T7ijsYhI5cwcaiOmqL3xUD1GA",
@@ -25,8 +24,7 @@ export default class Firebase {
         this.auth = app.auth();
         this.firestore = app.firestore();
 
-        if (!__DEV__) {
-            app.performance();
+        if (process.env.NODE_ENV === "production") {
             this.firestore.enablePersistence({ synchronizeTabs: true });
         }
     }
@@ -42,13 +40,13 @@ export default class Firebase {
     getSubjectDoc = (user: firebase.User, id: string) => this.getSubjectsCollection(user).doc(id);
 
     createSubject = (user: firebase.User, name: string) =>
-        this.getSubjectsCollection(user).add(<Omit<Subject, "id">>{
+        this.getSubjectsCollection(user).add({
             name,
             cardsCount: 0,
             cardsPhase: {},
             cardsNextQuiz: {},
             aggregatedEvents: [],
-        });
+        } as Omit<Subject, "id">);
 
     deleteSubject = (user: firebase.User, subjectId: string) => this.getSubjectDoc(user, subjectId).delete();
 
@@ -68,20 +66,20 @@ export default class Firebase {
             updatedTimestamp: Date.now(),
         };
 
-        const cardRef = await collection.add(<Omit<Card, "id">>{
+        const cardRef = await collection.add({
             ...card,
             ...baseCard,
-        });
+        } as Omit<Card, "id">);
 
         if (reverse) {
-            const reverseCardRef = await collection.add(<Omit<Card, "id">>{
+            const reverseCardRef = await collection.add({
                 ...card,
                 question: card.answer,
                 answer: card.question,
                 ...baseCard,
 
                 reversedId: cardRef.id,
-            });
+            } as Omit<Card, "id">);
 
             await cardRef.update({
                 reversedId: reverseCardRef.id,
@@ -130,11 +128,11 @@ export default class Firebase {
                 break;
         }
 
-        return this.getCardDoc(user, subjectId, cardId).update(<Partial<Card>>{
+        return this.getCardDoc(user, subjectId, cardId).update({
             phase: phase,
             nextQuiz: nextQuiz,
             updatedTimestamp: Date.now(),
-        });
+        } as Partial<Card>);
     };
 
     importCards = (user: firebase.User, subjectId: string, cards: Omit<Card, "id">[]) => {

@@ -1,7 +1,7 @@
 import { firestore } from "firebase-admin";
 import * as functions from "firebase-functions";
-import Card from "types/Card";
-import Subject from "types/Subject";
+import Card from "../types/Card";
+import Subject from "../types/Subject";
 import { Omit } from "utility-types";
 
 export const aggregateCards = functions

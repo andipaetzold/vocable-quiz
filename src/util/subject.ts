@@ -1,6 +1,6 @@
 import { isAfter } from "date-fns";
 import { parseISO } from "date-fns/esm";
-import Subject from "types/Subject";
+import Subject from "../types/Subject";
 
 export function getTodayCardCount(subject: Subject) {
     return Object.entries(subject.cardsNextQuiz)

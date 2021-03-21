@@ -1,8 +1,8 @@
-import useFirebase from "hooks/useFirebase";
-import useUser from "hooks/useUser";
+import useFirebase from "./useFirebase";
+import useUser from "./useUser";
 import { useMemo } from "react";
 import { useCollection } from "@lukaselmer/react-firebase-hooks/firestore";
-import Card from "types/Card";
+import Card from "../types/Card";
 import firebase from 'firebase/app';
 
 export default function useCards(

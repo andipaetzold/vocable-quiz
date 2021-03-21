@@ -1,5 +1,4 @@
-import Subject from "types/Subject";
-import React from "react";
+import Subject from "../../types/Subject";
 import { Timeline } from "antd";
 
 interface Props {

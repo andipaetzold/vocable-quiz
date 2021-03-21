@@ -1,8 +1,8 @@
 import { Alert, Button, Card, Form, Input } from "antd";
 import firebase from "firebase/app";
-import AuthUserContext from "hoc/withAuthUser/context";
-import React, { FormEvent, useContext, useState } from "react";
-import i18n from "i18n";
+import AuthUserContext from "../../../hoc/withAuthUser/context";
+import { FormEvent, useContext, useState } from "react";
+import i18n from "../../../i18n";
 import { Trans } from "react-i18next";
 
 export default function ChangeData() {

@@ -1,9 +1,9 @@
 import { Button, Card, Form, Input } from "antd";
-import useFirebase from "hooks/useFirebase";
-import useUser from "hooks/useUser";
-import React, { FormEvent, useState } from "react";
+import useFirebase from "../../hooks/useFirebase";
+import useUser from "../../hooks/useUser";
+import { FormEvent, useState } from "react";
 import { Trans } from "react-i18next";
-import i18n from "i18n";
+import i18n from "../../i18n";
 
 export default function CreateSubject() {
     const firebase = useFirebase();

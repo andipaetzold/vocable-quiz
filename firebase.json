@@ -2,7 +2,7 @@
     "hosting": [
         {
             "target": "app",
-            "public": "dist/app",
+            "public": "build",
             "rewrites": [
                 {
                     "source": "**/!(*.*)",
@@ -36,6 +36,6 @@
         "indexes": "firestore.indexes.json"
     },
     "functions": {
-        "source": "dist/functions"
+        "source": "build-functions"
     }
 }

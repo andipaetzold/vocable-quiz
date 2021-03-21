@@ -1,14 +1,14 @@
 import { Breadcrumb, Button, Card as UICard, Col, Form, Icon, Input, Row, Checkbox } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import useFirebase from "hooks/useFirebase";
-import useUser from "hooks/useUser";
-import i18n from "i18n";
-import React, { FormEvent, useRef, useState } from "react";
+import useFirebase from "../../hooks/useFirebase";
+import useUser from "../../hooks/useUser";
+import i18n from "../../i18n";
+import { FormEvent, useRef, useState } from "react";
 import { useDocument } from "@lukaselmer/react-firebase-hooks/firestore";
 import { Trans } from "react-i18next";
 import { Link } from "react-router-dom";
-import Card from "types/Card";
-import Subject from "types/Subject";
+import Card from "../../types/Card";
+import Subject from "../../types/Subject";
 import { Omit } from "utility-types";
 
 export interface Props {

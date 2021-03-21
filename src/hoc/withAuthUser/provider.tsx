@@ -1,6 +1,6 @@
 import { Spin } from "antd";
-import useFirebase from "hooks/useFirebase";
-import React, { ComponentType } from "react";
+import useFirebase from "../../hooks/useFirebase";
+import { ComponentType } from "react";
 import { useAuthState } from "@lukaselmer/react-firebase-hooks/auth";
 import AuthUserContext from "./context";
 

@@ -1,8 +1,8 @@
 import { Button, Card, Form, Icon, Input, message } from "antd";
 import firebase from "firebase/app";
-import useFirebase from "hooks/useFirebase";
-import i18n from "i18n";
-import React, { FormEvent, useState } from "react";
+import useFirebase from "../../hooks/useFirebase";
+import i18n from "../../i18n";
+import { FormEvent, useState } from "react";
 import { Trans } from "react-i18next";
 
 export default function Register() {

@@ -1,13 +1,12 @@
 import { Breadcrumb, Button, Card, Icon, message, Popconfirm, Popover, Table } from "antd";
-import useFirebase from "hooks/useFirebase";
-import useSubjects from "hooks/useSubjects";
-import useUser from "hooks/useUser";
-import React from "react";
+import useFirebase from "../../hooks/useFirebase";
+import useSubjects from "../../hooks/useSubjects";
+import useUser from "../../hooks/useUser";
 import { Trans } from "react-i18next";
 import { RouterProps } from "react-router";
 import { withRouter } from "react-router-dom";
-import Subject from "types/Subject";
-import { getTodayCardCount } from "util/subject";
+import Subject from "../../types/Subject";
+import { getTodayCardCount } from "../../util/subject";
 import PhaseTimeline from "./PhaseTimeline";
 
 function SubjectList({ history }: RouterProps) {

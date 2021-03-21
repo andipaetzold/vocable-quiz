@@ -1,6 +1,6 @@
 import { Card as AntCard } from "antd";
-import i18n from "i18n";
-import React, { useState } from "react";
+import i18n from "../../../i18n";
+import { useState } from "react";
 import ImportTable from "./ImportTable";
 import { Database } from "./types";
 import Upload from "./Upload";

@@ -1,10 +1,10 @@
 import { message } from "antd";
-import useFirebase from "hooks/useFirebase";
-import useUser from "hooks/useUser";
-import Presenter from "pages/EditCard/presenter";
-import React, { useState } from "react";
+import useFirebase from "../../hooks/useFirebase";
+import useUser from "../../hooks/useUser";
+import Presenter from "../../pages/EditCard/presenter";
+import { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
-import Card from "types/Card";
+import Card from "../../types/Card";
 
 export type Props = RouteComponentProps<{ subjectId: string }>;
 
