@@ -44,5 +44,5 @@ async function updateSubject(doc: firestore.DocumentSnapshot) {
         subject.cardsPhase[card.phase]++;
     }
 
-    doc.ref.update(subject);
+    doc.ref.set(subject);
 }
