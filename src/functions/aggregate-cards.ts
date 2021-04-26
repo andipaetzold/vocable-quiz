@@ -8,13 +8,9 @@ export const aggregateCards = functions
     .runWith({ memory: "256MB" })
     .firestore.document("users/{userId}/subjects/{subjectId}/cards/{cardId}")
     .onWrite(async ({ before, after }, { params, eventId }) => {
-        const subjectRef = firestore()
-            .collection("users")
-            .doc(params.userId)
-            .collection("subjects")
-            .doc(params.subjectId);
+        const subjectRef = firestore().collection("users").doc(params.userId).collection("subjects").doc(params.subjectId);
 
-        await firestore().runTransaction(async transaction => {
+        await firestore().runTransaction(async (transaction) => {
             const subjectDoc = await transaction.get(subjectRef);
             const serverData = subjectDoc.data() as Partial<Omit<Subject, "id">>;
             const subject: Omit<Subject, "id"> = {
@@ -57,7 +53,8 @@ export const aggregateCards = functions
             }
 
             subject.aggregatedEvents.push(eventId);
+            subject.aggregatedEvents = subject.aggregatedEvents.slice(-10);
 
-            await transaction.update(subjectRef, subject);
+            transaction.update(subjectRef, subject);
         });
     });
