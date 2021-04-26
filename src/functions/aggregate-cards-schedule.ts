@@ -22,7 +22,6 @@ async function updateSubject(doc: firestore.DocumentSnapshot) {
         cardsCount: 0,
         cardsNextQuiz: {},
         cardsPhase: {
-            0: 0,
             1: 0,
             2: 0,
             3: 0,
