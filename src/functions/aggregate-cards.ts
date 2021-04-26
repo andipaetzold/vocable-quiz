@@ -31,11 +31,11 @@ export const aggregateCards = functions
                 const card = before.data() as Omit<Card, "id">;
 
                 if (card.nextQuiz) {
-                    subject.cardsNextQuiz[card.nextQuiz] = (subject.cardsNextQuiz[card.nextQuiz] || 1) - 1;
+                    subject.cardsNextQuiz[card.nextQuiz] = Math.max((subject.cardsNextQuiz[card.nextQuiz] ?? 1) - 1, 0);
                 }
 
                 if (card.phase) {
-                    subject.cardsPhase[card.phase] = (subject.cardsPhase[card.phase] || 1) - 1;
+                    subject.cardsPhase[card.phase] = Math.max((subject.cardsPhase[card.phase] ?? 1) - 1, 0);
                 }
             }
 
@@ -44,11 +44,11 @@ export const aggregateCards = functions
 
                 const card = after.data() as Omit<Card, "id">;
                 if (card.nextQuiz) {
-                    subject.cardsNextQuiz[card.nextQuiz] = (subject.cardsNextQuiz[card.nextQuiz] || 0) + 1;
+                    subject.cardsNextQuiz[card.nextQuiz] = (subject.cardsNextQuiz[card.nextQuiz] ?? 0) + 1;
                 }
 
                 if (card.phase) {
-                    subject.cardsPhase[card.phase] = (subject.cardsPhase[card.phase] || 0) + 1;
+                    subject.cardsPhase[card.phase] = (subject.cardsPhase[card.phase] ?? 0) + 1;
                 }
             }
 
