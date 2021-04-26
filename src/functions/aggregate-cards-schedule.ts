@@ -1,4 +1,3 @@
-import { sub } from "date-fns";
 import { firestore } from "firebase-admin";
 import * as functions from "firebase-functions";
 import Card from "../types/Card";
@@ -46,5 +45,5 @@ async function updateSubject(doc: firestore.DocumentSnapshot) {
         subject.cardsPhase[card.phase]++;
     }
 
-    doc.ref.update(sub);
+    doc.ref.update(subject);
 }
