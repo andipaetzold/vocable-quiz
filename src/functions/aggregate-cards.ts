@@ -55,6 +55,8 @@ export const aggregateCards = functions
             subject.aggregatedEvents.push(eventId);
             subject.aggregatedEvents = subject.aggregatedEvents.slice(-10);
 
+            subject.cardsNextQuiz = Object.fromEntries(Object.entries(subject.cardsNextQuiz).filter(([, count]) => count > 0));
+
             transaction.update(subjectRef, subject);
         });
     });
