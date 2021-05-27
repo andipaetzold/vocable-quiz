@@ -38,7 +38,7 @@
         "antd": "3.26.20",
         "classnames": "2.3.1",
         "date-fns": "2.21.3",
-        "firebase": "8.6.2",
+        "firebase": "8.6.3",
         "firebase-admin": "9.9.0",
         "firebase-functions": "3.14.1",
         "i18next": "20.3.0",
