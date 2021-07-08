@@ -17,7 +17,7 @@
         "url": "https://github.com/andipaetzold/vocable-quiz"
     },
     "devDependencies": {
-        "firebase-tools": "9.14.0",
+        "firebase-tools": "9.16.0",
         "rollup": "2.52.8",
         "rollup-plugin-copy": "3.4.0",
         "rollup-plugin-typescript2": "0.30.0",
