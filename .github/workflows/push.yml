@@ -13,7 +13,7 @@ jobs:
               id: node-version
               run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
             - name: Use node ${{ matrix.node }}
-              uses: actions/setup-node@v2.3.2
+              uses: actions/setup-node@v2.4.0
 
             - uses: actions/cache@v2
               with:
